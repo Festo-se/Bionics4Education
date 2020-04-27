@@ -1,6 +1,6 @@
 # Bionics4Education Kit
 
-Bionics4Education is an innovating learning environment which gets inspired of the beauty of nature.
+[Bionics4Education](https://www.bionics4education.com/web/lang/de/1_education.html) is an innovating learning environment which gets inspired of the beauty of nature.
 
 Within a project-based learning experience educators can emphasizes their students creativity, innovation and problem solving.
 The bionics kit from Festo consists of components with which three different nature-inspired animal robots can be built according to the model of Festo's bionics projects. All robots are controlled by a microcontroller whose source code is provided here. 
