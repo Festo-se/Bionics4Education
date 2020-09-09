@@ -1,5 +1,7 @@
 # Bionics4Education Kit
 
+![b4e_kit](/img/b4e_composing.JPG)
+
 [Bionics4Education](https://www.bionics4education.com/web/lang/de/1_education.html) is an innovating learning environment which gets inspired of the beauty of nature.
 
 Within a project-based learning experience educators can emphasizes their students creativity, innovation and problem solving.
