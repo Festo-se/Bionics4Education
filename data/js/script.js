@@ -1,4 +1,4 @@
-// @author  Timo Schwarzer (timo.schwarzer@festo.com)
+// author  Timo Schwarzer (timo.schwarzer@festo.com)
 
 
 // VARIABLES
