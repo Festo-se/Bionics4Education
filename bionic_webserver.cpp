@@ -1,7 +1,8 @@
 /**
  * @file     bionic_webserver.cpp
  * 
- * @author   Lucas Schweitzer (lucas.schweitzer@jntec.de)
+ * @author   Timo Schwarzer (timo.schwarzer@festo.com)
+ *           Lucas Schweitzer (lucas.schweitzer@jntec.de)
  * 
  * @brief    This file describes the definition of the class BionicWebserver
  * 
