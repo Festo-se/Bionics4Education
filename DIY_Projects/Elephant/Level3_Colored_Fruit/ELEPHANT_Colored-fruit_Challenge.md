@@ -1,7 +1,7 @@
-![Festo_logo](/Scenario/Image/Logo_Festo.png)
+![Festo_logo](/DIY_Projects/Image/Logo_Festo.png)
 # STEP-BY-STEP
 # Colored fruit
-![Elephant](/Scenario/Image/Colored_fruit_photo_finale.JPG)
+![Elephant](/DIY_Projects/Image/Colored_fruit_photo_finale.JPG)
 
 In this project, you’re going to feed the elephant. The elephant uses its trunk to catch and bring the fruits to its mouth. But it doesn't like all fruits. So in turn you will give the elephant's trunk objects each associated with a color. By using a color sensor, you will be able to determine if it is the winning color. If it is the elephant will be happy and move its trunk. Otherwise, it will reject your fruit.
 
@@ -29,16 +29,16 @@ In this project, you’re going to feed the elephant. The elephant uses its trun
 * 1 3D printed part of: Color_Box_Top.stl (download on github)
 * 1 3D printed part of: Color_Box_Bottom.stl (download on github)
 * *ELEPHANT_Colored-fruit_Code_Challenge.ino* (download on github)
-![Elephant](/Scenario/Image/Colored_Fruit_Components.JPG)
+![Elephant](/DIY_Projects/Image/Colored_Fruit_Components.JPG)
 
-<img src="/Scenario/Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Throughout the tutorial, do not hesitate to refer to the documentation.*
+<img src="/DIY_Projects/Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Throughout the tutorial, do not hesitate to refer to the documentation.*
 
 # Task 1: Using LED
 Use the built-in LED and create a function to display the number of player who has to play. To do this, control the power supply of the LED. The ESP32 only send information to the LED. 
 
 ## Code:
 1. Open the *ELEPHANT_Colored-fruit_Code_Challenge.ino*  file.
-<br> <img src="/Scenario/Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
+<br> <img src="/DIY_Projects/Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
 2.*globales variables*
 <br>Complete with the GPIO's number used by the Built-in LED.
 3. *Function*
@@ -52,11 +52,11 @@ Use the built-in LED and create a function to display the number of player who h
 # Task 2: Touch sensor 
 Use the touch sensor and write code to display the next number of player only if the sensor has been touched.
 <br>The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (I/O). It sends a high level when a touch is detected. The vibrating motor will be connected to the OUT pin of the sensor. The motor will vibrate each time a contact is detected.
-<br><img src="/Scenario/Image/Touch_sensor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
+<br><img src="/DIY_Projects/Image/Touch_sensor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
  
 ## Wiring scheme: 
 The picture shows the assembly of the touch sensor (blue) and ESP32 (brown) with cables.
-<br>![Chameleon](/Scenario/Image/Colored_Fruit_Task2.PNG) <br>(C) This image was created with Fritzing.
+<br>![Chameleon](/DIY_Projects/Image/Colored_Fruit_Task2.PNG) <br>(C) This image was created with Fritzing.
 
 Touch sensor| ESP32
 ------------ | -------------
@@ -69,7 +69,7 @@ GND  | GND
 <br>Please indicate the number of the new GPIO used for touch sensor.
 2. *setup()* 
 <br>Please indicate the mode of touch sensor.
-<br><img src="/Scenario/Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 receives information from the touch sensor.*
+<br><img src="/DIY_Projects/Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 receives information from the touch sensor.*
 3. *loop()*
 <br>Please read the sensor's value.
 
@@ -82,11 +82,11 @@ State_Touch = digitalRead(PIN_TOUCH);
 
 # Task 3: Color sensor 
 Use a color sensor to determine the object's color. It sends a value (proportional to the frequency) according to the color. The color sensor has 8 pins: ground (GND), supply power (VCC), configuration pins (S0,S1,S2,S3) and a data pin (OUT).
-<br><img src="/Scenario/Image/color_sensor.PNG" alt="color_sensor" width="400"/> <br>(C) This image was created with Fritzing.
+<br><img src="/DIY_Projects/Image/color_sensor.PNG" alt="color_sensor" width="400"/> <br>(C) This image was created with Fritzing.
 
 ## Wiring scheme: 
 The picture shows the assembly of the touch sensor (blue), the color sensor (blue) and ESP32 (brown) with cables.
-<br>![Chameleon](/Scenario/Image/Colored_Fruit_Task3.PNG) <br>(C) This image was created with Fritzing.
+<br>![Chameleon](/DIY_Projects/Image/Colored_Fruit_Task3.PNG) <br>(C) This image was created with Fritzing.
 
 Touch sensor| ESP32
 ------------ | -------------
@@ -110,7 +110,7 @@ OUT| GPIO 25
 <br>Please indicate the number of the new GPIO used for color sensor.
 2. *setup()* 
 <br>Please indicate the mode of color sensor.
-<br><img src="/Scenario/Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 receives information from the color sensor.*
+<br><img src="/DIY_Projects/Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 receives information from the color sensor.*
 2. *loop()* 
 <br>Please read the color sensor's value.
 
@@ -147,7 +147,7 @@ Serial.println(Winner);
 ```
 
 <br>After reading of the color value: If it is the winning color please turn the LED on and set the *Continue* variable false: the game is over. If it is not the winning color, please dislay "Lose" on the serial monitor.
-<br><img src="/Scenario/Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
+<br><img src="/DIY_Projects/Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
 <br>After the end of the game you will be able to have the possibility of replaying thanks to the *Restart* variable.
 
 ```
@@ -169,7 +169,7 @@ Control the servomotor in a way to show "happy" movement and a "disgust" movemen
 
 ## Wiring scheme : 
 The picture shows the assembly of the touch sensor (blue), the color sensor (blue), 3 servomtors and ESP32 (brown) with cables.
-<br>![Chameleon](/Scenario/Image/Colored_Fruit_Task5.PNG) <br>(C) This image was created with Fritzing.
+<br>![Chameleon](/DIY_Projects/Image/Colored_Fruit_Task5.PNG) <br>(C) This image was created with Fritzing.
 
 Touch sensor| ESP32
 ------------ | -------------
@@ -207,7 +207,7 @@ black | GND
 <br>The *disgust_movement()* function allows to move the trunk to recreate a disgust movement: The trunk goes to one side, drop the object and returns to the initiale position.
 <br>The *winner_movement()* function allows to moves the trunk to recreate a excitement movement for the winning color: The trunk goes to one side, and goes to other side severals times.
 <br>Please create functions by using *servo.write()* and delays. 
-<br><img src="/Scenario/Image/Warning_sghr.PNG" alt="warning" width="50"/>*Pay attention to the names used for each servomotor.*
+<br><img src="/DIY_Projects/Image/Warning_sghr.PNG" alt="warning" width="50"/>*Pay attention to the names used for each servomotor.*
 2. *setup()* 
 <br>Please create a connection between the servomotors and the ESP32.
 
@@ -222,6 +222,6 @@ servo_clamps.attach(PIN_SERVO_CLAMPS);
 <br>Then, after reading the value of the color, if it is the winning color, the trunk moves with the *winner_movement()* function. Otherwise, it moves with the *disgust_movement()* function.
 
 <br>For assembly, you can use the following part to create a support for colored objects. Please fix the part with cable ties to the trunk. You'll find the STL-file of the part on github.
-<br><img src="/Scenario/Image/Extra_Colored_Fruit.JPG" alt="" width="450"/>
-<br><img src="/Scenario/Image/Colored_Fruit_Structure.JPG" alt="" width="450"/>
-<br> <br><img src="/Scenario/Image/firework_sghr.png" alt="fireworh" width="50"/>Congratulations, you've coded the **Colored fruit** scenario successfully!
+<br><img src="/DIY_Projects/Image/Extra_Colored_Fruit.JPG" alt="" width="450"/>
+<br><img src="/DIY_Projects/Image/Colored_Fruit_Structure.JPG" alt="" width="450"/>
+<br> <br><img src="/DIY_Projects/Image/firework_sghr.png" alt="fireworh" width="50"/>Congratulations, you've coded the **Colored fruit** scenario successfully!
