@@ -1,7 +1,8 @@
 /**
  * @file     bionic_webserver.h
  * 
- * @author   Lucas Schweitzer (lucas.schweitzer@jntec.de)
+ * @author   Timo Schwarzer (timo.schwarzer@festo.com)
+             Lucas Schweitzer (lucas.schweitzer@jntec.de)
  * 
  * @brief    This file describes the declaration of the class BionicWebserver
  * 
