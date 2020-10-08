@@ -1,6 +1,6 @@
-/**
- * @author  Timo Schwarzer (timo.schwarzer@festo.com)
- */
+// @author  Timo Schwarzer (timo.schwarzer@festo.com)
+
+
 // VARIABLES
 // Variable zum speichern des aktiven Projektes
 var activeProject = "bionic_fish";
