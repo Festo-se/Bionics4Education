@@ -5,7 +5,7 @@ There are 3 scenarios for each animal, which are matched to 3 different difficul
 
 Level		| Chameleon		| Elephant					| Fish		
 ------------ | ------------- | ------------- | ------------- 				
-Picture	|<img src="/Scenario/Image/Photo_Chameleon.PNG" alt="cameleon" width="100"/> 		| <img src="/Scenario/Image/Photo_Elephant.PNG" alt="elephant" width="100"/> | <img src="/Scenario/Image/Photo_Fish.PNG" alt="fish" width="100"/>					|
+Picture	|<img src="/DIY Projects/Image/Photo_Chameleon.PNG" alt="cameleon" width="100"/> 		| <img src="/Scenario/Image/Photo_Elephant.PNG" alt="elephant" width="100"/> | <img src="/Scenario/Image/Photo_Fish.PNG" alt="fish" width="100"/>					|
 1			| Camouflage		|Temperature				|A little heart			
 2			| Environment	| Adaptability of the trunk	| Cycle-of-the-day		
 3			| Food			| Colored Fruit				| Swimming Competition	
