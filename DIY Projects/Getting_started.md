@@ -1,5 +1,4 @@
-![Festo_logo](/DIY Projects/
-/Logo_Festo.png)
+![Festo_logo](/DIY Projects/Image//Logo_Festo.png)
 # *Documentation*
 The Getting_started document gives you an overview of the scenarios for the bionics kit. You get information about how it is structured. Also you can find background information on the material and basic programming in Arduino IDE, like code structure, comments and different functions.
 There are 3 scenarios for each animal, which are matched to 3 different difficulty levels. Here is an overview:
@@ -57,7 +56,7 @@ output interfaces.
 * **Breadboard:**
 <br>A breaboard is a board that allows you to connect all of your elements without soldering.
 <br>For this, different locations are connected together. The basic structure consists of two rails as illustrated below: Component rails (1) and Power rails (2) with two terminals. One negative terminal marked blue or black and one positive terminal marked red.
-![Breadboard_caption](/Scenario/DIY Projects/breadboard_sghr.PNG)
+![Breadboard_caption](/DIY Projects/Image/breadboard_sghr.PNG)
 
 ## Base of programming with Arduino IDE 
 The Arduino IDE tool is an integrated development environment and the interface allows you to import code into the EPS32 microcontroller.
