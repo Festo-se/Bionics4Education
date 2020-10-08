@@ -1,7 +1,8 @@
 /**@file bionic_edu_32_async_new_ssid_class.ino*/
 /**
  * @file bionic_edu_32_async_new_ssid_class.ino
- * @author Lucas Schweitzer (lucas.schweitzer@jntec.de)
+ * @author  Timo Schwarzer (timo.schwarzer@festo.com)
+            Lucas Schweitzer (lucas.schweitzer@jntec.de)
  * 
  * @brief EN: This file contains the main functions of the bionic-kit for the Arduino IDE
  *        DE: Diese Datei beinhaltet die Hauptfunktionen fuer das bionic-kit fuer die Arduino IDE
