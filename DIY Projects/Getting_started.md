@@ -1,11 +1,12 @@
-![Festo_logo](/Scenario/Image/Logo_Festo.png)
+![Festo_logo](/DIY Projects/
+/Logo_Festo.png)
 # *Documentation*
 The Getting_started document gives you an overview of the scenarios for the bionics kit. You get information about how it is structured. Also you can find background information on the material and basic programming in Arduino IDE, like code structure, comments and different functions.
 There are 3 scenarios for each animal, which are matched to 3 different difficulty levels. Here is an overview:
 
 Level		| Chameleon		| Elephant					| Fish		
 ------------ | ------------- | ------------- | ------------- 				
-Picture	|<img src="/DIY Projects/Image/Photo_Chameleon.PNG" alt="cameleon" width="100"/> 		| <img src="/Scenario/Image/Photo_Elephant.PNG" alt="elephant" width="100"/> | <img src="/Scenario/Image/Photo_Fish.PNG" alt="fish" width="100"/>					|
+Picture	|<img src="/DIY Projects/Image/Photo_Chameleon.PNG" alt="cameleon" width="100"/> 		| <img src="/DIY Projects/Image/Photo_Elephant.PNG" alt="elephant" width="100"/> | <img src="/DIY Projects/Image/Photo_Fish.PNG" alt="fish" width="100"/>					|
 1			| Camouflage		|Temperature				|A little heart			
 2			| Environment	| Adaptability of the trunk	| Cycle-of-the-day		
 3			| Food			| Colored Fruit				| Swimming Competition	
@@ -56,7 +57,7 @@ output interfaces.
 * **Breadboard:**
 <br>A breaboard is a board that allows you to connect all of your elements without soldering.
 <br>For this, different locations are connected together. The basic structure consists of two rails as illustrated below: Component rails (1) and Power rails (2) with two terminals. One negative terminal marked blue or black and one positive terminal marked red.
-![Breadboard_caption](/Scenario/Image/breadboard_sghr.PNG)
+![Breadboard_caption](/Scenario/DIY Projects/breadboard_sghr.PNG)
 
 ## Base of programming with Arduino IDE 
 The Arduino IDE tool is an integrated development environment and the interface allows you to import code into the EPS32 microcontroller.
@@ -287,24 +288,24 @@ while (condition);
 
 ## Compile you code 
 <br>This tab allows you to check and upload the code to the microcontroller.
-<br>![upload](/Scenario/Image/uploaded_Arduino_ide.PNG)
+<br>![upload](/DIY Projects/Image/uploaded_Arduino_ide.PNG)
 <br>This tab opens the serial monitor. It allows you to "communicate" with the ESP32 and to display a text or a variable.
-<br>![monitor_serial](/Scenario/Image/serial_monitor.PNG)
+<br>![monitor_serial](/DIY Projects/Image/serial_monitor.PNG)
 <br>Once the code has been verified and uploaded, if everything has worked, the following message should appear:
-<br>![upload_right](/Scenario/Image/Upload_good.PNG)
+<br>![upload_right](/DIY Projects/Image/Upload_good.PNG)
 
 ## 3D Parts 
 To integrate the sensors into the transparent body, you can use the following parts:
 * Box for the color sensor:
 	* <br>Color_Box_Top.stl
 	* <br>Color_Box_Bottom.stl
-<br><img src="/Scenario/Image/Box_color_sensor.JPG" alt="i" width="300"/> <img src="/Scenario/Image/Box_color_sensor_Built.jpg" alt="i" width="300"/> 
+<br><img src="/DIY Projects/Image/Box_color_sensor.JPG" alt="i" width="300"/> <img src="/DIY Projects/Image/Box_color_sensor_Built.jpg" alt="i" width="300"/> 
 * Box for the light sensor:
 	* <br>Light_Box_Top.stl
 	* <br>Light_Box_Bottom.stl
-<br><img src="/Scenario/Image/Box_light_sensor.JPG" alt="i" width="300"/> <img src="/Scenario/Image/Box_light_sensor_Built.jpg" alt="i" width="300"/> 
+<br><img src="/DIY Projects/Image/Box_light_sensor.JPG" alt="i" width="300"/> <img src="/DIY Projects/Image/Box_light_sensor_Built.jpg" alt="i" width="300"/> 
 * The structure:
 	* <br>3D_Structure_Color_sensor_and_Breadboard.stl
 	* <br>3D_Structure_Light_sensor.stl
-<br><img src="/Scenario/Image/Photo_3D_Structure.JPG" alt="i" width="300"/> <img src="/Scenario/Image/3D_strcuture_built.jpg" alt="i" width="300"/> 
-<br><img src="/Scenario/Image/Box_and_structure_Color.JPG" alt="i" width="300"/> <img src="/Scenario/Image/Box_and_structure_light.JPG" alt="i" width="300"/>
+<br><img src="/DIY Projects/Image/Photo_3D_Structure.JPG" alt="i" width="300"/> <img src="/DIY Projects/Image/3D_strcuture_built.jpg" alt="i" width="300"/> 
+<br><img src="/DIY Projects/Image/Box_and_structure_Color.JPG" alt="i" width="300"/> <img src="/DIY Projects/Image/Box_and_structure_light.JPG" alt="i" width="300"/>
