@@ -2,7 +2,7 @@
 #ifndef SETTINGS_H_
 #define SETTINGS_H_
 
-#define MOTOR_FULL_STEP_COUNT 14000 // number of motor steps for full up/down (festo variant)
+#define MOTOR_FULL_STEP_COUNT 14000 // number of motor steps for full up/down
 #define MOTOR_CURRENT_LOW 250
 #define DEFAULT_LOWER_BRIGHTNESS_THRESHOLD 0.2f // default brightness threshold
 #define DEFAULT_UPPER_BRIGHTNESS_THRESHOLD 0.4f // default brightness threshold
