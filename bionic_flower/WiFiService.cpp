@@ -152,6 +152,6 @@ void WiFiService::onEvent(WiFiEvent_t event) {
 
 String WiFiService::getMacAddress() {
   String mac = WiFi.macAddress();
-  mac.replace(':', '_');
-  return mac;
+  mac.replace(":", "");
+  return mac.substring(8, 12);
 }
