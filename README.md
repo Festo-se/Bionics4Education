@@ -9,7 +9,7 @@ The bionics kit from Festo consists of components with which three different nat
 
 # Installguide
 
-A detailed description on how to flash the microcontroller and how to install the needed software can be found [here](https://github.com/Festo-se/Bionics4EducationKit/blob/develop/installguide/mainfile/install_guide.md).
+A detailed description on how to flash the microcontroller and how to install the needed software can be found [here](https://github.com/Festo-se/Bionics4EducationKit/blob/master/installguide/mainfile/install_guide.md).
 
 # License and credits
 
