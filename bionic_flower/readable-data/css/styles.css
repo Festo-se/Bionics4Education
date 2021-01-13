@@ -1,0 +1,461 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: scroll;
+}
+
+html input[type="color"], body input[type="color"] {
+  padding: 0;
+  border: none;
+  height: 7em !important;
+  width: 7em !important;
+  vertical-align: middle;
+  border-radius: 0 !important;
+}
+
+html .bionic-container, body .bionic-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+html .bionic-container h3, body .bionic-container h3 {
+  text-align: center;
+}
+
+html .navbar, body .navbar {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+html .navbar .navbar-container, body .navbar .navbar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: inherit;
+}
+
+html .navbar .navbar-container .logo-image, body .navbar .navbar-container .logo-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1em;
+}
+
+html .navbar .navbar-container .navbar-tab-container, body .navbar .navbar-container .navbar-tab-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-height: inherit;
+}
+
+html .navbar .navbar-container .navbar-tab-container .navbar-collapse, body .navbar .navbar-container .navbar-tab-container .navbar-collapse {
+  height: 100%;
+  min-height: inherit;
+}
+
+html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: inherit;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs li, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs li {
+  width: 50%;
+}
+
+html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs li a, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs li a {
+  font-size: 1em;
+}
+
+html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs .active a, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs .active a {
+  background: #0091DC !important;
+  color: white !important;
+}
+
+html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs:not(.active) a, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs:not(.active) a {
+  background: white;
+  -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+}
+
+html .tab-content, body .tab-content {
+  width: auto;
+  margin: 0 auto;
+  padding-bottom: 2em;
+}
+
+html .tab-content .autonomous-tab-container .element, html .tab-content .manual-tab-container .element, body .tab-content .autonomous-tab-container .element, body .tab-content .manual-tab-container .element {
+  padding-bottom: 5em;
+  -webkit-box-shadow: 0 0 3em #E1E5E8;
+          box-shadow: 0 0 3em #E1E5E8;
+  border: 1px solid #E1E5E8;
+  border-radius: 1em;
+  margin-top: 4em;
+  padding: 2em 2em 3.5em 2em;
+}
+
+html .tab-content .autonomous-tab-container .element p, html .tab-content .autonomous-tab-container .element span, html .tab-content .manual-tab-container .element p, html .tab-content .manual-tab-container .element span, body .tab-content .autonomous-tab-container .element p, body .tab-content .autonomous-tab-container .element span, body .tab-content .manual-tab-container .element p, body .tab-content .manual-tab-container .element span {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+html .tab-content .autonomous-tab-container .element .calibrate-button, html .tab-content .manual-tab-container .element .calibrate-button, body .tab-content .autonomous-tab-container .element .calibrate-button, body .tab-content .manual-tab-container .element .calibrate-button {
+  position: relative;
+  margin-top: 5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+html .tab-content .autonomous-tab-container .element .calibrate-button button, html .tab-content .manual-tab-container .element .calibrate-button button, body .tab-content .autonomous-tab-container .element .calibrate-button button, body .tab-content .manual-tab-container .element .calibrate-button button {
+  padding: 0.25em 1.5em;
+  border-radius: 0.25em;
+  background: #0091DC;
+  color: white;
+  border: 0;
+  margin-top: 1em;
+}
+
+html .tab-content .autonomous-tab-container .element .slider-value-label, html .tab-content .manual-tab-container .element .slider-value-label, body .tab-content .autonomous-tab-container .element .slider-value-label, body .tab-content .manual-tab-container .element .slider-value-label {
+  position: relative;
+  padding-top: 4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: -6;
+}
+
+html .tab-content .autonomous-tab-container .element .slider-value-label > p, html .tab-content .manual-tab-container .element .slider-value-label > p, body .tab-content .autonomous-tab-container .element .slider-value-label > p, body .tab-content .manual-tab-container .element .slider-value-label > p {
+  background: #0091DC;
+  padding: 0.6em;
+  border-radius: 1em;
+  color: white;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container {
+  position: relative;
+  margin-top: 2em;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .brightness-threshold-labels, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .brightness-threshold-labels, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .brightness-threshold-labels, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .brightness-threshold-labels {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 2em;
+  z-index: -7;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #brightnessHandlerSlider .tooltip-main, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #brightnessHandlerSlider .tooltip-main, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #brightnessHandlerSlider .tooltip-main, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #brightnessHandlerSlider .tooltip-main {
+  border: 1px solid red !important;
+  opacity: 1 !important;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled {
+  position: absolute !important;
+  top: 0;
+  z-index: -1;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled .slider-handle, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled .slider-handle, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled .slider-handle, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider-disabled .slider-handle {
+  border: 1px solid black;
+  width: 1px;
+  height: 3em;
+  top: -50%;
+  margin-left: 0;
+  border-radius: 0;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider {
+  position: absolute !important;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-selection, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-selection, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-selection, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-selection {
+  background: #0091DC;
+  opacity: 0.6;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-handle, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-handle, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-handle, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-handle {
+  display: none;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-low, html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-high, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-low, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-high, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-low, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-high, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-low, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #minmax-brightness-threshold-slider .slider-track .slider-track-high {
+  height: 1px;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider {
+  margin: 0 !important;
+  width: 100% !important;
+  position: absolute !important;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .slider-track, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .slider-track, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .slider-track, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .slider-track {
+  z-index: -4 !important;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .tooltip-main, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .tooltip-main, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .tooltip-main, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container .slider .tooltip-main {
+  visibility: hidden;
+}
+
+html .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #current-brightness .tooltip-main, html .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #current-brightness .tooltip-main, body .tab-content .autonomous-tab-container .brightness-threshold-container .brightness-threshold-input-container #current-brightness .tooltip-main, body .tab-content .manual-tab-container .brightness-threshold-container .brightness-threshold-input-container #current-brightness .tooltip-main {
+  visibility: visible;
+  opacity: 1;
+}
+
+html .tab-content .autonomous-tab-container .sensor-container, html .tab-content .manual-tab-container .sensor-container, body .tab-content .autonomous-tab-container .sensor-container, body .tab-content .manual-tab-container .sensor-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container, html .tab-content .manual-tab-container .sensor-container .light-sensor-container, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container, body .tab-content .manual-tab-container .sensor-container .light-sensor-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title, html .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title, body .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1em;
+}
+
+html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title .pad, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title .pad, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title .pad, html .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title .pad, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title .pad, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title .pad, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title .pad, body .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title .pad {
+  height: 1em;
+  width: 3em;
+  background-color: #E1E5E8;
+  border-radius: 1em;
+  margin-top: 1em;
+}
+
+html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title .colored, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title .colored, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title .colored, html .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title .colored, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title .colored, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title .colored, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title .colored, body .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title .colored {
+  background-color: #0091DC;
+  opacity: 0.5;
+}
+
+html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .light-sensor-image-container, html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .touch-sensor-image-container, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .light-sensor-image-container, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .touch-sensor-image-container, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container .light-sensor-image-container, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container .touch-sensor-image-container, html .tab-content .manual-tab-container .sensor-container .light-sensor-container .light-sensor-image-container, html .tab-content .manual-tab-container .sensor-container .light-sensor-container .touch-sensor-image-container, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .light-sensor-image-container, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .touch-sensor-image-container, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .light-sensor-image-container, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .touch-sensor-image-container, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container .light-sensor-image-container, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container .touch-sensor-image-container, body .tab-content .manual-tab-container .sensor-container .light-sensor-container .light-sensor-image-container, body .tab-content .manual-tab-container .sensor-container .light-sensor-container .touch-sensor-image-container {
+  height: 20em;
+  width: 20em;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider, html .tab-content .autonomous-tab-container .speed-container .slider, html .tab-content .manual-tab-container .motor-position-container .slider, html .tab-content .manual-tab-container .speed-container .slider, body .tab-content .autonomous-tab-container .motor-position-container .slider, body .tab-content .autonomous-tab-container .speed-container .slider, body .tab-content .manual-tab-container .motor-position-container .slider, body .tab-content .manual-tab-container .speed-container .slider {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider .slider-track, html .tab-content .autonomous-tab-container .speed-container .slider .slider-track, html .tab-content .manual-tab-container .motor-position-container .slider .slider-track, html .tab-content .manual-tab-container .speed-container .slider .slider-track, body .tab-content .autonomous-tab-container .motor-position-container .slider .slider-track, body .tab-content .autonomous-tab-container .speed-container .slider .slider-track, body .tab-content .manual-tab-container .motor-position-container .slider .slider-track, body .tab-content .manual-tab-container .speed-container .slider .slider-track {
+  height: 0.25em;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider .slider-track .slider-selection.tick-slider-selection, html .tab-content .autonomous-tab-container .speed-container .slider .slider-track .slider-selection.tick-slider-selection, html .tab-content .manual-tab-container .motor-position-container .slider .slider-track .slider-selection.tick-slider-selection, html .tab-content .manual-tab-container .speed-container .slider .slider-track .slider-selection.tick-slider-selection, body .tab-content .autonomous-tab-container .motor-position-container .slider .slider-track .slider-selection.tick-slider-selection, body .tab-content .autonomous-tab-container .speed-container .slider .slider-track .slider-selection.tick-slider-selection, body .tab-content .manual-tab-container .motor-position-container .slider .slider-track .slider-selection.tick-slider-selection, body .tab-content .manual-tab-container .speed-container .slider .slider-track .slider-selection.tick-slider-selection {
+  background: #0091DC;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider .slider-tick-container, html .tab-content .autonomous-tab-container .speed-container .slider .slider-tick-container, html .tab-content .manual-tab-container .motor-position-container .slider .slider-tick-container, html .tab-content .manual-tab-container .speed-container .slider .slider-tick-container, body .tab-content .autonomous-tab-container .motor-position-container .slider .slider-tick-container, body .tab-content .autonomous-tab-container .speed-container .slider .slider-tick-container, body .tab-content .manual-tab-container .motor-position-container .slider .slider-tick-container, body .tab-content .manual-tab-container .speed-container .slider .slider-tick-container {
+  display: none;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider .slider-handle, html .tab-content .autonomous-tab-container .speed-container .slider .slider-handle, html .tab-content .manual-tab-container .motor-position-container .slider .slider-handle, html .tab-content .manual-tab-container .speed-container .slider .slider-handle, body .tab-content .autonomous-tab-container .motor-position-container .slider .slider-handle, body .tab-content .autonomous-tab-container .speed-container .slider .slider-handle, body .tab-content .manual-tab-container .motor-position-container .slider .slider-handle, body .tab-content .manual-tab-container .speed-container .slider .slider-handle {
+  height: 1em;
+  width: 1em;
+  background: #0091DC;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider .slider-tick-label-container, html .tab-content .autonomous-tab-container .speed-container .slider .slider-tick-label-container, html .tab-content .manual-tab-container .motor-position-container .slider .slider-tick-label-container, html .tab-content .manual-tab-container .speed-container .slider .slider-tick-label-container, body .tab-content .autonomous-tab-container .motor-position-container .slider .slider-tick-label-container, body .tab-content .autonomous-tab-container .speed-container .slider .slider-tick-label-container, body .tab-content .manual-tab-container .motor-position-container .slider .slider-tick-label-container, body .tab-content .manual-tab-container .speed-container .slider .slider-tick-label-container {
+  margin-left: 0 !important;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 1.0em;
+}
+
+html .tab-content .autonomous-tab-container .motor-position-container .slider .slider-tick-label-container > div, html .tab-content .autonomous-tab-container .speed-container .slider .slider-tick-label-container > div, html .tab-content .manual-tab-container .motor-position-container .slider .slider-tick-label-container > div, html .tab-content .manual-tab-container .speed-container .slider .slider-tick-label-container > div, body .tab-content .autonomous-tab-container .motor-position-container .slider .slider-tick-label-container > div, body .tab-content .autonomous-tab-container .speed-container .slider .slider-tick-label-container > div, body .tab-content .manual-tab-container .motor-position-container .slider .slider-tick-label-container > div, body .tab-content .manual-tab-container .speed-container .slider .slider-tick-label-container > div {
+  width: unset !important;
+}
+
+html .tab-content .color-picker-container, body .tab-content .color-picker-container {
+  margin-top: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+html .tab-content .color-picker-container .color-picker-input-container, body .tab-content .color-picker-container .color-picker-input-container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: none !important;
+}
+
+html .tab-content .color-picker-container .color-picker-input-container input, body .tab-content .color-picker-container .color-picker-input-container input {
+  height: 5em;
+  width: 5em;
+}
+
+@media only screen and (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  html .navbar, body .navbar {
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    padding-left: 1em;
+    padding-right: 1em;
+    position: relative;
+  }
+  html .navbar .navbar-container, body .navbar .navbar-container {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: unset;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+  html .navbar .navbar-container .logo-image, body .navbar .navbar-container .logo-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  html .navbar .navbar-container .navbar-tab-container, body .navbar .navbar-container .navbar-tab-container {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  html .navbar .navbar-container .navbar-tab-container .navbar-header, body .navbar .navbar-container .navbar-tab-container .navbar-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  html .navbar .navbar-container .navbar-tab-container .navbar-collapse, body .navbar .navbar-container .navbar-tab-container .navbar-collapse {
+    height: -webkit-fit-content !important;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+    overflow-y: hidden;
+    padding: 0;
+  }
+  html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs {
+    display: inline;
+  }
+  html .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs li, body .navbar .navbar-container .navbar-tab-container .navbar-collapse .nav-tabs li {
+    width: 100%;
+  }
+  html .tab-content, body .tab-content {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  html .tab-content .autonomous-tab-container .sensor-container, html .tab-content .manual-tab-container .sensor-container, body .tab-content .autonomous-tab-container .sensor-container, body .tab-content .manual-tab-container .sensor-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container:not(:first-child), html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container:not(:first-child), html .tab-content .manual-tab-container .sensor-container .touch-sensor-container:not(:first-child), html .tab-content .manual-tab-container .sensor-container .light-sensor-container:not(:first-child), body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container:not(:first-child), body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container:not(:first-child), body .tab-content .manual-tab-container .sensor-container .touch-sensor-container:not(:first-child), body .tab-content .manual-tab-container .sensor-container .light-sensor-container:not(:first-child) {
+    margin-top: 1em;
+  }
+  html .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title, html .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title, html .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title, html .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title, body .tab-content .autonomous-tab-container .sensor-container .touch-sensor-container .label-title, body .tab-content .autonomous-tab-container .sensor-container .light-sensor-container .label-title, body .tab-content .manual-tab-container .sensor-container .touch-sensor-container .label-title, body .tab-content .manual-tab-container .sensor-container .light-sensor-container .label-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.main-container {
+  border: 1px solid red;
+  overflow: scroll;
+}
+
+.centered {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.navbar-image {
+  padding: 15px 40px 10px 30px;
+}
+
+.slider {
+  width: 90% !important;
+  margin: 15px 1% 5px 3%;
+}
+/*# sourceMappingURL=styles.css.map */
