@@ -1,102 +1,87 @@
-//ENVIRONMENT
+// LED2
+// GPIO
+#define LED2 13
 
-//TASK 2
+// GPIO of RGB LED and vibration motor
+#define LED_RGB 16
+// PWM properties RGB LED
+int LED_RGB_Channel = 12;
+int LED_RGB_Channel_Frequency = 5000;
+int LED_RGB_Channel_Resolution = 8;
+// global variables RGB LED
+int LED_RGB_brightness_high = 255;
+int LED_RGB_brightness_low = 0;
 
-//LIBRARY
-#include <ESP32Servo.h>
-Servo servo;
-int PIN_SERVO = 25;
+// lightsensor
+// GPIO
+// set treshold for light sensor
 
-//GLOBALES VARIABLES
-//PWM properties Servo
-int Frequence_Servo=50;
-int Channel_Servo=0;
-int Resolution_Servo=16; 
+// touch sensor
+// GPIO
 
-//PWM properties LED
-int Frequence_LED=5000;
-int Channel_LED=12;
-int Resolution_LED=8;
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
 
-//GPIO
-int PIN_LED_R=13;
-int PIN_LED_B=16; 
-int PIN_LIGHT=26;
+// global variables
+int current_value = 0;
+int stepSize = 8;
 
-//VARIABLES
-//Luminosity_Limit determines the limit luminosity between day and night 
-int Luminosity_Limit=400;
-
-//FUNCTION
-//Command_servo: function that give the order of the angle to the servomotor
-void Command_servo(float angle)
-{   
-    //convert 0-180 degrees to 0-65536
-    uint32_t conv = (((angle/180.0)*2000)/20000.0*65536.0)+1634;
-    ledcWrite(Channel_Servo,conv);
-}
-
-//movement_tongue: function that creates a movement of the tongue to convert a moment of activity of the chameleon
-void movement_tongue()
-{
-  /*...*/
-}
-
-//SETUP: function that initialize the components and display a start message to the serial monitor
+// setup the components
 void setup()
 {
-  //INITIALIZATION
-  //EPS32 sends information to the LEDs
-  pinMode(PIN_LED_R, OUTPUT);
-  pinMode(PIN_LED_B,OUTPUT);
-  
-  //ESP32 receives information from the light sensor
-  pinMode(PIN_LIGHT,INPUT);
+  // setup LED2 as OUTPUT
+  pinMode(LED2, OUTPUT);
 
-  //LED's initialization
-  ledcAttachPin(PIN_LED_B,Channel_LED);
-  ledcSetup(Channel_LED, Frequence_LED, Resolution_LED);
+  // setup LED_RGB as OUTPUT
+  pinMode(LED_RGB, OUTPUT);
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(LED_RGB, LED_RGB_Channel);
+  // define the PWM functionalities of the channel
+  ledcSetup(LED_RGB_Channel, LED_RGB_Channel_Frequency, LED_RGB_Channel_Resolution);
 
-  //Servomotor's initialization
-  ledcAttachPin(PIN_SERVO,Channel_Servo);
-  ledcSetup(Channel_Servo,Frequence_Servo,Resolution_Servo);
-  
-  //SERIAL COMMUNICATION
+  // setup the light sensor as INPUT
+
+  //  setup touch sensor
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
   Serial.begin(9600);
-  delay(5000);
-  Serial.println("Environment: task 2!"); 
 }
 
-//LOOP: function that read the light value, if it is the day the red LED is on, if not the blue LED create a snoring - code executed repeatedly
 void loop()
-{ 
-  //Reading and display the light value
-  int Luminosity_Value=analogRead(PIN_LIGHT);
-  Serial.println("Light value");
-  Serial.println(Luminosity_Value,DEC);
+{
+  // read the current light sensor value and print it in the serial monitor.
 
-  //Day
-  if (Luminosity_Value>=Luminosity_Limit)
-  { 
-    //Red light
-    digitalWrite(PIN_LED_R,HIGH);
-    ledcWrite(Channel_LED,0);
-  }
-  
-  //Night
-  else
-  {
-    //Snoring with the blue LED
-    digitalWrite(PIN_LED_R,LOW);
-    for (int i=0; i<=256;i=i+10) 
-    { 
-     ledcWrite(Channel_LED,i); 
-     delay(50);
-    }
-    for (int y=256; y>=0 ;y=y-10) 
-    { 
-     ledcWrite(Channel_LED,y);
-     delay(50); 
-    }
+  // If the light sensor value is equal of higher then the light treshold print "day" in the serial monitor.
+  // read and print the current touch sensor value to the serial monitor
+
+  // If the touch sensor detect a signal, flash the red LED and write "danger" in the serial monitor.
+	ledcWrite(LED_RGB_Channel, 0);
+    digitalWrite(LED2, HIGH);
+    delay(500);
+    digitalWrite(LED2, LOW);
+    delay(500);
+
+  // If the touch sensor detect no signal, move the servomotor (tounge).
+  // create a movement of the servomotor to angle max and min
+
+  // If the light sensor value is lower then the light treshold print "night" in the serial monitor. And fade the vibrating motor and RGB LED.
+    ledcWrite(LED_RGB_Channel, current_value);
+  // Wait for 100 milliseconds to see the dimming effect of the LED.
+    delay(100);
+
+  // Change the current_value for next run of the loop.
+  current_value = current_value + stepSize;
+
+  // Reverse the direction of the fading at the ends of a fading cycle.
+  if (current_value <= LED_RGB_brightness_low || current_value >= LED_RGB_brightness_high) {
+    stepSize = -stepSize;
   }
 }

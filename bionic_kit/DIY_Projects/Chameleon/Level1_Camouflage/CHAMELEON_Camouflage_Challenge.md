@@ -1,15 +1,18 @@
 ![Festo_logo](../../Image/Logo_Festo.png)
 # STEP-BY-STEP
 # Camouflage 
-![Cameleon](../../Image/Camouflage_photo_finale.jpg)
+![Cameleon](../../Image/Chameleon_Level1_Camouflage_finale.jpg)
 
-The chameleon is known for its bright colors. Indeed, the chameleon has the incredible characteristics of being able to change colors. Thus, thanks to a color sensor and an LED you will be able to reproduce this characteristic. Indeed, the LED will light up in the color of the support on which the chameleon is.
+The chameleon is known for its bright colors. Indeed, the chameleon has the incredible characteristics of being able to change colors. You will be able to reproduce this characteristic with a color sensor and LEDs.
+
+You will creat code to interact with the chameleon. If the color sensor detects red color the chameleon change its' color to red. If the color sensor detects blue color the chameleon change its' color to blue. If the color sensor detects no special color the chameleon doesn't change its' color. 
 
 ## Objective
-* You can control an LED with signals.
-* You can write if structure. 
-* You learn how to use color sensor.
-* You learn to deal with global and local variables.
+* You can toggle a LED.
+* You understand conditionals.
+* You can deal with global and local variables.
+* You understand logical operators.
+* You understand calling functions.
 
 ## Material 
 * 1 Microcontroller ESP32
@@ -17,127 +20,93 @@ The chameleon is known for its bright colors. Indeed, the chameleon has the incr
 * 12 Jumper cables
 * 1 RGB LED
 * 1 Color sensor (red square)
-* 3 Resistors 330 Ohm
+* 1 Resistors 330 Ohm
+* 1 0.01 or 0.1 µF capacitor
 * 1 3D printed part of: 3D_Structure_Color_sensor_and_Breadboard.stl (download on github)
 * 1 3D printed part of: 3D_Structure_Light_sensor.stl (download on github)
 * 1 3D printed part of: Color_Box_Top.stl (download on github)
 * 1 3D printed part of: Color_Box_Bottom.stl (download on github)
 * 5 Cable ties
 * *CHAMELEON_Camouflage_Code_Challenge.ino* (download on github)
-<br>![Cameleon](../../Image/Camouflage_Component.JPG)
+<br>![Cameleon](../../Image/Chameleon_Level1_Camouflage_Task0.jpg)
 
-<img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Throughout the tutorial, do not hesitate to refer to the documentation.*
+# Task 1: Control the built-in red LED (LED2)
+Flash the red LED every 1000 ms. Use the built in red LED; it's defined on GPIO 13.
 
-# Task 1: Flashing LED 
-Flash an LED and turn it on and then turn it off repeatedly. Control the power supply of the LED to turn it on and off. The ESP32 only send information to the LED. The LED send no data back to the ESP32. 
-<br><img src="../../Image/LED.PNG" alt="Simple LED" width="50"/> <br>(C) This image was created with Fritzing.
+![](../../Image/Chameleon_Level1_Camouflage_Task1.jpg) 
 
 ## Wiring scheme:
-The picture shows the assembly of the breadboard (grey), LED (transparent), 330 Ohm resistor, and ESP32 (brown) with cables.
-![Camouflage_Task1](../../Image/Camouflage_Task1.PNG) <br>(C) This image was created with Fritzing.
-
-LED | Breadbord
+LED2	| ESP32 
 ------------ | -------------
-Red | GPIO 16 
-Back | GND
-
-<img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The LED must be in series with a 330 Ohm resistor.*
+LED2 | GPIO 13 
 
 ## Code:
-1. Open the *CHAMELEON_Camouflage_Code_Challenge.ino*  file.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
+1. Open the *CHAMELEON_Camouflage_Code_Challenge.ino* file.<br>
 2. *global variables*
-<br>In order to simplify understanding of the code, a global variable is associated with each GPIO number used. Associate the variabe "PIN_LED" to the number's GPIO 16. 
+<br>Define the GPIO of the red LED and give it the variable name "LED2". 
 3. *setup()*
-<br>First, indicate the GPIO mode. Then you may notice instructions regarding the serial link. Do not hesitate to open the serial monitor.
+<br>Setup LED2 as OUTPUT.
 4. *loop()*
-<br>Please power on and off the LED. You can change the delay value to change the speed of the flashing.
- 
-# Task 2: RGB LED 
-Control an RGB LED and display a sequence of colors. For example, blue, then green and finally red. An RGB LED brings together 3 simple LEDs as studied in the previous task. The ESP32 only send information to the LED. The LED send no data back to the ESP32.  
+<br>Control LED2 via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 1000 ms between each HIGH and LOW value.
+
+# Task 2: Control the RGB LED 
+Flash the RGB LED in blue color. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 1000 ms between each HIGH and LOW value. If the red LED is HIGH the blue LED is LOW and the other way round.
+<br> The picture show the design of the RGB LED:
+* blue color: shortest wire 
+* green color: second shortest wire
+* ground: longest wire (black)
+* red color: second longest wire
+  
 <br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
- 
-## Wiring scheme: 
-The picture shows the Assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistors, and ESP32 (brown) with cables.
-![Camouflage_Task2](../../Image/Camouflage_Task2.PNG) <br>(C) This image was created with Fritzing.
+The RGB LED must be in series with a 330 Ohm resistor.
 
-RGB LED | Breadbord
+![](../../Image/Chameleon_Level1_Camouflage_Task2.jpg)
+
+## Wiring scheme:
+LED RGB| ESP32 
 ------------ | -------------
-Red | GPIO 16
-Blue | GPIO 17
-Green | GPIO 26
-Back | GND
+Blue | GPIO 16 
+Black | GND
 
-<img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*Each LED pin must be in series with a 330 Ohm resistor.*
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIOs used for RGB LED.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Think to change the name of the variable, a name can't be used serveral times.*
-2. *setup()* 
-<br>Please indicate the mode of each pin.
-3. *loop()*
-<br>Please create a color sequence. To make a color appear, you have to turn on the pin of this color and turn off the other two pins. Don't forget to use delay!
-
-```
-//Blue
-digitalWrite(PIN_LED_B, HIGH);
-digitalWrite(PIN_LED_G, LOW);
-digitalWrite(PIN_LED_R, LOW);
-delay(2000);
-```
-
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*If you feed several pins, you get a mixture and thus new colors like purple or cyan.*
-
-# Task 3: Final code
-Turn on the RGB LED of the same color as the sheet on which the chameleon is placed. For this, please use a color sensor to determine the object's color. The 
-color sensor has 8 pins: ground (GND), supply power (VCC), configuration pins (S0,S1,S2,S3) and a data pin (OUT). The color sensor sends a value (proportional to the frequency) 
-according to the color.
-<br><img src="../../Image/color_sensor.PNG" alt="color_sensor" width="400"/> <br>(C) This image was created with Fritzing.
-
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistors, the color sensor (blue) and ESP32 (brown) with cables.
-![Camouflage_Task3](../../Image/Camouflage_Task3.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | Breadbord
------------- | -------------
-Red | GPIO 16
-Blue | GPIO 17
-Green | GPIO 26
-Back | GND
-
-Color sensor | ESP32
-------------- | ------------- 
-VCC | VCC
-GND | GND 
-S0| VCC 
-S1 | VCC 
-S2 |VCC 
-S3 | GND
-E0| GND 
-OUT| GPIO 25
-
-<br>![Camouflage_Task3](../../Image/Camouflage_strcuture.JPG)
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for color sensor.
+## Code:
+1. *global variables*
+<br>Define the GPIO of the RGB LED and give it the variable name "LED_RGB".
 2. *setup()*
-<br>Please indicate the mode of OUT pin.
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*The ESP32 receives information from the color sensor.*
-3. *loop()* 
-<br>Please read the color sensor's value.
+<br>Setup LED_RGB as OUTPUT.
+3. *loop()*
+<br>Control LED_RGB via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Use the *delay();* of 1000 ms between each HIGH and LOW value from task 1.
 
-```
-//Reading the color
-int Current_Frequency = pulseIn(PIN_COLOR, HIGH); //read the data GPIO OUT 
-Serial.println("Color Frequency");
-Serial.println(Current_Frequency);//display the frequency on serial monitor
-delay(500);
-```
+# Task 3: Implement the color sensor 
+Implement the color sensor in a way to detect no color, red and blue color. Connect the capacitor in series with the power (VCC) of the  color sensor.
 
-<br>You can change the value of the global variables Blue, Green and Red according to the values you get when the sensor has to detect the color.
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*This value is not the same in or out body.*
-<br>The value of the variable will be compared to the reference values of each color. Using an if structure, write the code to illuminate the LED of the same colour as the one 
-detected with the sensor.
-<br><br><img src="../../Image/firework_sghr.png" alt="fireworh" width="50"/>Congratulations, you've coded the **Camouflage** scenario successfully!
+![](../../Image/Chameleon_Level1_Camouflage_Task3.jpg)
+
+## Wiring scheme:
+color sensor| ESP32 
+------------ | -------------
+VCC | VCC (+)
+GND | GND
+S0 | 17
+S3 | 26
+OUT | 25
+
+## Code:
+1. *global variables*
+* Define the GPIO of the "out" pin of the sensor and give it the variable name sensorOut.
+* Define the GPIO of S0.
+* Define a global variable for red color frequency and one for blue color frequency. You can use the datatype *int*.
+* Define your lower and upper treshold for the color sensor. You can filter data noise with this treshold. Look at the data of the color sensor and define your treshold. 
+2. *setup()*
+* Setup the "out" pin of the color sensor as INPUT.
+* Setup S0 as OUTPUT.
+* Set frequency scaling to 20% (see datasheet of the sensor). Digital write S0 as HIGH. S1 is LOW, because it's not connected to the ESP32.
+* Setup S3 as OUTPUT.
+3. *loop()*
+* Read the red values: configure the sensor array into the mode read only red color. Set S2 LOW (not connected) and digital write S3 as LOW. Read the color values with the function *pulseIn(sensorOut, HIGH)* and store the value in a variable. The function *pulseIn()* reads the pulse on the pin and returns the length of the pulse in µs. The pulse is a rectangular signal HIGH or LOW.
+* Read the blue values: configure the sensor array into the mode read only blue color. Set S2 LOW (not connected) and digital write S3 as HIGH. Read the color values with the function *pulseIn(sensorOut, HIGH)* and store the value in a variable.
+* Print the measured red and blue frequency values into the serial monitor.
+* Look at the generated data and do tests with red and blue colored paper; change the ground (white vs. black). What do you see when red or blue colored paper covers the sensor? If the LED light of the color sensor is too low adapt the brightness of the environment. Define a lower and an upper treshold and write the value in your global variable.
+* Write conditions to change the color of the chameleon: 
+* If the red frequency value is between the lower and upper value and less than the blue frequency value flash the red LED.
+* If the blue frequency value is between the lower and upper value and less than the red frequency value flash the blue LED.
+* If no color is detected no LED lights up.

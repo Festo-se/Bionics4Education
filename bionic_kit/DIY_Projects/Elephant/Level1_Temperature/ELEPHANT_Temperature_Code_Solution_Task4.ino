@@ -1,66 +1,99 @@
-//TEMPERATURE
+// RGB LED Blue
+// GPIO
+#define LED_RGB_Blue 16
 
-//TASK 4
+// RGB LED Red
+// GPIO
+#define LED_RGB_Red 17
 
-//LIBRARY
-#include <ESP32Servo.h>
+// temperature sensor
+// GPIO
+#define temperaturesensor 26
+// library
 #include <OneWire.h>
 #include <DallasTemperature.h>
-
-//Temperature sensor
-int PIN_TEMPERATURE=26;
-OneWire oneWire(PIN_TEMPERATURE);
+// define temperaturesensor
+OneWire oneWire(temperaturesensor);
 DallasTemperature sensors(&oneWire);
+// set treshold for the temperature sensor. The variable determines the treshold between warm and cold (°C).
+float temperatureTreshold = 22;
 
-//servomotor
-Servo servo; 
+// servomotor
+// library
+#include <ESP32_Servo.h>
+// GPIO
+#define servomotor 25
+// PWM properties servomotor
+int servomotor_Channel = 0;
+int servomotor_Frequency = 50;
+int servomotor_Resolution = 16;
+// define servomotor angles
+int servomotor_Angle_Min = 80;
+int servomotor_Angle_Max = 120;
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED RGB (breadboard)
-int PIN_LED_R=16; 
-int PIN_LED_B=17;
-
-//Servomotor
-int PIN_SERVO=25;
-
-//VARIABLES
-//Temperature_Limit determines the limit temperature (°C) between hot and cold
-float Temperature_Limit=22;
-
-//SETUP: function that initialize the components and display a start message to the serial monitor
-void setup()
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LEDS
-  pinMode(PIN_LED_R,OUTPUT);
-  pinMode(PIN_LED_B,OUTPUT);
-
-  //match between servomotor and the number pin specified 
-  servo.attach(PIN_SERVO);
-  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600);
-  delay(5000);
-  Serial.println("Temperature: task 4!");  
-
-  //Start the temperature sensor
-  sensors.begin();
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+void command_servomotor(float servomotor_Angle)
+{
+  // convert 0-180 degrees to 0-65536
+  uint32_t conv = (((servomotor_Angle / 180.0) * 2000) / 20000.0 * 65536.0) + 1634;
+  ledcWrite(servomotor_Channel, conv);
 }
 
-//LOOP: function that control a servomotor*/
-void loop() 
+// global variables
+char serialprint_buffer[100];
+
+// setup the components
+void setup()
 {
- //SERVO MOVEMENT 
- //the servomotor moves to be 115° position
- servo.write(115); 
- 
- //wait 3s
- delay(3000); 
- 
- //the servomotor moves to be 45° position
- servo.write(45);
-  
- //wait 3s
- delay(3000);
+  // setup LED_RGB_Blue as OUTPUT
+  pinMode(LED_RGB_Blue, OUTPUT);
+
+  // setup LED_RGB_Red as OUTPUT
+  pinMode(LED_RGB_Red, OUTPUT);
+
+  // setup the temperature sensor as INPUT
+  pinMode(temperaturesensor, INPUT);
+  // start the temperaturesensor
+  sensors.begin();
+
+  // setup servomotor as OUTPUT
+  pinMode(servomotor, OUTPUT);
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(servomotor, servomotor_Channel);
+  // define the PWM functionalities of the channel
+  ledcSetup(servomotor_Channel, servomotor_Frequency, servomotor_Resolution);
+
+  // setup the serial communication
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // read and display the temperature (°C)
+  sensors.requestTemperatures();
+  float temperature_value = sensors.getTempCByIndex(0);
+  sprintf(serialprint_buffer, "Temperature: %.2f °C", temperature_value);
+  Serial.println(serialprint_buffer);
+
+  // If the temperature sensor value is equal of higher then the temperature treshold print "warm" in the serial monitor.
+  if (temperature_value >= temperatureTreshold) {
+    Serial.println("warm");
+	// flash the red LED with digitalWrite()
+    digitalWrite(LED_RGB_Blue, LOW);
+    digitalWrite(LED_RGB_Red, HIGH);
+    delay(100);
+  }
+
+  // If the temperature sensor value is lower then the temperature treshold print "cold" in the serial monitor.
+  else {
+    Serial.println("cold");
+    // flash the blue LED with digitalWrite()
+    digitalWrite(LED_RGB_Blue, HIGH);
+    digitalWrite(LED_RGB_Red, LOW);
+    // create a movement of the servomotor to angle max and min
+    command_servomotor(servomotor_Angle_Max);
+    delay(1000);
+    command_servomotor(servomotor_Angle_Min);
+    delay(1000);
+  }
 }

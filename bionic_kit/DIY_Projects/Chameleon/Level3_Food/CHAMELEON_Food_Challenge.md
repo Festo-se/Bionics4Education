@@ -1,19 +1,21 @@
 ![Festo_logo](../../Image/Logo_Festo.png)
 # STEP-BY-STEP 
 # Food
-![](../../Image/Food_photo_finale.JPG)
+![](../../Image/Chameleon_Level3_Food_finale.JPG)
 
-In this project, you’re going to feed the chameleon. But be careful, food is very important for the cameleon to be healthy. In turn, using the touch sensor, you’re going to tell the cameleon you want to give him food. If the chameleon likes food, you win. Otherwise, the chameleon rejects the food.
+In this project, you’re going to feed the chameleon. But be careful, food is very important for the cameleon to be healthy. You’re going to tell the cameleon you want to give food by using the touch sensor. If the chameleon likes food, you win. Otherwise, the chameleon rejects the food and you lose. The food is represented by soft balls.
+
+You will creat code to interact with the chameleon. The chameleon decides randomly if it likes the food you feed. If the chameleon likes the food, it changes the color to green and moves the tongue. In this case you win. If the chameleon doesn't like the offered food, it changes the color to red and it shakes in disgust by the vibration motor. In this case you lose.  
 
 ## Objective
-* You can control an LED with signals.
+* You can toggle an LED.
+* You can integrate a vibration motor.
+* You can control a servomotor.
 * You can write if structure.
-* You can write for-loop.
-* You can write while-loop.
-* You learn how to use a touch sensor.
-* You learn how to control a vibrating motor.
-* You learn how to control a servomotor.
-* You learn to deal with global and local variables.
+* You understand conditionals.
+* You can deal with global and local variables.
+* You understand logical operators.
+* You understand writing and calling functions.
 
 ## Material 
 * 1 Microcontroller ESP32
@@ -26,234 +28,157 @@ In this project, you’re going to feed the chameleon. But be careful, food is v
 * 1 Servomotor (Waterproof)
 * 3 Soft balls: diameter about 2,5 cm; color: blue, red, green
 * *CHAMELEON_Food_Code_Challenge.ino* (download on github)
-![](../../Image/Food_Component.JPG)
+![](../../Image/Chameleon_Level3_Food_Task0.jpg) 
 
-<img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/> *Throughout the tutorial, do not hesitate to refer to the documentation.*
+# Task 1: Control the built-in red LED (LED2)
+Flash the red LED every 1000 ms. Use the built in red LED; it's defined on GPIO 13.
 
-# TASK 1: Flashing LED 
-Use the RGB LED and create a function to display the player's number. The RGB LED brings together 3 simple LEDs, here you will use only the green pin and control the power supply of the LED. The ESP32 only send information to the LED. The LED send no data back to the ESP32. 
-<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
+![](../../Image/Chameleon_Level3_Food_Task1.jpg) 
 
 ## Wiring scheme:
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, and ESP32 (brown) with cables.
-![](../../Image/Food_Task1.PNG) <br>(C) This image was created with Fritzing.
-LED RGB| Breadbord
+LED2	| ESP32 
+------------ | -------------
+LED2 | GPIO 13 
+
+## Code:
+1. Open the *CHAMELEON_Food_Code_Challenge.ino* file.<br>
+2. *global variables*
+<br>Define the GPIO of the red LED and give it the variable name "LED2". 
+3. *setup()*
+<br>Setup LED2 as OUTPUT.
+4. *loop()*
+<br>Control LED2 via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 1000 ms between each HIGH and LOW value.
+
+# Task 2: Control the RGB LED 
+Flash the RGB LED in green color. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 1000 ms between each HIGH and LOW value. If the red LED is HIGH the green LED is LOW and the other way round.
+<br> The picture show the design of the RGB LED:
+* blue color: shortest wire 
+* green color: second shortest wire
+* ground: longest wire (black)
+* red color: second longest wire
+  
+<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
+<br>The RGB LED must be in series with a 330 Ohm resistor.
+![](../../Image/Chameleon_Level3_Food_Task1_fritzing.PNG) <br>(C) This image was created with Fritzing.
+
+![](../../Image/Chameleon_Level3_Food_Task2.jpg)
+
+## Wiring scheme:
+LED RGB| ESP32 
 ------------ | -------------
 Blue | GPIO 16 
 Black | GND
 
 ## Code:
-1. Open the *CHAMELEON_Food_Code_Challenge.ino*  file.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
-2. *global variables*
-<br>Complete the GPIO's number and the number of players.
-3. *Function*
-<br>The *player_display* function allows to indicate the number of the player who is to play. Indeed, the LED lights up as many times as the player’s number. 
-<br>Complete the code to create this function.
-4. *setup()*
-<br>First, indicate the GPIO mode. The ESP32 sends information to the LEDs. Then you may notice instructions regarding the serial link. Do not hesitate to open the serial monitor.
-5. *loop()*
-<br>Please call the function *player_display* to display the number of each player with while structure.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the while loop.*
- 
-# TASK 2: Using touch sensor
-Use the touch sensor and connect it to the ESP32. The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (I/O). The touch sensor is a high level when a contact is detected.
-<br><img src="../../Image/Touch_sensor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
-
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, touch sensor (blue) and ESP32 (brown) with cables.
-![Cycle of the day step 2 ](../../Image/Food_Task2.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | ESP32
------------- | -------------
-Blue | GPIO 16 
-Back | GND                               
- 
-Touch sensor | ESP32
------------- | ------------- 
-I/O | GPIO 17
-GND | GND
-VCC | VCC
- 
-## Code: 
-1. *global variables* 
-<br>Pleasewrite the new GPIO used by the touche sensor.
-2. *setup()* 
-<br>Please indicate the mode of the touch sensor.
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The ESP32 receives information from the touch sensor.*
+1. *global variables*
+<br> Define the GPIO of the RGB LED and give it the variable name "LED_RGB_Green".
+2. *setup()*
+<br> Setup LED_RGB_Green as OUTPUT.
 3. *loop()*
-<br>Please read the touch value.
+<br> Control LED_RGB_Green via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Use the *delay();* of 1000 ms between each HIGH and LOW value from task 1. If the red LED lights up the green LED is off and the other way round.
 
-```
-//Reading and display the touch value
-State_Touch = digitalRead(PIN_TOUCH);
-```
+# Task 3: Implement the touch sensor
+<br> Make the touch sensor work. If a touch is detected generate a random value between 0 and 1. If no touch is detected set LED2 and the green LED LOW.
+The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (IO). 
 
-<br>You can light the green LED and display the player's number. The number of the next player will only be displayed if a contact has been detected.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/> *Don't hesitate to consult the documentation to better understand how to use the while-loop.*
+![](../../Image/Chameleon_Level3_Food_Task3.jpg)
 
-# Task 3: Creation of the struture of the game
-Create the game's structure: A player number is randomly defined. The player's number is displayed, if the number is the winning number the green led should light up and the game is over. After 10 seconds you will be able to restart the game by pressing the touch sensor.
-
-## Wiring scheme: 
-The wiring scheme is the same as the task 2.
-
-## Code: 
-1. *global variables* 
-<br>Please create three variables:
-* The *Restart* variable allows to restart the game if it is true.
-* The *Continue* variable allows to continue the game until the winner has been found.
-* The *Winner* value stores the winning number.
-
-```
-// Restart allows to restart the loop function if it is true
-boolean Restart=true;
-//Continue allows to stop the game if the winner color was found if it is false
-boolean Continue=true;
-//Winner that is the winning number (randomly defined)
-int Winner;
-```
-
-2. *loop()* 
-<br>Please create the struture of the game. Use and complete (```/*?*/```) the following code.
-<br>To randomly define the winning number, please use the random function.
-
-```
-while (Restart== true)
-{  
- Restart = false;
- digitalWrite(PIN_LED_G,LOW);
- digitalWrite(PIN_LED_R,LOW);
- //definition of the winning number randomly
- /*?*/
- int player=1;
- int State_Touch; 
- while ((Continue == /*?*/)&&(player<=Number_player))
- {
-  Serial.println("Player ");
-  Serial.println(player);
-  player_display(player);   
-  do 
-  {
-   //Reading and display the touch value
-   State_Touch = digitalRead(PIN_TOUCH);
-  }
-  while (State_Touch != HIGH);
-  //Suspens
-  delay(4000);
-  if ( player == /*?*/)
-  {
-   Serial.println("Win");
-   digitalWrite(PIN_LED_G,HIGH);
-   Continue=false;
-  }
-  else
-  {
-   Serial.println("Lose");
-  }
-  delay(500);
-  player=player+1;
- }
- //Ready to restart ? 
- delay(10000);
- State_Touch = digitalRead(PIN_TOUCH);
- Serial.println("RESTART");
- Serial.println(State_Touch);
- if (State_Touch==/*?*/)
- {
-  //The game restart
-  Restart=true;
-  Continue=true;
- }
-}
-```
-
-# Task 4: Vibrating motor
-Control the vibrating motor and implement a vibration when the motor is powered.  Please use the motor when the player's number is not the winning number to indicate it is lost.
-<br>The vibrating motor has 2 pins: ground (black) and supply (orange).
-<br><img src="../../Image/Vibrating_motor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
-
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, touch sensor (blue), vibrating motor (white) and ESP32 (brown) with cables.
-![](../../Image/Food_Task4.PNG) <br>(C) This image was created with Fritzing.
-
-RGB LED | ESP32
+## Wiring scheme:
+touch sensor| ESP32
 ------------ | -------------
-Blue | GPIO 16 
-Back | GND                               
- 
-Touch sensor | ESP32
------------- | ------------- 
-I/O | GPIO 17
-GND | GND
+IO | GPIO 17
 VCC | VCC
- 
-Vibrating motor | ESP32
------------- | -------------
-orange | GPIO 26
-black | GND
+GND  | GND
 
 ## Code:
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for the vibrating motor. 
+1. *global variables*
+<br> Define the GPIO of the touch sensor.
 2. *setup()*
-<br>Please indicate the mode of the vibrating motor.
-3. *loop()* 
-<br>Please activate the vibrating motor when the player's number is not the winning number.
+<br> Setup the touch sensor as INPUT.
+3. *loop()*
+* Read the values from the touch sensor with *digitalRead();* and store the value in a local variable. Use *digitalRead()* because the touch sensor sends a digital signal.
+* Print the value in the serial monitor.
+* Write an if-structure:
+	* If a touch is detected (boolean HIGH), generate a random number between 0 and 1. Store the random value in a variable and print it in the serial monitor. Flash the red and green LED alternating. Use the code of Task 1 and 2.
+	* If no touch is detected (boolean LOW), print "no touch detected" to the serial monitor. Set LED2 and the green LED LOW.
 
-```
-//activation the vibrating motor for 2 secondes
-digitalWrite(PIN_VIBRATOR, HIGH); 
-delay(2000);
-digitalWrite(PIN_VIBRATOR,LOW);
-delay(500);
-```
+# Task 4: Write a condition for the random valuee
+<br> If the random value is equal to 1, the player wins. In this case print "win" into the serial monitor, light up the green LED and power off the red LED. 
 
-# Task 5: Servo motor 
-Control the servomotor and create an "eat" movement.
+![](../../Image/Chameleon_Level3_Food_Task4.jpg)
 
-## Wiring scheme: 
- The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, touch sensor (blue), vibrating motor (white), servomotor and ESP32 (brown) with cables.
-![](../../Image/Food_Task5.PNG) <br>(C) This image was created with Fritzing.
+## Code:
+1. *global variables*
+<br> There is no global variable to initialize.
+2. *setup()*
+<br> There is nothing to setup.
+3. *loop()*
+* Write an if structure:
+	* If the random value is equal to 1, print "win" into the serial monitor. Light up the green LED, power off the red LED and do a delay of 1000 ms. Use parts of the code from Task 1 and 2.
+	* If the random value is not equal to 1, print "lose" into the serial monitor. Light up the red LED, power off the green LED and do a delay of 1000 ms.	Use parts of the code from Task 1 and 2.
 
-RGB LED | ESP32
+# Task 5: Implement the vibration motor
+<br> Make the vibrating motor only work when the random value is not equal to 1.
+
+![](../../Image/Chameleon_Level3_Food_Task5.jpg)
+
+## Wiring scheme:
+vibrating monitor| ESP32 
 ------------ | -------------
-Blue | GPIO 16 
-Back | GND                               
- 
-Touch sensor | ESP32
------------- | ------------- 
-I/O | GPIO 17
-GND | GND
-VCC | VCC
- 
-Vibrating motor | ESP32
------------- | ------------- 
-orange | GPIO 26
-black | GND
- 
-Servomotor | ESP32
+Red | GPIO 26
+Black | GND
+
+## Code:
+1. *global variables*
+<br> Define the GPIO of the vibrating monitor.
+2. *setup()*
+<br> Setup the vibrating motor as OUTPUT.
+3. *loop()*
+<br> Set the vibrating motor HIGH only if the random value is not equal to 1. In any other case set the vibrating motor LOW. Therefore use the function *digitalWrite(variable, status)*.
+
+# Task 6: Implement the servo motor
+<br> Implement the servo motor to move the chameleons' tongue. Move the chameleon's tongue only if the random value is euqal to 1.
+<br> The servo motor has 3 pins: ground (black), power supply (red) and data pin connection (white). 
+
+![](../../Image/Chameleon_Level3_Food_Task6.jpg)
+
+## Wiring scheme:
+servo motor | ESP32
 ------------ | -------------
 White | GPIO 25
 Red | VCC
-Black | GND
-
-<br>![](../../Image/Food_Structure.JPG)
+Black  | GND
 
 ## Code:
-1. *global variables* 
-<br>Please indicate the number of the new GPIO used by the servomotor.
-2.*function*
-<br>The *tongue_mouvement()* function allows to create an "eat" movement, which means sucking the object and moving the tongue.
-<br>Please use the *servo.write* function and delays. 
-3. *setup()*
-<br>Please create the connection between the servomotor and the ESP32. 
+1. *global variables*
+<br> Define the GPIO of the servo motor and give it the variable name "servomotor". Also, define the channel, frequency and resolution of the PWM as an int and give them a number:
+* channel = 0
+* frequency = 50
+* resolution = 16
+<br> Define two global variable for the minimum and maximum angle of motor movement.
+* servomotor_Angle_Min = 80
+* servomotor_Angle_Max = 120
+<br> Define a function that converts the motor angle to motor steps to control the stepper motor. A function encapsulates a logic and behaviour, in this case to move the servomotor by the input value.
+* void command_servomotor(float servomotor_Angle): declarate the function as *void* and give the angle to the function. *Void* indicates that no information as output is expected.
+* convert 0-180 degrees to 0-65536. Use *uint32_t* as datatype to store the value.
+* call the function *ledcWrite(channel,i)* to move the servo motor. Use the variable for the servo motor channel. i is represented by the variable of your converting calculation. 
 
 ```
-////match between servo motor and the number pin specified 
-servo.attach(PIN_SERVO);
+void command_servomotor(float servomotor_Angle)
+{
+  //convert 0-180 degrees to 0-65536
+  uint32_t conv = (((servomotor_Angle / 180.0) * 2000) / 20000.0 * 65536.0) + 1634;
+  ledcWrite(servomotor_Channel, conv);
+}
 ```
 
-4. *loop()* 
-<br>Please call for each player the function *tongue_movement()* to suck their object. Then, if it is not the winning number, the chameleon has to eject the object. 
-<br><br><img src="../../Image/firework_sghr.png" alt="fireworh" width="50"/> Congratulations, you've coded the **Food** scenario successfully!
+2. *setup()*
+* Setup servomotor as OUTPUT.
+* Attach the channel to the GPIO of the servomotor to be controlled with *ledcAttach(servomotor, channel);*
+* Define the PWM functionalities of the channel with *ledcSetup(channel,frequency, resolution);*
+3. *loop()*
+<br> If the random value is equal to 1, move the servo motor by calling the function you defined previously *command_servomotor(angle)*.
+* move the servomotor to it's maximum angle value. Use the global variable you defined previously.
+* wait 1000 ms
+* move the servomotor to it's minimum angle value. Use the global variable you defined previously.
+* wait 1000 ms

@@ -1,23 +1,26 @@
 ![Festo_logo](../../Image/Logo_Festo.png)
 # STEP-BY-STEP
 # Adaptability of the trunk 
-<br>![](../../Image/Adaptability_of_the_trunk_photo_final.JPG)
+<br>![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_final.JPG)
 
-The trunk of elephants is used to breathe, to drink, catch fruit, communicate, etc.. The movements of the trunk are numerous. In this project you will use a light sensor, a touch sensor and a buzzer to create several behaviors depending on the different sensors. You create behaviors like communication, drinking or the sleep.  
+The trunk of elephants is used to breathe, to drink, catch fruit, communicate, etc.. The movements of the trunk are numerous. In this project you will use a light sensor and a touch sensor to create several behaviors. You create behaviors like sleep or day mode with trunk movement or warning signal.  
+
+You will creat code to interact with the elephant. If It's day and no touch is detected the elephant feels comfortable and moves its trunk. If it's day and a touch is detected the elephant is on alert with a flashing red LED. If it's night the elephant is asleep and reacts to no stimuli.  
 
 ## Objective
-* You can control an LED with signals.
-* You can write if structure.
-* You learn how to use a touch sensor.
-* You learn how to use a light sensor.
-* You leran how to control servomotor.
-* You learn to deal with global and local variables.
+* You can toggle an LED.
+* You can integrate a touch sensor.
+* You can integrate a light sensor.
+* You can control a servomotor.
+* You understand conditionals.
+* You can deal with global and local variables.
+* You understand logical operators.
+* You understand writing and calling functions.
 
 ## Material 
 * 1 Microcontroller ESP32
 * 9 Jumper cables
 * 1 Touch sensor (blue sqaure)
-* 1 Passive buzzer (blue)
 * 1 Light sensor (red)
 * 1 Servomotor
 * 2 Cable ties
@@ -25,199 +28,126 @@ The trunk of elephants is used to breathe, to drink, catch fruit, communicate, e
 * 1 3D printed part of: Light_Box_Top.stl (download on github)
 * 1 3D printed part of: Light_Box_Bottom.stl (download on github)
 * *ELEPHANT_Adaptability-of-the-trunk_Code_Challenge.ino* (download on github)
-<br>![](../../Image/Adaptability_of_the_trunk_Components.JPG)
+<br>![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_Task0.jpg)
 
-# Task 1: Snoring with LED
-Simulate the snoring of an elephant thanks to a built-in LED. Therefore, please control the power supply of the LED. The ESP32 only send information to the LED. The LED send no data back to the ESP32. 
+# Task 1: Control the built-in red LED (LED2)
+Flash the red LED every 100 ms. Use the built in red LED; it's defined on GPIO 13.
+
+![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_Task1.jpg)
+
+## Wiring scheme:
+LED2	| ESP32 
+------------ | -------------
+LED2 | GPIO 13 
 
 ## Code:
-1. Open the *ELEPHANT_Adaptability-of-the-trunk_Code_Challenge.ino*  file.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
-2.*globales variables*
-<br>Please define the "PIN_Built_in" variable with the GPIO's number associed to the LED, GPIO 13.
+1. Open the *ELEPHANT_Adaptability-of-the-trunk_Challenge.ino* file.<br>
+2. *global variables*
+<br>Define the GPIO of the red LED and give it the variable name "LED2". 
 3. *setup()*
-<br>Please indicate the GPIO mode. Then you may notice instructions regarding the serial link. Do not hesitate to open the serial monitor.
+<br>Setup LED2 as OUTPUT.
 4. *loop()*
-<br>Please, complete the code to turn on and turn off the led. For structures allow you to create snoring.
+<br>Control LED2 via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 500 ms between each HIGH and LOW value.
 
-# Task 2: Make noise with the passive buzzer
-Use the passive buzzer and create a noise using a for loop to control the buzzer. 
-<br>The passive buzzer has 3 pins: ground (GND), power supply (VCC) and data pin connection (I/O).
-<br><img src="../../Image/passive_buzzer.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
 
-## Wiring scheme: 
-The picture shows the assembly of the passive buzzer (black) and ESP32 (brown) with cables.
-<br>![](../../Image/Adaptability_of_the_trunk_Task2.PNG) <br>(C) This image was created with Fritzing.
+# Task 2: Implement the touch sensor
+<br> Make the touch sensor only work if it's "day". If a touch is detected flash the red LED. If no touch is detected trigger no action.
+The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (IO). 
 
-Passive buzzer | ESP32
+![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_Task2.jpg)
+
+## Wiring scheme:
+touch sensor| ESP32
 ------------ | -------------
-I/O | GPIO 17
+IO | GPIO 16
 VCC | VCC
+GND  | GND
+
+## Code:
+1. *global variables*
+<br>Define the GPIO of the touch sensor.
+2. *setup()*
+<br> Setup the touch sensor as INPUT.
+3. *loop()*
+* Read the values from the touch sensor with *digitalRead();* and store the value in a local variable. Use *digitalRead()* because the touch sensor sends a digital signal.
+* Print the value in the serial monitor.
+* Write an if-structure:
+	* If a touch is detected (boolean HIGH), trigger no action.
+	* If no touch is detected (boolean LOW), print "no touch detected" to the serial monitor.
+
+# Task 3: Implement the light sensor
+<br> Implement the light sensor and find your treshold value. If the meassured value is equal or higher than your treshold print "day" to the serial monitor. If the meassured value is lower than your treshold print "night" to the serial monitor.
+The light sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (OUT). 
+
+![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_Task3.jpg)
+
+## Wiring scheme:
+light sensor	| ESP32 
+------------ | -------------
+OUT | GPIO 26 
+VCC | VCC (+)
 GND | GND
 
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIOs used for passive buzzer.
-2. *setup()* 
-<br>Please indicate the mode of the passive buzzer.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 sends information to the passive buzzer.*
+## Code:
+1. *global variables*
+<br>Define the GPIO of the light sensor and indicate a global variable for your treshold value.
+2. *setup()*
+<br> Setup the light sensor as INPUT.
 3. *loop()*
-<br>Please create a noise by controlling the power to the buzzer.
+* Read the values from the light sensor with *analogRead();* and store the value in a local variable.
+* Print the value in the serial monitor.
+* Use a flashlight and your finger to demonstrate extreme light sensor values: bright and dark. Find out a realistic treshold value to distinguish "day mode" and "night mode". Write this treshold value in your global variable you defined in *global variables* previously. 
+* Write an if-structre:
+	* If the meassured light sensor value is equal or higher then your treshold print "day" to the serial monitor and start the condition of the touch sensor value. Use the code of task 2.
+	* If the meassured light sensor value is lower then your treshold print "night" into the serial monitor.
+* Power off the LED after the conditions have been run through. Use parts of the code from task 1.
+
+# Task 4: Implement the servo motor
+<br> Implement the servo motor to move the elephants' trunk. Move the elephant's trunk only if it's day and no touch is detected.
+<br> The servo motor has 3 pins: ground (black), power supply (red) and data pin connection (white). 
+
+![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_Task4.jpg)
+
+## Wiring scheme:
+servo motor | ESP32
+------------ | -------------
+White | GPIO 25
+Red | VCC
+Black  | GND
+
+## Code:
+1. *global variables*
+<br>Define the GPIO of the servo motor and give it the variable name "servomotor". Also, define the channel, frequency and resolution of the PWM as an int and give them a number:
+* channel = 0
+* frequency = 50
+* resolution = 16
+<br>Define two global variable for the minimum and maximum angle of motor movement.
+* servomotor_Angle_Min = 80
+* servomotor_Angle_Max = 120
+<br>Define a function that converts the motor angle to motor steps to control the stepper motor. A function encapsulates a logic and behaviour, in this case to move the servomotor by the input value.
+* void command_servomotor(float servomotor_Angle): declarate the function as *void* and give the angle to the function. *Void* indicates that no information as output is expected.
+* convert 0-180 degrees to 0-65536. Use *uint32_t* as datatype to store the value.
+* call the function *ledcWrite(channel,i)* to move the servo motor. Use the variable for the servo motor channel. i is represented by the variable of your converting calculation. 
 
 ```
-//Create a noise
-for (int i = 0; i <20; i++) 
+void command_servomotor(float servomotor_Angle)
 {
- digitalWrite (PIN_BUZZER, HIGH) ;
- delay (2);
- digitalWrite (PIN_BUZZER, LOW) ;
- delay (2);
+  //convert 0-180 degrees to 0-65536
+  uint32_t conv = (((servomotor_Angle / 180.0) * 2000) / 20000.0 * 65536.0) + 1634;
+  ledcWrite(servomotor_Channel, conv);
 }
 ```
 
-<br> <img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*You can change the delay time to get different sounds.*
-
-# Task 3: Create the communication with the touch sensor
-Use a touch sensor to comunicate with the elephant: If a contact is detected there is a noise. It may sound like morse language.
-<br>The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (I/O). It sends a high level when a touch is detected.
-<br><img src="../../Image/Touch_sensor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
-
-## Wiring scheme: 
-The picture shows the assembly of the passive buzzer (black), the touche sensor (blue) and ESP32 (brown) with cables.
-<br>![](../../Image/Adaptability_of_the_trunk_Task3.PNG) <br>(C) This image was created with Fritzing.
-
-Passive buzzer | ESP32
------------- | -------------
-I/O | GPIO 17
-VCC | VCC
-GND | GND
-
-Touch sensor| ESP32
------------- | -------------
-I/O | GPIO 16
-VCC | VCC
-GND  | GND
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIOs used for the touch sensor.
-2. *setup()* 
-<br>Please indicate the mode of touch sensor.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 receives information from the touch sensor.*
-2. *loop()* 
-<br>Please read the touch sensor's value:
-
-```
-//Reading and display the touch value
-int State_Touch = digitalRead(PIN_TOUCH);
-Serial.printn("State touch");
-Serial.println(State_Touch);
-```
-
-<br>Please write the code to make a noise each time a contact is detected.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
-
-# Task 4: Definition of different time of day with the light sensor
-Use the light sensor and definie a different time of the day to create several situations.
-<br> The light sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (OUT). The luminosity sensor sends an analog value to its OUT pin. The abalog value is proportional to the amount of light.
-<br><img src="../../Image/luminosity_sensor.PNG" alt="luminoity sensor" width="100"/> <br>(C) This image was created with Fritzing.
-
-## Wiring scheme: 
-The picture shows the assembly of the passive buzzer (black), the touche sensor (blue), the light sensor (black) and ESP32 (brown) with cables.
-<br>![](../../Image/Adaptability_of_the_trunk_Task4.PNG) <br>(C) This image was created with Fritzing.
-
-Passive buzzer | ESP32
------------- | -------------
-I/O | GPIO 17
-VCC | VCC
-GND | GND
-
-Touch sensor| ESP32
------------- | -------------
-I/O | GPIO 16
-VCC | VCC
-GND  | GND
-
-Light sensor| ESP32
------------- | -------------
-OUT  | GPIO 26
-VCC | VCC
-GND  | GND
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for th OUT pin of light sensor.
-<br>In addition, please create two global variables:
-* one will store the limit value of the amount of light between daytime and midday. I advise you to put the value of 1000.
-* other will store the limit value of the amount of light between midday and night. I advise you to put the value of 200.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/> *This value can be modified deponds on the room's light.*
 2. *setup()*
-<br>Please indicate the mode of new GPIO. 
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*The ESP32 receives information from the OUT pin.*
-3. *loop()* 
-<br>Please read the data from the luminosity sensor on the OUT pin and display on the serial monitor.
+* Setup servomotor as OUTPUT.
+* Attach the channel to the GPIO of the servomotor to be controlled with *ledcAttach(servomotor, channel);*
+* Define the PWM functionalities of the channel with *ledcSetup(channel,frequency, resolution);*
+3. *loop()*
+<br>If it's day and no touch is detected, move the servo motor by calling the function you defined previously *command_servomotor(angle)*.
+* move the servomotor to it's maximum angle value. Use the global variable you defined previously.
+* wait 1000 ms
+* move the servomotor to it's minimum angle value. Use the global variable you defined previously.
+* wait 1000 ms
 
-```
-//Reading and diplay the ligth sensor value
-int Light_Value = analogRead(PIN_LIGHT);
-Serial.println("Light value");
-Serial.println(Light_Value,DEC);
-```
-
-<br>The value of the variable will be compared to the variables defined before.
-* If it is day, communicate with the elephant (touch sensor and passive buzzer).
-* If it is night, create a snoring with the LED.
-* If it is middle of the day, write "Middle" on serial monitor.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
-
-# Task 5: Creation of the trunk movement
-Control the servomotor and create a trunk's movement for the middle of the day.
-
-## Wiring scheme: 
-The picture shows the assembly of the passive buzzer (black), the touche sensor (blue), the light sensor (black), on servomotor and ESP32 (brown) with cables.
-<br>![](../../Image/Adaptability_of_the_trunk_Task5.PNG) <br>(C) This image was created with Fritzing.
-
-Passive buzzer | ESP32
------------- | -------------
-I/O | GPIO 17
-VCC | VCC
-GND | GND
-
-Touch sensor| ESP32
------------- | -------------
-I/O | GPIO 16
-VCC | VCC
-GND  | GND
-
-Light sensor| ESP32
------------- | -------------
-OUT  | GPIO 26
-VCC | VCC
-GND  | GND
-
-Servo motor| ESP32 
------------- | ------------- 
-White | GPIO 25
-Red | VCC
-Black | GND
-
-<br>![](../../Image/Adaptability_of_the_trunk_Structure.JPG)
-
-## Code:
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for the servo motor. 
-2.*function*
-<br>Please complete the movement_tongue() function to create a movement thanks to the servomotor.
-<br>For this, please use the Command_servo() function and delay.
-
-```
-//The servomotor in 130° position
-Command_servo(130);
-delay(1000);
-```
-
-3. *setup()*
-<br>Please indicate the mode of new GPIO used. 
-4. *loop()* 
-<br>Call the movement_tongue() function so that the tongue moves during the middle of the day.
-<br><br><img src="../../Image/firework_sghr.png" alt="fireworh" width="50"/>Congratulations, you've coded the **Adaptability of the trunk** scenario successfully!
+If you want to make the light sensor better in performance print the black box and assemble it like in the picture shown: 
+<br>![](../../Image/Elephant_Level2_Adaptability_of_the_trunk_Structure.JPG)

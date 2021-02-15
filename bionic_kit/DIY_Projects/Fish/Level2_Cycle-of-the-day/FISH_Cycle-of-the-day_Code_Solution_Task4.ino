@@ -1,81 +1,107 @@
-//CYCLE OF THE DAY
+// LED2 (built-in ESP32)
+// GPIO
+#define LED2 13
 
-//TASK 4
+// RGB LED
+// GPIO
+#define LED_RGB_Blue 16
 
-//LIBRARY
-#include <ESP32Servo.h>
+// temperature sensor
+// GPIO
+#define temperaturesensor 17
+// library
 #include <OneWire.h>
 #include <DallasTemperature.h>
-
-//Temperature sensor
-int PIN_TEMPERATURE=17;
-OneWire oneWire(PIN_TEMPERATURE);
+// define temperaturesensor
+OneWire oneWire(temperaturesensor);
 DallasTemperature sensors(&oneWire);
+// set treshold for the temperature sensor. The variable determines the treshold between warm and cold (°C).
+float temperatureTreshold = 22;
 
-//servomotor
-Servo servo; 
+// light sensor
+// GPIO
+#define lightsensor 26
+// set treshold for light sensor
+int lightTreshold = 4000;
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED built-in ESP32
-int PIN_LED_R=13; 
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
+// define servomotor time
 
-//LED RGB (breadboard)
-int PIN_LED_B=16;
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+// convert 0-180 degrees to 0-65536
 
-// Light sensor
-int PIN_LIGHT_SENSOR=26;
+// global variables
+char serialprint_buffer[100];
 
-//Servomotor
-int PIN_SERVO=25;
+// setup the components
+void setup()
+{
+  // setup LED2 as OUTPUT
+  pinMode(LED2, OUTPUT);
 
-//VARIABLES
-//Temperature_Limit determines the limit temperature (°C) between hot and cold
-float Temperature_Limit=22; 
-//Luminosity_Limit determines the limit luminosity between day and night 
-int Luminosity_Limit=200; 
-//Temporization determines the speed of the fish
-int Temporization=500; 
+  // setup LED_RGB as OUTPUT
+  pinMode(LED_RGB_Blue, OUTPUT);
 
-//SETUP: function that initialize the components and display a start message to the serial monitor
- void setup()
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LEDS
-  pinMode(PIN_LED_R,OUTPUT);
-  pinMode(PIN_LED_B,OUTPUT);
-  
-  //ESP32 receives information from the temperature sensor
-  pinMode(PIN_TEMPERATURE,INPUT);
-  
-  //ESP32 receives information from the light sensor
-  pinMode(PIN_LIGHT_SENSOR,INPUT);
-  
-  //match between servomotor and the number pin specified 
-  servo.attach(PIN_SERVO);
-  
-  //initial value of the servomotor angle
-  servo.write(90);
-  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600);
-  delay(5000);
-  Serial.println("Cycle of the day: task 4!");  
-
-  //Start the temperature sensor
+  // setup the temperature sensor as INPUT
+  pinMode(temperaturesensor, INPUT);
+  // start the temperaturesensor
   sensors.begin();
+
+  // setup the light sensor as INPUT
+  pinMode(lightsensor, INPUT);
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that control a servomotor
- void loop() 
- {
-   // SERVO MOVEMENT 
-   // the servomotor moves to be 110° position
-   servo.write(110); 
-   // wait Temporization ms
-   delay(Temporization); 
-   // the servomotor moves to be 70° position
-   servo.write(70);
-    // wait Temporization ms 
-   delay(Temporization);
+void loop()
+{
+  // read and display the temperature (°C)
+  sensors.requestTemperatures();
+  float temperature_value = sensors.getTempCByIndex(0);
+  sprintf(serialprint_buffer, "Temperature: %.2f °C", temperature_value);
+  Serial.println(serialprint_buffer);
+
+  // If the temperature sensor value is equal of higher then the temperature treshold print "warm" in the serial monitor.
+  if (temperature_value >= temperatureTreshold) {
+    Serial.println("warm");
+    // flash the red LED
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED_RGB_Blue, LOW);
+    delay(500);
+  }
+  // If the temperature sensor value is lower then the temperature treshold print "cold" in the serial monitor.
+  else {
+    Serial.println("cold");
+    // flash the blue LED
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED_RGB_Blue, HIGH);
+    delay(500);
+  }
+
+  // read the current light sensor value
+  int lightsensor_value = analogRead(lightsensor);
+  sprintf(serialprint_buffer, "Light sensor value: %d", lightsensor_value);
+  Serial.println(serialprint_buffer);
+
+  // If the light sensor value is equal of higher then the light treshold print "day" in the serial monitor.
+  if (lightsensor_value >= lightTreshold) {
+    Serial.println("day");
+    // set servomotor time to 1000 ms
+  }
+
+  // If the light sensor value is lower then the light treshold print "night" in the serial monitor.
+  else {
+    Serial.println("night");
+    // set servomotor time to 2000 ms
+  }
+  // create a movement of the servomotor to angle max and min
 }

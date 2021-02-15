@@ -1,21 +1,23 @@
 ![Festo_logo](../../Image/Logo_Festo.png)
 # STEP-BY-STEP
 # Environment
-![](../../Image/Environment_photo_finale.JPG)
+![](../../Image/Chameleon_Level2_Environment_finale.JPG)
 
 Chameleons are sensitive animals. The color of their skin depends on their moods and the environment. The chameleons is a stressed animal, for example abrupt movements should be avoided. In this project you will recreate different behaviors. For this you will use the light sensor to determine the time of day. Using a touch sensor you will simulate the presence of a predator.
 
-## Objective
-* You can control an LED with signals.
-* You can write while-loops.
-* You can write for-loops.
-* You can write if structure.
-* You learn how to use a touch sensor.
-* You learn how to use a light sensor.
-* You learn how to control a servomotor.
-* You learn to deal with global and local variables.
+You will creat code to interact with the chameleon. If it's night (dark environment) the chaemelon is snorring noice and blue light. If it's  day (bright environment) the chameleon respond to touches. A touch implies danger and the chameleon get flashed in red color and all movements get stopped. No touch means the chameleon is comfortable and it moves  it's tongue.
 
-## Material 
+## Objective
+* You can toggle and change the intensity of an LED.
+* You can integrate a touch sensor.
+* You can integrate a light sensor.
+* You can control a servomotor.
+* You understand conditionals.
+* You can deal with global and local variables.
+* You understand logical operators.
+* You understand writing and calling functions.
+
+## Material
 * 1 Microcontroller ESP32
 * 1 Breadboard (orange)
 * 12 Jumper cables
@@ -30,196 +32,189 @@ Chameleons are sensitive animals. The color of their skin depends on their moods
 * 1 3D printed part of: Light_Box_Bottom.stl (download on github)
 * 2 Cable ties
 * *CHAMELEON_Environment_Code_Challenge.ino* (download on github)
-![](../../Image/Environment_Component.JPG)
-<img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Throughout the tutorial, do not hesitate to refer to the documentation.*
+![](../../Image/Chameleon_Level2_Environment_Component.JPG)
 
-# Task 1: Control LEDs and create a snoring
-Use two LEDs with different control methods, one LED is built in the ESP32 and the second is a RGB LED. The RGB LED brings together 3 simple LEDs, please use only the blue pin here. Control the power supply of the LED. The ESP32 only send information to the LED. The LED send no data back to the ESP32. 
-<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
+# Task 1: Control the built-in red LED (LED2)
+Flash the red LED every 500 ms. Use the built in red LED; it's defined on GPIO 13.
+
+![](../../Image/Chameleon_Level2_Environment_Task1.jpg)
 
 ## Wiring scheme:
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, and ESP32 (brown) with cables.
-![Cameleon](../../Image/Environment_Task1.PNG) <br>(C) This image was created with Fritzing.
+LED2	| ESP32 
+------------ | -------------
+LED2 | GPIO 13 
 
+## Code:
+1. Open the *CHAMELEON_Environment_Code_Challenge.ino* file.<br>
+2. *global variables*
+<br>Define the GPIO of the red LED and give it the variable name "LED2". 
+3. *setup()*
+<br>Setup LED2 as OUTPUT.
+4. *loop()*
+<br>Control LED2 via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 500 ms between each HIGH and LOW value.
+
+# Task 2: Control the RGB LED 
+Make the RGB LED fade in blue color. Use the function *ledcWrite(channel,cycle);*.This function do a pulse wide modulation (PWM) an need therefore three inputs: a channel, a frequency and a resolution. Please read the documentation of *ledcWrite()* for more information.
+<br> The picture show the design of the RGB LED:
+* blue color: shortest wire 
+* green color: second shortest wire
+* ground: longest wire (black)
+* red color: second longest wire
+  
+<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
+The RGB LED must be in series with a 330 Ohm resistor.
+
+![](../../Image/Chameleon_Level2_Environment_Task2.jpg)
+
+## Wiring scheme:
 LED RGB| ESP32 
 ------------ | -------------
 Blue | GPIO 16 
 Black | GND
 
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*The LED must be in series with a 330 Ohm resistor.*
+The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, and ESP32 (brown) with cables.
+![Cameleon](../../Image/Chameleon_Level2_Environment_Task1_fritzing.PNG) <br>(C) This image was created with Fritzing.
 
 ## Code:
-1. Open the *CHAMELEON_Environment_Code_Challenge.ino*  file.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
-2. *global variables*
-<br>In order to simplify understanding of the code, a global variable is associated with each GPIO number used. Associate the variabe "PIN_LED_B" to the number's GPIO 16. 
-3. *setup()*
-<br>First, indicate the GPIOs mode. Then you may notice instructions regarding the serial link. Do not hesitate to open the serial monitor.
-4. *loop()*
-<br>There are two diffrent methods to control a LED: 
-* Power on or off the LED thanks to the *digitalWrite* function. It's a binary function. 
-* Light the LED with different intensity via a PWM signal with the *ledcWrite(Channel_LED,i)* function. The variable i is between 0 and 256. Level zero turns off the 
-LED and the level 256 is the highest level of brightness. 
-<br>Please, complete the level to flash the red LED.
-<br>The for-loops allows to create a snoring with the blue LED. 
-
-# Task 2: Light sensor 
-Use the luminosity sensor and send to it OUT pin an analog value proportional to the amount of light.  The luminosity sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (OUT). 
-<br><img src="../../Image/luminosity_sensor.PNG" alt="luminoity sensor" width="100"/> <br>(C) This image was created with Fritzing.
- 
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, the light sensor (black) and ESP32 (brown) with cables.
-<br>![Chameleon](../../Image/Environment_Task2.PNG) <br>(C) This image was created with Fritzing.
-
-LED RGB| Breadbord
------------- | -------------
-Blue | GPIO 16 
-Black | GND
-
-Light sensor | ESP32
------------- | -------------
-OUT | GPIO 26
-VCC | VCC
-GND | GND
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for the OUT pin of luminosity sensor. In addition, create a global variable that will stock the value of the limit of the amount of light between day and night, please. I'd advise you to put the value of 400.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/> *This value can be modified depends on the room's light.*
+1. *global variables*
+<br>Define the GPIO of the RGB LED and give it the variable name "LED_RGB". Also, define the channel, frequency and resolution of the PWM as an int and give them a number:
+* channel = 12
+* frequency = 5000
+* resolution = 8
+<br>Define two global variable for the maximun and minimum brightness value of the RGB LED.
+* brightness_high = 255
+* brightness_low = 0
+<br>Define two global variable for implementing the fading cycle later
+* current_value = 0
+* stepSize = 8
 2. *setup()*
-<br>Please indicate the mode of the new GPIO used. 
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The ESP32 receives information from the OUT pin.*
-3. *loop()* 
-<br>Please read the data from the luminosity sensor on the OUT pin and display on the serial monitor.
+* Setup LED_RGB as OUTPUT.
+* Attach the channel to the GPIO of LED_RGB to be controlled with *ledcAttach(LED_RGB, channel);*
+* Define the PWM functionalities of the channel with *ledcSetup(channel,frequency, resolution);*
+3. *loop()*
+<br>Light the LED with different intensity via a PWM signal with *ledcWrite(Channel_LED,i)*. The variable i can be between 0 and 255. Level zero turns off the 
+LED and the level 255 is the highest level of brightness.
+* light up the LED with *ledcWrite(Channel_LED,i)*. i is represented by the global variable "current_value" you defined previously. 
+* implent a delay of 100 ms to see the effect
+* increase the variable i with a defined stepSize (your global variable) to reach the value 255 in 8 *void loop()* repeats.
+* write an if-structure to invert the stepSize, if the current_value reached 0 or 255. Use the logical OR to link both conditions. 
 
-```
-//Reading and display the light value
-int Luminosity_Value = analogRead(PIN_LIGHT);
-Serial.println("Light value");
-Serial.println(Luminosity_Value,DEC);
-```
+# Task 3: Implement the light sensor
+<br> Implement the light sensor and find your treshold value. If the meassured value is equal or higher than your treshold print "day" to the serial monitor. If the meassured value is lower than your treshold print "night" to the serial monitor.
+The light sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (OUT). 
 
-The value of the variable will be compared to the limit between day and night defined before. If the value is superior than or equal to the limit, please light up the red LED, otherwise do a snoring with the blue LED.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
+![](../../Image/Chameleon_Level2_Environment_Task3.jpg)
 
-# Task 3: Servo motor
-Control the servomotor and create a movement of the tongue to convert a moment of activity of the chameleon. The servomotor has 3 pins: ground (black), power supply (red) and data pin connection (white).
-
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, the light luminosity (black), a servomotor and ESP32 (brown) with cables.
-<br>![Chameleon](../../Image/Environment_Task3.PNG) <br>(C) This image was created with Fritzing.
-
-LED RGB| Breadbord
+## Wiring scheme:
+light sensor	| ESP32 
 ------------ | -------------
-Blue | GPIO 16 
-Black | GND
-
-Light sensor | ESP32
------------- | -------------
-OUT | GPIO 26
-VCC | VCC
+OUT | GPIO 26 
+VCC | VCC (+)
 GND | GND
-
-Servomotor | ESP32
------------- | -------------
-White | GPIO 25
-Red | VCC
-Black  | GND
 
 ## Code:
-1.  *setup()* 
-<br>Please indicate the mode of the servomotor.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*ESP32 sends information to the servomotor.*
-<br>Please position the servomotor initial with the *Command_servo* function. I'd advise you to put the value of 80. This value can be modified throughout the project.
-2. *function*
-<br>Please complete the *movement_tongue* function to create a movement of the tongue to convert a moment of activity of the chameleon.
-<br>For example: 
-
-```
-void movement_tongue()
-{
- Command_servo(120);
- delay(1000);
- Command_servo(80);
- delay(1000);
-}
-```
-
+1. *global variables*
+<br>Define the GPIO of the light sensor and indicate a global variable for your treshold value.
+2. *setup()*
+<br> Setup the light sensor as INPUT.
 3. *loop()*
-<br>Please call the *movement_tongue* function if it is the day.
- 
-# Task 4: Touch sensor 
-Use the vibration motor and connect it with the OUT pin of the touch sensor. Implement, that the motor will vibrate each time a contact is detected. 
-<br>The touch sensor send a high level when a touch is detected. The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (I/O).
-<br><img src="../../Image/Touch_sensor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing. <br><img src="../../Image/Vibrating_motor.PNG" alt="Simple LED" width="150"/> <br>(C) This image was created with Fritzing.
+* Read the values from the light sensor with *analogRead();* and store the value in a local variable.
+* Print the value in the serial monitor.
+* Use a flashlight and your finger to demonstrate extreme light sensor values: bright and dark. Find out a realistic treshold value to distinguish "day mode" and "night mode". Write this treshold value in your global variable you defined in *global variables* previously. 
+* Write an if-structre:
+	* If the meassured light sensor value is equal or higher then your treshold print "day" to the serial monitor and flash the red LED. Use the code of task 1.
+	* If the meassured light sensor value is lower then your treshold print "night" to the serial monitor and fade the RGB LED. Use the code of task 2.
 
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, the light luminosity (black), a servomotor, the touch sensor (blue), the vibrating motor (grey) and ESP32 (brown) with cables.
-<br>![Chameleon](../../Image/Environment_Task4.PNG) <br>(C) This image was created with Fritzing.
+# Task 4: Implement the vibration motor
+<br> Implement the vibrating motor by connecting the RGB LED and the vibrating motor in series. This both components have the same connections GPIO.
 
-LED RGB| Breadbord
+![](../../Image/Chameleon_Level2_Environment_Task4.jpg)
+
+## Wiring scheme:
+LED RGB and vibrating motor| ESP32 / Bredboard 
 ------------ | -------------
-Blue | GPIO 16 
+Red | GPIO 16 
 Black | GND
 
-Light sensor | ESP32
------------- | -------------
-OUT | GPIO 26
-VCC | VCC
-GND | GND
+## Code:
+1. *global variables*
+<br> The vibrating motor has the same GPIO as the RGB LED and with it the same global variables.
+2. *setup()*
+<br> The vibrating motor has the same setup as the RGB LED.
+3. *loop()*
+<br> The vibrating motor use the same code as the RGB LED.
 
-Servomotor | ESP32
------------- | -------------
-White | GPIO 25
-Red | VCC
-Black  | GND
+# Task 5: Implement the touch sensor
+<br> Make the touch sensor only work if it's "day". If a touch is detected flash the red LED and write "danger" into the serial monitor. If no touch is detected trigger no action.
+The touch sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (IO). 
 
-Touch sensor| ESP32
+![](../../Image/Chameleon_Level2_Environment_Task5.jpg)
+
+## Wiring scheme:
+touch sensor| ESP32
 ------------ | -------------
-I/O | GPIO 17
+IO | GPIO 17
 VCC | VCC
 GND  | GND
 
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The vibrating motor and the touch sensor was connected via the breadboard.*
-<br>![](../../Image/Environment_Structure.JPG)
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIOs used for touch sensor.
-2. *setup()* 
-<br>Please indicate the mode of the touch sensor.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>  *ESP32 receives information from the touch sensor.*
+## Code:
+1. *global variables*
+<br>Define the GPIO of the touch sensor.
+2. *setup()*
+<br> Setup the touch sensor as INPUT.
 3. *loop()*
-<br>Please read and display the sensor's value.
+* Read the values from the touch sensor with *digitalRead();* and store the value in a local variable. Use *digitalRead()* because the touch sensor sends a digital signal.
+* Print the value in the serial monitor.
+* Write an if-structure:
+	* If a touch is detected (boolean HIGH), print "danger" to the serial monitor.
+	* If no touch is detected (boolean LOW), print "no touch detected" to the serial monitor.
+
+# Task 6: Implement the servo motor
+<br> Implement the servo motor to move the chameleons' tongue. Move the chameleon's tongue only if it's day and no touch is detected.
+<br> The servo motor has 3 pins: ground (black), power supply (red) and data pin connection (white). 
+
+![](../../Image/Chameleon_Level2_Environment_Task6.jpg)
+
+## Wiring scheme:
+servo motor | ESP32
+------------ | -------------
+White | GPIO 25
+Red | VCC
+Black  | GND
+
+## Code:
+1. *global variables*
+<br>Define the GPIO of the servo motor and give it the variable name "servomotor". Also, define the channel, frequency and resolution of the PWM as an int and give them a number:
+* channel = 0
+* frequency = 50
+* resolution = 16
+<br>Define two global variable for the minimum and maximum angle of motor movement.
+* servomotor_Angle_Min = 80
+* servomotor_Angle_Max = 120
+<br>Define a function that converts the motor angle to motor steps to control the stepper motor. A function encapsulates a logic and behaviour, in this case to move the servomotor by the input value.
+* void command_servomotor(float servomotor_Angle): declarate the function as *void* and give the angle to the function. *Void* indicates that no information as output is expected.
+* convert 0-180 degrees to 0-65536. Use *uint32_t* as datatype to store the value.
+* call the function *ledcWrite(channel,i)* to move the servo motor. Use the variable for the servo motor channel. i is represented by the variable of your converting calculation. 
 
 ```
-//Reading an display the touch sensor's value
-int  State_Touch = digitalRead(PIN_TOUCH);
-Serial.println("State touch");
-Serial.println(State_Touch);
+void command_servomotor(float servomotor_Angle)
+{
+  //convert 0-180 degrees to 0-65536
+  uint32_t conv = (((servomotor_Angle / 180.0) * 2000) / 20000.0 * 65536.0) + 1634;
+  ledcWrite(servomotor_Channel, conv);
+}
 ```
 
-# Task 5: Final code
-Create the final code and use the touch sensor to simulate a danger (presence of a predator).
+2. *setup()*
+* Setup servomotor as OUTPUT.
+* Attach the channel to the GPIO of the servomotor to be controlled with *ledcAttach(servomotor, channel);*
+* Define the PWM functionalities of the channel with *ledcSetup(channel,frequency, resolution);*
+3. *loop()*
+<br>If it's day and no touch is detected, move the servo motor by calling the function you defined previously *command_servomotor(angle)*.
+* move the servomotor to it's maximum angle value. Use the global variable you defined previously.
+* wait 1000 ms
+* move the servomotor to it's minimum angle value. Use the global variable you defined previously.
+* wait 1000 ms
 
-## Wiring scheme: 
-The Wiring scheme is the same as in task 4.
-
-## Code: 
-1. *loop()*
-<br>Please write the code to create the following situation: as long as no contact has been detected the red LED will light up, if it is daytime and the blue LED will 
-light up if it is nighttime.
-If the touch sensor detects a contact, the red LED will flash to warn of a danger.
-
-```
-//Danger
-Serial.println("Danger");
-ledcWrite(Channel_LED,0);
-digitalWrite(PIN_LED_R,HIGH);
-delay(300);
-digitalWrite(PIN_LED_R,LOW);
-delay(300);
-```
-
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the while loop.* 
-<br><br><img src="../../Image/firework_sghr.png" alt="fireworh" width="50"/>Congratulations, you've coded the **Environment** scenario successfully!
+If you want to make the light sensor better in performance print the black box and assemble it like in the picture shown: 
+<br>![](../../Image/Chameleon_Level2_Environment_Structure.JPG)

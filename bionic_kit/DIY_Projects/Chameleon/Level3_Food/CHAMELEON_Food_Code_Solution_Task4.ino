@@ -1,141 +1,97 @@
-//FOOD
+// LED2 (built-in ESP32)
+// GPIO
+#define LED2 13
 
-//TASK 4
+// LED_RGB_Green
+// GPIO green color
+#define LED_RGB_Green 16
 
-//LIBRARY
-#include <ESP32Servo.h>
-Servo servo;
+// touch sensor
+// GPIO
+#define touchsensor 17
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED built-in ESP32
-int PIN_LED_R=13; 
+// vibrating motor
+// GPIO
 
-//LED RGB (green)
-int PIN_LED_G=16;
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+  //convert 0-180 degrees to 0-65536
 
-//Touch sensor
-int PIN_TOUCH=17;
+// global variables
+char serialprint_buffer[100];
 
-//Vibrating motor
-int PIN_VIBRATOR=26;
-
-//GAME
-// Number_player that determines the number of player
-int Number_player=5;
-
-// Restart allows to restart the loop function if it is true
-boolean Restart=true;
-
-//Continue allows to stop the game if the winner color was found if it is false
-boolean Continue=true;
-
-//Winner that is the winning number (randomly defined)
-int Winner;
-
-//FUNCTION
-//player_display: function that display the player's number
-void player_display(int number)
-{
-  for(int i=0;i<number;i=i+1)
-  { 
-    //turn on the LED
-    digitalWrite(PIN_LED_R, HIGH); 
-    delay(400);
-    
-	//turn off the LED
-    digitalWrite(PIN_LED_R,LOW);
-    delay(400);
-  }
-}
-
-//tongue_movement: function that moves the tongue to recreate an activity movement of the chameleon
-void tongue_movement()
-{
-   /*...*/
-}
-
-//SETUP: function that initialize the components and display a start message to the serial monitor
+// setup the components
 void setup()
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LEDS
-  pinMode(PIN_LED_R,OUTPUT);
-  pinMode(PIN_LED_G,OUTPUT);
-  
-  //ESP32 receives information from the touch sensor
-  pinMode(PIN_TOUCH,INPUT);
-  
-  //ESP32 sends information to the vibrating motor
-  pinMode(PIN_VIBRATOR,OUTPUT);
-  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600);
-  delay(5000);
-  Serial.println("Food: task 4!");  
+{
+  // setup LED2 as OUTPUT
+  pinMode(LED2, OUTPUT);
 
+  // setup LED_RGB_Green as OUTPUT
+  pinMode(LED_RGB_Green, OUTPUT);
+
+  // setup the touch sensor as INPUT
+  pinMode(touchsensor, INPUT);
+
+  // setup vibrating motor
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that randomly definie a winning number. Then the function display the player's number thanks to the LED each time a contact has been detected. If it is the winning number, the green LED lights and the game is over. If it is not, the vibrating motor vibrates. You can restart the game if you touch the sensor after the end of the game.
 void loop()
 {
-  while (Restart==true)
- {  
-   Restart=false;
-   digitalWrite(PIN_LED_G,LOW);
-   digitalWrite(PIN_LED_R,LOW);
+  // read and print the current touch sensor value to the serial monitor
+  int touchsensor_value = digitalRead(touchsensor);
+  sprintf(serialprint_buffer, "touch: %d", touchsensor_value);
+  Serial.println(serialprint_buffer);
 
-  //definition of the winning number randomly
-  //0,1,...,Number_player-1
-  int rd=random(Number_player);
-  //1,2,...,Number_player
-  Winner=rd+1;
-  Serial.println("Winner");
-  Serial.println(Winner);
-  int player=1;
-  int State_Touch; 
-  while ((Continue==true)&&(player<=Number_player))
-  {
-    Serial.println("Player");
-    Serial.println(player);
-    player_display(player);
-    do 
-     {
-      //Reading and display the touch value
-      State_Touch = digitalRead(PIN_TOUCH);
-     }
-     while (State_Touch != HIGH);
-     
-     //Suspens
-     delay(4000);
-     if ( player==Winner)
-     {
-      Serial.println("Win");
-      digitalWrite(PIN_LED_G,HIGH);
-      Continue=false;
-     }
-     else
-     {
-      Serial.println("Lose");
-      digitalWrite(PIN_VIBRATOR,HIGH); 
-      delay(2000);
-      digitalWrite(PIN_VIBRATOR,LOW);
-      delay(500);
-     }
-     delay(500);
-     player=player+1;
+  // If a touch is detected, the food game begins.
+  if (touchsensor_value == HIGH) {
+    // generate a random value between 0 and 1
+    int random_value = random(2);
+    // print the random value into the serial monitor
+    sprintf(serialprint_buffer, "random value: %d", random_value);
+    Serial.println(serialprint_buffer);
+
+    // If the random value is eqaual to 1, the player "wins". Change the color of the chameleon to green and start the tongue movement.
+    if (random_value == 1) {
+      // print the game status "win" into the serial monitor
+      Serial.println("win");
+      // turn off the red LED
+      digitalWrite(LED2, LOW);
+      // turn on the green LED
+      digitalWrite(LED_RGB_Green, HIGH);
+      // send the boolean LOW to the vibrating motor to stop vibrations
+      // create a movement of the servomotor to angle max and min
+      delay(1000);
+    }
+
+    // If the random value is not eqaual to 1, the player "lose". Change the color of the chameleon to red and start the vibrating motor.
+    else {
+      // print the game status "lose" into the serial monitor
+      Serial.println("lose");
+      // turn on the red LED
+      digitalWrite(LED2, HIGH);
+      // turn off the green LED
+      digitalWrite(LED_RGB_Green, LOW);
+      // send the boolean HIGH to the vibrating motor to create vibrations
+      delay(1000);
+    }
   }
-   
-   //Ready to restart? 
-   delay(10000);
-   State_Touch=digitalRead(PIN_TOUCH);
-   Serial.println("RESTART");
-   Serial.println(State_Touch);
-   if (State_Touch==HIGH)
-   {
-    //The game restart
-    Restart=true;
-    Continue=true;
-   }
- }
+
+  // If no touch is detected, the game stops. Set the parametes of LED2, LED_RGB_Grenn and vibrating motor to LOW. Print the information "no touch detected" into the serial monitor.
+  else {
+    Serial.println("no touch detected");
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED_RGB_Green, LOW);
+  }
+  delay(1000);
 }
