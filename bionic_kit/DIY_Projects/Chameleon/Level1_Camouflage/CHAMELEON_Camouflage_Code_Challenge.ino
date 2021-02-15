@@ -1,36 +1,43 @@
-//CAMOUFLAGE
+// LED2 (built-in ESP32)
+// GPIO
 
-// GLOBALES VARIABLES
-//GPIO
-int PIN_LED=/*complete with the GPIO's number*/;
+// RGB LED
+// GPIO
 
-//Reference Frequency
-int Blue_Frequency=3;
-int Red_Frequency=7;
-int Green_Frequency=4;
- 
+// color sensor
+// GPIO
+// define pin for TTL level square wave
+// define frequency scaling (S1 = 0)
+// define color array (S2 not defined, because for red and blue color detection it must be LOW (not connected))
+// define variable for each color frequency (red, green, blue)
+// define a lower and upper treshold of the color sensor
 
-//SETUP: function that initialize the components and display a start message to the serial monitor - code only runs once
-void setup() 
-{ 
-  //INITIALIZATION
-  //ESP32 sends information to the LED
-  pinMode(PIN_LED,/*complete with the LED's mode*/); 
-  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600); 
-  delay(5000); 
-  Serial.println("Camouflage!"); 
+// global variables
+
+void setup()
+{
+  // setup LED2 as OUTPUT
+
+  // setup LED_RGB as OUTPUT
+
+  // setup color sensor
+  // setup frequency scaling
+  // set frequency scaling to 20% (S1 = LOW, not connected)
+  // setup color array (S2 not defined)
+
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that flashes the LED - code executed repeatedly
-void loop() 
-{ 
-  //turn on LED
-  digitalWrite(PIN_LED, /*complete with the LED's level*/);  
-  delay(500);
-  
-  //turn off LED 
-  digitalWrite(PIN_LED, /*complete with the LED's level*/); 
-  delay(500);
+void loop()
+{
+  // set sensor to read RED color only (S2 = LOW because it's not connected)
+  // write the pulse width of the sensor signal into the red_frequency variable
+  // set sensor to read BLUE color only (S2 = LOW because it's not connected)
+  // write the pulse width of the sensor signal into the blue_frequency variable
+  // print RGB values in the serial monitor
+  // write the detected color in the serial monitor
+
+  // flash the red LED (LED2)
+  // flash the blue LED (RGB_LED)
 }

@@ -1,197 +1,66 @@
-//SWIMMING COMPETITION
+// LED
+// GPIO
+#define LED_RGB_Green 16
+#define LED_RGB_Red 17
 
-//TASK 2
+// light sensor
+// GPIO
+// set treshold for light sensor
 
-//LIBRARY
-#include <ESP32Servo.h>
-Servo servo;
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED built-in ESP32
-int PIN_LED=13;
- 
-//Touch sensor
-int PIN_TOUCH=16;
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+// convert 0-180 degrees to 0-65536
 
-//GAME
-// Number_player that determines the number of player
-int Number_player=3;
+// global variables
 
-//Table that determines the points can be awarded for the color
-int Table_Point_Color[]={0,2,4};
-
-// Restart allows to restart the loop function if it is true
-boolean Restart=true;
-
-//TOUCH SENSOR
-//Touch variable stores the score, randomly definied by the Touch_point()function when the touch sensor is a high level
-int Touch;
-
-//Touch variable stores the score, randomly definied by the Touch_point() function when the touch sensor is a low level
-int Not_Touch;
-
-//COLOR
-//Blue variable stores the blue frequency 
-int Blue_Frequency=6;
-
-//Green variable stores the green frequency 
-int Green_Frequency=4;
-
-//Red variable stores the red frequency 
-int Red_Frequency=7;
-
-//FUNCTION
-//player_display: function that display the player's number
-void player_display(int number)
-{
-  for(int i=0;i<number;i=i+1)
-  { 
-    //turn on the LED
-    digitalWrite(PIN_LED, HIGH); 
-    delay(400);
-    //turn off the LED
-    digitalWrite(PIN_LED,LOW);
-    delay(400);
-  }
-}
-
-//Touch_Point: function that randomly assigns the points for the variables of the touch sensor
-void Touch_Point()
-{ 
-  //0 or 1
-  int a=random(2);
-  if( a==0)
-  {
-    Touch=0;
-    Not_Touch=1;
-  }
-  else
-  {  
-    Touch=1;
-    Not_Touch=0;
-  } 
-}
-
-//Luminosity_Point: function that randomly assigns the points for the variables of the light sensor
-void Luminosity_Point()
-{
-  /*...*/  
-}
-
-// Score_and_speed: function that allows you to associate a score with a fish speed
-int Score_and_speed( int score)
-{
-  //Score 0-7
-  switch (score)
-  {
-  case 0:
-     return 0;
-     break;
-  case 1: 
-    return 2000;
-    break;
-  case 2: 
-    return 1600;
-    break;
-  case 3: 
-    return 1400;
-    break;
-  case 4: 
-    return 1200;
-    break;
-  case 5: 
-    return 800;
-    break;
-  case 6:
-    return 500;
-    break;
-  case 7:
-    return 300;
-    break;
-  }
-}
-
-//max_score: function that returns the maximum score. If there is egality, the winner is randomly definied
-int max_score (int L[])
-{
- int maximum=0;
- /*...*/
- return maximum+1;
-}
-
-//SETUP: function that initialize the components and display a start message to the serial monitor
+// setup the components
 void setup()
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LED
-  pinMode(PIN_LED,OUTPUT);
-  //ESP32 receives information from the touch sensor
-  pinMode(PIN_TOUCH,INPUT);
-  
-  //SERIAL COMMUNICATION
+{
+  // setup LED as OUTPUT
+  pinMode (LED_RGB_Green, OUTPUT);
+  pinMode (LED_RGB_Red, OUTPUT);
+
+  // setup the light sensor as INPUT
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
   Serial.begin(9600);
-  delay(5000);
-  Serial.println("Swimming competition: task 2!");  
+  // setup the serial communication
 }
 
-//LOOP: function that calculates the points for the touch sensor. Then,the function display for each player, their number and calculates their score. You can restart the game.
 void loop()
 {
-  while (Restart==true)
-  { 
-    Restart=false;
-    
-   //calculation of points
-   Touch_Point();
-   Serial.println("POINTS");
-   Serial.println("Touch");
-   Serial.println(Touch);
-   Serial.println("No Touch");
-   Serial.println(Not_Touch);
-   int State_Touch;
-   for (int i=1;i<=Number_player;i=i+1)
-   {
-        Serial.println("Player");
-        Serial.println(i);
-        player_display(i);
-  
-        do 
-       {
-         //Reading Touch Value
-          State_Touch = digitalRead(PIN_TOUCH);
-       }
-	   
-       while (State_Touch != HIGH);
-       //suspens
-       delay(3000);
-       int Score = 0;
-      
-       //Reading touch value
-       State_Touch = digitalRead(PIN_TOUCH); 
-       Serial.println("State Touch");
-       Serial.println(State_Touch);
+  // read the current light sensor value
 
-       if(State_Touch==1) 
-		{	
-		   Score=Score+Touch;
-		}
-		
-       else 
-	   {
-		   Score=Score+Not_Touch;
-	   }
-       Serial.println("Score");
-       Serial.println(Score);
-   }
-   delay(10000);
-   State_Touch=digitalRead(PIN_TOUCH);
-   Serial.println("RESTART");
-   Serial.println(State_Touch);
-   if (State_Touch==HIGH)
-   {
-    //The game restart
-    Restart=true;  
-   }
-  }
+  // If the light sensor value is equal of higher then the light treshold start the game.
+  // generate a random value between 0 and 1
+  // print the random value into the serial monitor
+
+  // If the random value is eqaual to 1, the player "wins". Change the color of the fish to green and start the finray movement.
+  // print "win" into the serial monitor
+  // power on the green LED
+  digitalWrite(LED_RGB_Green, HIGH);
+  // power off the red LED
+  digitalWrite(LED_RGB_Red, LOW);
+  // create a movement of the servomotor to angle max and min
+  delay(1000);
+
+  // If the random value is not eqaual to 1, the player "lose". Change the color of the fish to red and write "lose" into the serial monitor.
+
+  // If the light sensor value is lower then the light treshold print "lose" in the serial monitor.
+  // power off the green LED
+  digitalWrite(LED_RGB_Green, LOW);
+  // power on the red LED
+  digitalWrite(LED_RGB_Red, HIGH);
+  delay(1000);
+
+
+  // power off the green and red LED
 }

@@ -1,72 +1,53 @@
-//FOOD
+// LED2 (built-in ESP32)
+// GPIO
 
-//LIBRARY
-#include <ESP32Servo.h>
-Servo servo;
+// LED_RGB_Green
+// GPIO green color
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED built-in ESP32
-int PIN_LED_R = /*complete with the GPIO's number*/; 
+// touch sensor
+// GPIO
 
-//LED RGB (green)
-int PIN_LED_G =/*complete with the GPIO's number*/;
+// vibrating motor
+// GPIO
 
-//GAME
-//Number_player determines the number of player
-int Number_player=/*complete with the number of the players*/;
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+//convert 0-180 degrees to 0-65536
 
-//FUNCTION
-//player_display: function that display the player's number
-void player_display(int number)
+// global variables
+
+// setup the components
+void setup()
 {
-  for(int i=0;i</*?*/;i=i+1)
-  { 
-    //turn on the LED
-    digitalWrite(PIN_LED_R,/*complete with the LED's level*/; 
-    delay(400);
-    //turn off the LED
-    digitalWrite(PIN_LED_R,/*complete with the LED's level*/);
-    delay(400);
-  }
-}
+  // setup LED2 as OUTPUT
 
-//tongue_movement: function that moves the tongue to recreate an activity movement of the chameleon
-void tongue_movement()
-{
-   /*...*/
-}
+  // setup LED_RGB_Green as OUTPUT
 
-//SETUP: function that initialize the components and display a start message to the serial monitor
- void setup()
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LEDS
-  pinMode(PIN_LED_R,/*complete with the LED's mode*/);
-  pinMode(PIN_LED_G,/*complete with the LED's mode*/);
-  
-  //SERIAL COMMUNICATION
+  // setup the touch sensor as INPUT
+
+  // setup vibrating motor
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
   Serial.begin(9600);
-  delay(5000);
-  Serial.println("Food!");  
 }
 
-//LOOP: function that display the player's number thanks to the LED
 void loop()
 {
- int player=1;
- //turn on the green LED
- digitalWrite(PIN_LED_G,/*complete with the LED's level*/);
- 
- while (player<=/*?*/)
- {
-    Serial.println("Player");
-    Serial.println(player);
-    /*call the player_display() function*/
-    delay(500);
-    player=player+1;
- }
- //turn off the green LED
- digitalWrite(PIN_LED_G,/*complete with the LED's level*/);
- delay(500);
+  // read and print the current touch sensor value to the serial monitor
+
+  // If a touch is detected, the food game begins.
+  // generate a random value between 0 and 1
+  // print the random value into the serial monitor
+
+  // If the random value is eqaual to 1, the player "wins". Change the color of the chameleon to green and start the tongue movement.
+  // If the random value is not eqaual to 1, the player "lose". Change the color of the chameleon to red and start the vibrating motor.
+  // If no touch is detected, the game stops. Set the parametes of LED2, LED_RGB_Grenn and vibrating motor to LOW. Print the information "no touch detected" into the serial monitor.
 }

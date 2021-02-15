@@ -1,174 +1,149 @@
-![Festo_logo](../../Image/Logo_Festo.png)
+<img src="../../Image/Logo_Festo.png" width="50"/> <br>
 # STEP-BY-STEP
 # Temperature
-![Elephant](../../Image/Temperature_photo_finale.JPG)
+![Elephant](../../Image/Elephant_Level1_Temperature_finale.JPG)
 
 ## Objective
 The elephant's trunk is very much used by the animal. For example, the elephant uses its trunk to bring water to its mouth. For this scenario, you're going to use a temperature sensor. If it's hot, the LED is red. Then you must bring water to the elephant to make him drink. Thus, the temperature sensor will be immersed in water. If the temperature will decrease the LED turns blue and the elephant drinks: the clamps open and close.
+
+You will creat code to interact with the elephant. If it's warm the elephant lights up in red color. Otherwise the elephant lights up in blue color and moves its' clamps on top of the trunk.
 
 ## Material 
 * 1 Microcontroller ESP32
 * 1 Breadboard (orange)
 * 6 Jumper cables
 * 1 Temperature sensor  
-* 1 LED red 
 * 1 LED RGB 
-* 1 Servomotors
+* 1 Servomotor
 * 1 Glas with hot water (red)
 * 1 Glas with cold water (blue)
 * 8 3D printed part of: Plate.stl (download on github)
 * *ELEPHANT_Temperature_Code_Challenge.ino* (download on github)
-![Elephant](../../Image/Temperature_Component.JPG)
-<img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Throughout the tutorial, do not hesitate to refer to the documentation.*
 
-# Task 1: Flashing LED
-Flash an LED and turn it on and then turn it off repeatedly. Control the power supply of the LED to turn it on and off. The ESP32 only send information to the LED. The LED send no data back to the ESP32. 
-<br><img src="../../Image/LED.PNG" alt="Simple LED" width="50"/> <br>(C) This image was created with Fritzing.
+![Elephant](../../Image/Elephant_Level1_Temperature_Task0.jpg)
+
+# Task 1: Control the RGB LED in blue color
+Flash the RGB LED in blue color. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 100 ms between each HIGH and LOW value.
+<br> The picture show the design of the RGB LED:
+* blue color: shortest wire 
+* green color: second shortest wire
+* ground: longest wire (black)
+* red color: second longest wire
+  
+<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
+<br>The RGB LED must be in series with a 330 Ohm resistor.
+
+![](../../Image/Elephant_Level1_Temperature_Task1.jpg)
 
 ## Wiring scheme:
-The picture shows the assembly of the breadboard (grey), LED (red), 330 Ohm resistor and ESP32 (brown) with cables.
-![Temperature step1](../../Image/Temperature_Task1.PNG) <br>(C) This image was created with Fritzing.
-
-LED | Breadbord
+LED RGB| ESP32 
 ------------ | -------------
-Red | GPIO 16 
-Back | GND
-
-<img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*The LED must be in series with a 330 Ohm resistor.*
+Blue | GPIO 16 
+Black | GND
 
 ## Code:
-1. Open the *ELEPHANT_Temperature_Code_Challenge.ino*  file.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Don't hesitate to consult the documentation to better understand the functions used.*
+1. Open the *ELEPHANT_Temperature_Code_Challenge.ino* file.<br>
 2. *global variables*
-<br>In order to simplify understanding of the code, a global variable is associated with each GPIO number used. Associate the variabe "PIN_LED" to the number's GPIO 16. 
+<br> Define the GPIO of the RGB LED in blue color and give it the variable name "LED_RGB_Blue".
 3. *setup()*
-<br>First, indicate the GPIO mode. Then you may notice instructions regarding the serial link. Do not hesitate to open the serial monitor.
+<br> Setup LED_RGB_Blue as OUTPUT.
 4. *loop()*
-<br>Please power on and off the LED. You can change the delay value to change the speed of the flashing.
- 
-# Task 2: RGB LED 
-Control the RGB LED and display a sequence of colors, for example, blue and red. An RGB LED brings together 3 simple LEDs as studied in the previous task. The ESP32 only send information to the LED. The LED send no data back to the ESP32.  
-<img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
- 
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor and ESP32 (brown) with cables.
-![Temperature_step 2 ](../../Image/Temperature_Task2.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | Breadboard
+<br> Control LED_RGB_Blue via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Use the *delay();* of 100 ms between each HIGH and LOW value.
+
+# Task 2: Control the RGB LED in red color
+Flash the RGB LED in red color. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 100 ms between each HIGH and LOW value. If the red LED is HIGH the blue LED is LOW and the other way round.
+<br>The RGB LED must be in series with a 330 Ohm resistor.
+
+![](../../Image/Elephant_Level1_Temperature_Task2.jpg)
+
+## Wiring scheme:
+LED RGB| ESP32 
 ------------ | -------------
-Red | GPIO 16
-Blue | GPIO 17
-Back | GND
+Blue | GPIO 17 
+Black | GND
 
-<img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/>*Each LED pin must be in series with a 330 Ohm resistor.*
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIOs used for RGB LED.
-<br><img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/>*Think to change the name of the variable, a name can't be used serveral times.*
-2. *setup()* 
-<br>Please indicate the mode of each pin.
+## Code:
+1. *global variables*
+<br> Define the GPIO of the RGB LED in red color and give it the variable name "LED_RGB_Red".
+2. *setup()*
+<br> Setup LED_RGB_Red as OUTPUT.
 3. *loop()*
-<br>Please create a color sequence. To make a color appear, please trun on a color and turn off the other color. Don't forget to use delay!
+<br> Control LED_RGB_Red via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Use the *delay();* of 100 ms between each HIGH and LOW value from task 1. If the red LED lights up the blue LED is off and the other way round.
 
-```
-//Red 
-digitalWrite(PIN_LED_R,HIGH); 
-digitalWrite(PIN_LED_B,LOW);
-delay(500);
-```
+# Task 3: Implement the temperature sensor
+Make the temperature sensor work to display the measured values in the serial monitor. If the measured temperature value is equal or higher than the temperature treshold light up the red LED; otherwise light up the blue LED.
 
-# Task 3: Temperature sensor 
-Use the temperature sensor: After reading the sensor value via the connection pin, light up the red LED if it is hot or the blue LED if it is cold.
-<br> The temperature sensor has 3 pins : ground (black), power supply (red) and data pin connection (yellow).
-<br><img src="../../Image/temperature_sensor.PNG" alt="temperature sensor" width="80"/> <br>(C) This image was created with Fritzing.
-<br>Please define a variable in order to establish the limit between hot and cold. The LED is red if the temperature is hot, otherwise the LED is blue and the clamps move. 
+![](../../Image/Elephant_Level1_Temperature_Task3.jpg) 
 
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, temperature sensor, 4.7 kOhm  and ESP32 (brown) with cables.
-![Temperature step 3](../../Image/Temperature_Task3.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | Breadboard
+## Wiring scheme:
+LED2	| ESP32 
 ------------ | -------------
-Red | GPIO 16
-Blue | GPIO 17
-Back | GND
+LED2 | GPIO 26 
 
-Temperature sensor | Breadboard 
------------- | ------------- 
-Yellow | GPIO 26
-Black | GND
-Red | VCC
+## Code:
+1. *global variables*
+* Define the GPIO of the temperature sensor and give it the variable name "temperaturesensor".
+* Include the library of the temperature sensor:
+	* #include <OneWire.h>
+	* #include <DallasTemperature.h>
+* Define the temperaturesensor
+	* OneWire oneWire(temperaturesensor);
+	* DallasTemperature sensors(&oneWire);
+* Define a variable for your temperature treshold to distinguish warm and cold. For example, you can set the value to 22.
+2. *setup()*
+* Setup temperature sensor as INPUT.
+* Start the temperature sensor by calling *sensors.begin();*
+3. *loop()*
+* Read and Display the temperature values. Call the function *sensors.requestTemperatures();* and *sensors.getTempCByIndex(0);*. Store your measured temperature value in a variable and print it to the serial monitor.
+* Make a sanity check of the measured values: take a cold glas of water and your hand to verify the measured values. If the measured values are realistic, go to the next step.
+* Write an if structure:
+	* If the temperature sensor value is equal of higher then the temperature treshold print "warm" in the serial monitor. Power off the blue LED and power on the red LED. Use the code of task 1 and 2.
+	* If the temperature sensor value is lower then the temperature treshold print "cold" in the serial monitor. Power on the blue LED and power off the red LED. Use the code of task 1 and 2.
 
-## Code : 
-1. *global variables* 
-<br>Please create a variable that stockes the value of the limit between cold and hot temperature. I'd advise you to put 20.
-2. *loop()* 
-<br>The loop () function must read the data from the temperature sensor. To do this, you use the follow intructions :
+# Task 4: Implement the servo motor
+<br> Implement the servo motor to move the clamps if it's cold. Otherwise stop the trunk movement.
+<br> The servo motor has 3 pins: ground (black), power supply (red) and data pin connection (white). 
 
-```
-//Reading and display the temperature (°C) 
-sensors.requestTemperatures(); 
-float Temperature_Value = sensors.getTempCByIndex(0);
-Serial.println("Temperature");
-Serial.print(Temperature_Value);
-Serial.println("ºC");
-```
-   
-<br>Compare the value of the variable with the limit value. Use an if structure and write the code to illuminate the LED of the same colour as the one detected with the sensor. 
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
+![](../../Image/Elephant_Level1_Temperature_Task4.jpg)
 
-# Task 4: Servo motor and a final code
-Control the servo motor in a way that it will open and close the clamps. Write the final code that will set the clamps in motion when the temperature is cold.
-## Wiring scheme : 
-The picture shows the Assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, temperature sensor,4.7 kOhm, one servomotor and ESP32 (brown) with cables.
-![Temperature step 4](../../Image/Temperature_Task4.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | Breadboard
+## Wiring scheme:
+servo motor | ESP32
 ------------ | -------------
-Red | GPIO 16
-Blue | GPIO 17
-Back | GND
-
-Temperature sensor | Breadboard 
------------- | ------------- 
-Yellow | GPIO 26
-Black | GND
-Red | VCC
- 
-Servo motor| ESP32 
------------- | ------------- 
 White | GPIO 25
 Red | VCC
-Black | GND
+Black  | GND
 
-<br>![Temperature step 4](../../Image/Temperature_Structure.JPG)
-## Code : 
-1.*globales variables*
-<br>Please indiacte the new GPIO used by the servomotor. 
+## Code:
+1. *global variables*
+<br>Define the GPIO of the servo motor and give it the variable name "servomotor". Also, define the channel, frequency and resolution of the PWM as an int and give them a number:
+* channel = 0
+* frequency = 50
+* resolution = 16
+<br>Define two global variable for the minimum and maximum angle of motor movement.
+* servomotor_Angle_Min = 80
+* servomotor_Angle_Max = 120
+<br>Define a function that converts the motor angle to motor steps to control the stepper motor. A function encapsulates a logic and behaviour, in this case to move the servomotor by the input value.
+* void command_servomotor(float servomotor_Angle): declarate the function as *void* and give the angle to the function. *Void* indicates that no information as output is expected.
+* convert 0-180 degrees to 0-65536. Use *uint32_t* as datatype to store the value.
+* call the function *ledcWrite(channel,i)* to move the servo motor. Use the variable for the servo motor channel. i is represented by the variable of your converting calculation. 
+
+```
+void command_servomotor(float servomotor_Angle)
+{
+  //convert 0-180 degrees to 0-65536
+  uint32_t conv = (((servomotor_Angle / 180.0) * 2000) / 20000.0 * 65536.0) + 1634;
+  ledcWrite(servomotor_Channel, conv);
+}
+```
+
 2. *setup()*
-<br>Please create the connection between the servomotor and the ESP32:
-
-```
-//match between servomotor and the number pin specified 
-servo.attach(PIN_SERVO);
-```
-
-3. *loop()* 
-<br>Please use the following instructions to control a servo motor:
-
-```
-// Servo movement
-// the servomotor moves to be 115° position
-servo.write(115); 
-// wait 3s
-delay(3000); 
-// the servomotor moves to be 45° position
-servo.write(45);
-// wait 3s
-delay(3000);
-```
-
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the **write** function.*
-<br>Now, please add the clamps movement in if structure so that the clamps close and open when the temperature is cold.
-<br><br><img src="../../Image/firework_sghr.png" alt="fireworh" width="50"/> Congratulations, you've coded the **Temperature** scenario successfully!
+* Setup servomotor as OUTPUT.
+* Attach the channel to the GPIO of the servomotor to be controlled with *ledcAttach(servomotor, channel);*
+* Define the PWM functionalities of the channel with *ledcSetup(channel,frequency, resolution);*
+3. *loop()*
+* If it's "warm" the clamps doesn't move. Otherwise move the clamps.
+* Move the servo motor by calling the function you defined previously *command_servomotor(angle)*.
+	* move the servomotor to it's maximum angle value. Use the global variable you defined previously.
+	* wait 1000 ms
+	* move the servomotor to it's minimum angle value. Use the global variable you defined previously.
+	* wait 1000 ms

@@ -1,33 +1,33 @@
-//A LITTLE HEART
+// LED
+// GPIO
 
-//TASK 1
+// global variable
+int bpm = 60;
 
-//GLOBALES VARIABLES
-//GPIO
-int PIN_LED=16;
+char serialprint_buffer[100];
 
-//SETUP: function that initialize the components and display a start message to the serial monitor
-//code only runs once
-void setup() 
+// setup the components
+void setup()
 {
-  //INITIALIZATION
-  //ESP32 sends information to the LED 
-  pinMode(PIN_LED, OUTPUT); 
-  
-  //SERIAL COMMUNICATION
-  //9600 bauds 
+  // setup LED as OUTPUT
+
   Serial.begin(9600);
-  delay(5000); 
-  Serial.println(" A little heart : task 1 !"); 
+  // setup the serial communication
 }
-   
-//LOOP: function that flashes the LED - code executed repeatedly
-void loop() 
-{ 
-  //turn on LED 
-  digitalWrite(PIN_LED, HIGH); 
-  delay(500);
-  //turn off LED 
-  digitalWrite(PIN_LED, LOW); 
-  delay(500);
+
+void loop()
+{
+  // look for an input in the serial monitor
+  // read incoming byte
+  // clear the buffer
+
+  // If the read in variable is between the permitted min and max bpm value set the variable bpm to the read in variable.
+  // If the read in variable is not between the permitted min and max bpm values print a notification into the serial monitor.
+
+  // print the bpm value to the serial monitor
+  sprintf(serialprint_buffer, "pulse %d bpm", bpm);
+  Serial.println(serialprint_buffer);
+
+  // calculate the interval time between LED HIGH and LED LOW: convert bpm into msceond and subtract the time of "power on" of the LED
+  // print the time between LED LOW and LED HIGH
 }

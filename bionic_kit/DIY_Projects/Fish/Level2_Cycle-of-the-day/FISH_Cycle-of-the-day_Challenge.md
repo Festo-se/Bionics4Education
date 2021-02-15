@@ -1,21 +1,24 @@
 ![Festo_logo](../../Image/Logo_Festo.png)
 # STEP-BY-STEP 
 # Cycle of the day 
-![Fish](../../Image/Cycle_of_the_day_photo_finale.JPG)
-
+![Fish](../../Image/Fish_Level2_Cycle-of-the-day_finale.JPG)
 
 In this project you will recreate the cycle of the day of the fish. With the fish, we don't talk about sleep, but rather about periods of inactivity when their 
 reactivity is reduced. To rest, some species of fish swim more slowly. For this scenario, a light sensor will indicate whether it is day or night. During the day,the fish swims 
 fast and during the night, the fish swims slowly. Moreover, unlike humans, fish are unable to manage their inside temperature. The temperature of the aquatic environment in 
 which he swims will therefore directly influence his metabolism. Thus, use a temperature sensor to determine if the water is cold or hot , LEDs (blue and red) will light up accordingly.
 
+You will creat code to interact with the fish. If it's day (bright environment) the fish moves its' caudal fin fast. Otherwise the fish moves its' caudal fin slowly. If it's warm enough the the fish lights up in red color. Otherwise the fish lights up in blue color.  
+
 ## Objective
-* You can control an LED with signals.
-* You can write if structure.
-* You learn how to use temperature sensor.
-* You learn how to use light sensor.
-* You learn how to control a servomotor.
-* You learn to deal with global and local variables.
+* You can toggle an LED.
+* You can integrate a temperature sensor.
+* You can integrate a light sensor.
+* You can control a servomotor.
+* You understand conditionals.
+* You can deal with global and local variables.
+* You understand logical operators.
+* You understand writing and calling functions.
 
 ## Material 
 * 1 Microcontroller ESP32
@@ -24,7 +27,7 @@ which he swims will therefore directly influence his metabolism. Thus, use a tem
 * 1 RGB LED
 * 1 Resistor 330 Ohm
 * 1 Resistor 4.7 kOhm
-* 1 Luminosity sensor
+* 1 Light sensor
 * 1 Temperature sensor
 * 1 servo motor (Waterproof)
 * 1 Glas with hot water (red)
@@ -34,220 +37,159 @@ which he swims will therefore directly influence his metabolism. Thus, use a tem
 * 1 3D printed part of: Light_Box_Top.stl (download on github)
 * 2 Cable ties
 * *FISH_Cycle-of-the-day_Code_Challenge.ino* (download on github)
-![Fish](../../Image/Cycle_of_the_day_components.JPG)
 
-<img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/> *Throughout the tutorial, do not hesitate to refer to the documentation.*
+![Fish](../../Image/Fish_Level2_Cycle-of-the-day_Task0.jpg)
 
-# TASK 1: Flashing LED 
-Create a color sequence with the two LEDs, one LED is built-in the ESP32 and the second is a RGB LED. The RGB LED brings together 3 simple LEDs. Here, please use the blue pin only. To do this, please control the power supply of the LED. The ESP32 only send information to the LED. The LED send no data back to the ESP32. 
-<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
- 
+# Task 1: Control the built-in red LED (LED2)
+Flash the red LED every 500 ms. Use the built in red LED; it's defined on GPIO 13.
+
+![](../../Image/Fish_Level2_Cycle-of-the-day_Task1.jpg) 
+
 ## Wiring scheme:
-The picture shows the Assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor and ESP32 (brown) with cables.
-![Cycle of the day step 1 ](../../Image/Cycle_of_the_day_Task1.PNG) <br>(C) This image was created with Fritzing.
-
-RGB LED | Breadbord
+LED2	| ESP32 
 ------------ | -------------
-Blue | GPIO 16 
-Back | GND
+LED2 | GPIO 13 
 
-<img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The LED must be in series with a 330 Ohm resistor.*
 ## Code:
-1. Open the *FISH_Cycle-of-the-day_Code_Challenge.ino*  file.
-<br> <img src="../../Image/bulb_sghr.PNG" alt="ampoule" width="50"/> *Don't hesitate to consult the documentation to better understand the functions used.*
+1. Open the *FISH_Cycle-of-the-day_Code_Challenge.ino* file.<br>
 2. *global variables*
-<br>In order to simplify understanding of the code, a global variable is associated with each GPIO number used. Associate the variabe "PIN_LED_B" to the number's GPIO 16. 
+<br>Define the GPIO of the red LED and give it the variable name "LED2". 
 3. *setup()*
-<br>First, indicate the GPIO mode. Then you may notice instructions regarding the serial link. Do not hesitate to open the serial monitor.
+<br>Setup LED2 as OUTPUT.
 4. *loop()*
-<br>Pleas power on and off LEDs to create a color sequence.
+<br>Control LED2 via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 500 ms between each HIGH and LOW value.
 
-# TASK 2: Temperature sensor  
-Use the temperature sensor and show the result with red LED (warm) or blue LED (cold). The temperature sensor has 3 pins : ground (black), power supply (red) and data pin connection (yellow).
-<br>After reading the sensor value via the connection pin, light up the red LED if it is hot or blue LED if it is cold.
-<br><img src="../../Image/temperature_sensor.PNG" alt="temperature sensor" width="80"/> <br>(C) This image was created with Fritzing.
+# Task 2: Control the RGB LED 
+Flash the RGB LED in blue color. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Include a *delay();* of 500 ms between each HIGH and LOW value. If the red LED is HIGH the blue LED is LOW and the other way round.
+<br> The picture show the design of the RGB LED:
+* blue color: shortest wire 
+* green color: second shortest wire
+* ground: longest wire (black)
+* red color: second longest wire
+  
+<br><img src="../../Image/LED_RGB.PNG" alt="RGB LED" width="150"/> <br>(C) This image was created with Fritzing.
+<br>The RGB LED must be in series with a 330 Ohm resistor.
 
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, temperature sensor, 4.7 kOhm  and ESP32 (brown) with cables.
-![Cycle of the day step 2 ](../../Image/Cycle_of_the_day_Task2.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | Breadbord
+![](../../Image/Fish_Level2_Cycle-of-the-day_Task2.jpg)
+
+## Wiring scheme:
+LED RGB| ESP32 
 ------------ | -------------
 Blue | GPIO 16 
-Back | GND                               
- 
-Temperature sensor | Breadboard 
------------- | ------------- 
-Yellow | GPIO 17
 Black | GND
-Red | VCC
- 
-<img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *Don't forget the 4.7km Ohm resistor.*
-## Code: 
-1. *global variables* 
-<br>Please create a variable that stockes the limmit temperature between hot and cold.For a first test, this value can be 22. 
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*You can take the sensor on you hands to increase the temperature.*
-2. *setup()* 
-<br>Please indicate the mode of the temperature sensor.
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The ESP32 receives information from the temperature sensor*
-3. *loop()*
-<br>Please read the temperature and display it on the serial monitor.
 
-```
-//Reading and display the temperature (°C) 
-sensors.requestTemperatures(); 
-float Temperature_Value = sensors.getTempCByIndex(0);
-Serial.println("Temperature");
-Serial.print(Temperature_Value);
-Serial.println("ºC");
-```
-
-<br>Please light the red LED if the temperature is hot or blue LED if the temperature is cold by utilizing the limit temperature.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
-
-# Task 3: Luminosity sensor 
-Use the luminosity sensor and send an analog value proportional to the amount of light to its OUT pin.
-The luminosity sensor has 3 pins : ground (GND), power supply (VCC) and data pin connection (OUT).
-<br> <img src="../../Image/luminosity_sensor.PNG" alt="luminoity sensor" width="100"/> <br>(C) This image was created with Fritzing.
-
-## Wiring scheme: 
-The picture shows the Assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, temperature sensor, 4,7 kOhm light sensor and ESP32 (brown) with cables.
-![Cycle of the day step 3](../../Image/Cycle_of_the_day_Task3.PNG) <br>(C) This image was created with Fritzing.
- 
-RGB LED | Breadbord
------------- | -------------
-Blue | GPIO 16 
-Back | GND                               
-
-Temperature sensor | Breadboard 
------------- | ------------- 
-Yellow | GPIO 17
-Black | GND
-Red | VCC
- 
-Luminosity sensor | ESP32 
------------- | ------------- 
-OUT | GPIO 26
-VCC | VCC
-GND | GND
-
-## Code: 
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for th OUT pin of luminosity sensor. In addition, create a global variable that will store the value of the limit of the amount of light between day and night. I'd advise you to put the value of 500.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/> *This value can be modified deponds on the room's light.*
+## Code:
+1. *global variables*
+<br> Define the GPIO of the RGB LED and give it the variable name "LED_RGB_Blue".
 2. *setup()*
-<br>Please indicate the mode of new GPIO used. 
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *The ESP32 receives information from the OUT pin.*
-3. *loop()* 
-<br>Please read the data from the luminosity sensor on the OUT pin and display on the serial monitor.
+<br> Setup LED_RGB_Blue as OUTPUT.
+3. *loop()*
+<br> Control LED_RGB_Blue via power on/power off. Use the function *digitalWrite(variable, value);* to control the power of the LED via HIGH and LOW values. Use the *delay();* of 500 ms between each HIGH and LOW value from task 1. If the red LED lights up the blue LED is off and the other way round.
 
-```
-//Reading and display the luminosity
-int Luminosity_Value = analogRead(PIN_LIGHT_SENSOR); 
-Serial.println("Light");
-Serial.println(Luminosity_Value,DEC)
-```
+# Task 3: Implement the temperature sensor
+Make the temperature sensor work to display the measured values in the serial monitor. If the measured temperature value is equal or higher than the temperature treshold light up the red LED; otherwise light up the blue LED.
 
-<br>The value of the variable will be compared to the limit between day and night defined before. If the value is superior than or equal to the limit, you can display " Day" 
-,otherwise "Night".
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to better understand how to use the conditions structure.*
+![](../../Image/Fish_Level2_Cycle-of-the-day_Task3.jpg) 
 
-# Task 4: Servo motors 
-Send information from the ESP32 to the servo motor with pin GPIO 25.
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Don't hesitate to consult the documentation to know wich function you can use to control the servomotor.*
-
-## Wiring scheme: 
-The picture shows the assembly of the breadboard (grey), LED RGB (clear), 330 Ohm resistor, temperature sensor, 4.7 kOhm, 1 servomotor and ESP32 (brown) with cables.
-![Cycle of the day step 4](../../Image/Cycle_of_the_day_Task4.PNG) <br>(C) This image was created with Fritzing.
-
-RGB LED | Breadbord
+## Wiring scheme:
+LED2	| ESP32 
 ------------ | -------------
-Blue | GPIO 16 
-Back | GND                               
- 
-Temperature sensor | Breadboard 
------------- | ------------- 
-Yellow | GPIO 17
-Black | GND
-Red | VCC
- 
-Luminosity sensor | ESP32 
------------- | ------------- 
-OUT | GPIO 26
-VCC | VCC
+LED2 | GPIO 17 
+
+## Code:
+1. *global variables*
+* Define the GPIO of the temperature sensor and give it the variable name "temperaturesensor".
+* Include the library of the temperature sensor:
+	* #include <OneWire.h>
+	* #include <DallasTemperature.h>
+* Define the temperaturesensor
+	* OneWire oneWire(temperaturesensor);
+	* DallasTemperature sensors(&oneWire);
+* Define a variable for your temperature treshold to distinguish warm and cold. For example, you can set the value to 22.
+2. *setup()*
+* Setup temperature sensor as INPUT.
+* Start the temperature sensor by calling *sensors.begin();*
+3. *loop()*
+* Read and Display the temperature values. Call the function *sensors.requestTemperatures();* and *sensors.getTempCByIndex(0);*. Store your measured temperature value in a variable and print it to the serial monitor.
+* Make a sanity check of the measured values: take a cold glas of water and your hand to verify the measured values. If the measured values are realistic, go to the next step.
+* Write an if structure:
+	* If the temperature sensor value is equal of higher then the temperature treshold print "warm" in the serial monitor. Power on the red LED and power off the blue LED. Use the code of task 1 and 2.
+	* If the temperature sensor value is lower then the temperature treshold print "cold" in the serial monitor. Power off the red LED and power on the blue LED. Use the code of task 1 and 2.
+
+# Task 4: Implement the light sensor
+<br> Implement the light sensor and find your treshold value. If the meassured value is equal or higher than your treshold print "day" to the serial monitor. If the meassured value is lower than your treshold print "night" to the serial monitor.
+The light sensor has 3 pins: ground (GND), power supply (VCC) and data pin connection (OUT). 
+
+![](../../Image/Fish_Level2_Cycle-of-the-day_Task4.jpg)
+
+## Wiring scheme:
+light sensor	| ESP32 
+------------ | -------------
+OUT | GPIO 26 
+VCC | VCC (+)
 GND | GND
 
-Servo motor| ESP32 
------------- | ------------- 
+## Code:
+1. *global variables*
+<br>Define the GPIO of the light sensor and indicate a global variable for your treshold value.
+2. *setup()*
+<br> Setup the light sensor as INPUT.
+3. *loop()*
+* Read the values from the light sensor with *analogRead();* and store the value in a local variable.
+* Print the value in the serial monitor.
+* Use a flashlight and your finger to demonstrate extreme light sensor values: bright and dark. Find out a realistic treshold value to distinguish "day mode" and "night mode". Write this treshold value in your global variable you defined in *global variables* previously. 
+* Write an if-structre:
+	* If the meassured light sensor value is equal or higher then your treshold print "day" to the serial monitor.
+	* If the meassured light sensor value is lower then your treshold print "night" to the serial monitor.
+
+# Task 5: Implement the servo motor
+<br> Implement the servo motor to move the caudal fin. Move the caudal fin fast if it's day. Otherwise move the caudal fin slow.
+<br> The servo motor has 3 pins: ground (black), power supply (red) and data pin connection (white). 
+
+![](../../Image/Fish_Level2_Cycle-of-the-day_Task5.jpg)
+
+## Wiring scheme:
+servo motor | ESP32
+------------ | -------------
 White | GPIO 25
 Red | VCC
-Black | GND
-
-<br>![Cycle of the day step 4](../../Image/Cycle_of_the_day_structure.JPG)
+Black  | GND
 
 ## Code:
-1. *global variables* 
-<br>Please indicate the numbers of the new GPIO used for the servo motor. 
-<br>In addition, please create a global variable that will stock the value of the delay between different motor's instructions. This value determines the speed of the servo 
-motor. I'd advise you to put the value of 500 and test several value to undersatand how it works. 
+1. *global variables*
+<br>Define the GPIO of the servo motor and give it the variable name "servomotor". Also, define the channel, frequency and resolution of the PWM as an int and give them a number:
+* channel = 0
+* frequency = 50
+* resolution = 16
+<br>Define two global variable for the minimum and maximum angle of motor movement.
+* servomotor_Angle_Min = 80
+* servomotor_Angle_Max = 120
+<br>Define a function that converts the motor angle to motor steps to control the stepper motor. A function encapsulates a logic and behaviour, in this case to move the servomotor by the input value.
+* void command_servomotor(float servomotor_Angle): declarate the function as *void* and give the angle to the function. *Void* indicates that no information as output is expected.
+* convert 0-180 degrees to 0-65536. Use *uint32_t* as datatype to store the value.
+* call the function *ledcWrite(channel,i)* to move the servo motor. Use the variable for the servo motor channel. i is represented by the variable of your converting calculation. 
+
+```
+void command_servomotor(float servomotor_Angle)
+{
+  //convert 0-180 degrees to 0-65536
+  uint32_t conv = (((servomotor_Angle / 180.0) * 2000) / 20000.0 * 65536.0) + 1634;
+  ledcWrite(servomotor_Channel, conv);
+}
+```
+* Define a global variable *servo_time* for the servomotor speed. Use the data type *unsigned long* and set the value to 1000 by default.
+
 2. *setup()*
-<br>First, create the connection for the servo motor:
+* Setup servomotor as OUTPUT.
+* Attach the channel to the GPIO of the servomotor to be controlled with *ledcAttach(servomotor, channel);*
+* Define the PWM functionalities of the channel with *ledcSetup(channel,frequency, resolution);*
+3. *loop()*
+* If it's day set the global variable *servo_time* to 1000. Otherwise set the variable *servo_time* to 2000.
+* Move the servo motor by calling the function you defined previously *command_servomotor(angle)*.
+	* move the servomotor to it's maximum angle value. Use the global variable you defined previously.
+	* make a delay of the previously defined *servo_time* value.
+	* move the servomotor to it's minimum angle value. Use the global variable you defined previously.
+	* make a delay of the previously defined *servo_time* value.
 
-```
-servo.attach(PIN_SERVO);
-```
-
-<br>Then,you can initialize the angle of the servomotor:
-
-```
-servo.write(90);
-```
-
-3. *loop()* 
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*Please comment the next code to understand how a servomotor works.* 
-<br>Please create a servo motor movement:
-
-```
-// SERVO MOVEMENT 
-// the servomotor moves to be 110° position
-servo.write(110); 
-// wait Temporization ms
-delay(Temporization); 
-// the servomotor moves to be 70° position
-servo.write(70);
-// wait Temporization ms 
-delay(Temporization);
-```
-
-<br><img src="../../Image/bulb_sghr.PNG" alt="bulb" width="50"/>*You can modify the swimming amplitude by changing the degree set points and modify the swimming speed by changing the delay (Temporization value), make tests to understand how it works!* 
-
-# Task 5: Final code 
-Create the final code. The speed of the fish depends on the luminosity: The fish swim faster by day than by night. The color of the LED depends on the temperature: when it's hot the red LED lights up, the blue one otherwise.
-The wiring scheme is the same that task 4.
-
-## Code:
-1. *global variables* 
-<br>Please create two variables:
-* The first is the delay for the speed in day.
-* The second is the delay for the speed in night.
-
-```
-//Temporization determines the speed of the fish
-int Temporization=500; 
-//Delay_Day determines the speed for the day
-int Delay_Day=500;
-//Delay_Nightdetermines the speed for the night  
-int Delay_Night = 2000;
-```
-
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *If the delay increase, the speed decrease.*
-<br>3. *loop()* 
-<br><img src="../../Image/Warning_sghr.PNG" alt="warning" width="50"/> *Remember to uncomment the task 3 code.*
-<br>Please modify the **if structure** to change the color and servo motor's speed wich depends on the quantity of light and the temperature.
-* Day: The speed is definied with Delay_Day.
-* Night: The speed is definied with Delay_Night. 
-<br>The variable *Temporization* is egal to *Delay_Day* or *Delay_Night* depending on the quantity of light.
-* Hot: The red LED light up.
-* Cold: The blue LED light up.
-
-<br> <br><img src="../../Image/firework_sghr.png" alt="fireworh" width="50"/> Congratulations, you've coded the **Cycle of the day** scenario successfully!
+If you want to make the light sensor better in performance print the black box and assemble it.
+![](../../Image/Fish_Level2_Cycle-of-the-day_structure.JPG)

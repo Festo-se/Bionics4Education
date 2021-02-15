@@ -1,74 +1,77 @@
-//CYCLE OF THE DAY
+// LED2 (built-in ESP32)
+// GPIO
+#define LED2 13
 
-//TASK 2
+// RGB LED
+// GPIO
+#define LED_RGB_Blue 16
 
-//LIBRARY
-#include <ESP32Servo.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
+// temperature sensor
+// GPIO
+// library
+// define temperaturesensor
+// set treshold for the temperature sensor. The variable determines the treshold between warm and cold (°C).
 
-//Temperature sensor
-int PIN_TEMPERATURE=17;
-OneWire oneWire(PIN_TEMPERATURE);
-DallasTemperature sensors(&oneWire);
+// light sensor
+// GPIO
+// set treshold for light sensor
 
-//servomotor
-Servo servo; 
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
+// define servomotor time
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED built-in ESP32
-int PIN_LED_R=13;
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+// convert 0-180 degrees to 0-65536
 
-//LED RGB (breadboard)
-int PIN_LED_B=16; 
+// global variables
 
-//VARIABLES
-//Temperature_Limit determines the limit temperature (°C) between hot and cold
-float Temperature_Limit=22; 
+// setup the components
+void setup()
+{
+  // setup LED2 as OUTPUT
+  pinMode(LED2, OUTPUT);
 
-//SETUP: function that initialize the components and display a start message to the serial monitor
- void setup() 
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LEDS
-  pinMode(PIN_LED_R,OUTPUT);
-  pinMode(PIN_LED_B,OUTPUT);
-  //ESP32 receives information from the temperature sensor
-  pinMode(PIN_TEMPERATURE,INPUT);
-  
-  //SERIAL COMMUNICATION
+  // setup LED_RGB as OUTPUT
+  pinMode(LED_RGB_Blue, OUTPUT);
+
+  // setup the temperature sensor as INPUT
+  // start the temperaturesensor
+
+  // setup the light sensor as INPUT
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
   Serial.begin(9600);
-  delay(5000);
-  Serial.println("Cycle of the day: task 2!");  
-
-  //Start the temperature sensor
-  sensors.begin();
 }
 
-//LOOP: function that read the sensor's data and lights the red LED if it is hot or the blue LED if it is cold
- void loop()
- {
-   //Reading and display the temperature (°C) 
-   sensors.requestTemperatures(); 
-   float Temperature_Value=sensors.getTempCByIndex(0);
-   Serial.println("Temperature");
-   Serial.print(Temperature_Value);
-   Serial.println("ºC");
+void loop()
+{
+  // read and display the temperature (°C)
 
-   //Hot
-   if ( Temperature_Value>=Temperature_Limit)
-   { 
-    //Red (LED ESP32)
-    digitalWrite(PIN_LED_R,HIGH); 
-    digitalWrite(PIN_LED_B,LOW);
-    }
-   
-   //Cold
-   else
-   {
-    //Blue (LED breadboard)
-    digitalWrite(PIN_LED_B,HIGH); 
-    digitalWrite(PIN_LED_R,LOW);
-   }
+  // If the temperature sensor value is equal of higher then the temperature treshold print "warm" in the serial monitor.
+  // flash the red LED
+  digitalWrite(LED2, HIGH);
+  digitalWrite(LED_RGB_Blue, LOW);
+  delay(500);
+
+  // If the temperature sensor value is lower then the temperature treshold print "cold" in the serial monitor.
+  // flash the blue LED
+  digitalWrite(LED2, LOW);
+  digitalWrite(LED_RGB_Blue, HIGH);
+  delay(500);
+
+  // read the current light sensor value
+
+  // If the light sensor value is equal of higher then the light treshold print "day" in the serial monitor.
+  // set servomotor time to 1000 ms
+
+  // If the light sensor value is lower then the light treshold print "night" in the serial monitor.
+  // set servomotor time to 2000 ms
+  // create a movement of the servomotor to angle max and min
 }

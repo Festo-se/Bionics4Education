@@ -1,71 +1,82 @@
-//CAMOUFLAGE
+// LED2 (built-in ESP32)
+// GPIO
+#define LED2 13
 
-//TASK 3
+// RGB LED
+// GPIO
+#define LED_RGB 16
 
-//GLOBALES VARIABLES
-//GPIO
-int PIN_LED=16;
-int PIN_LED_R=16;
-int PIN_LED_G=17;
-int PIN_LED_B=26;
-int PIN_COLOR=25;
+// color sensor
+// GPIO
+// define pin for TTL level square wave
+#define sensorOut 25
+// define frequency scaling (S1 = 0)
+#define S0 17
+// define color array (S2 not defined, because for red and blue color detection it must be LOW (not connected))
+#define S3 26
+// define variable for each color frequency (red, green, blue)
+int red_frequency = 0;
+int blue_frequency = 0;
+// define a lower and upper treshold of the color sensor
+int colorsensorTresholdLower = 1000;
+int colorsensorTresholdUpper = 3000;
 
-//Reference Frequency
-int Blue_Frequency=3;
-int Red_Frequency=7;
-int Green_Frequency=4;
+// global variables
+char serialprint_buffer[100];
 
-//SETUP: function that initialize the components and display a start message to the serial monitor - code only runs once
 void setup()
 {
-  //INITIALIZATION
-  //ESP32 sends information to LED
-  pinMode(PIN_LED_R, OUTPUT); 
-  pinMode(PIN_LED_G, OUTPUT); 
-  pinMode(PIN_LED_B, OUTPUT);
- 
- //ESP32 receives information from the color sensor
-  pinMode(PIN_COLOR, INPUT);
+  // setup LED2 as OUTPUT
+  pinMode(LED2, OUTPUT);
+
+  // setup LED_RGB as OUTPUT
+  pinMode(LED_RGB, OUTPUT);
+
+  // setup color sensor
+  pinMode(sensorOut, INPUT);
+  // setup frequency scaling
+  pinMode(S0, OUTPUT);
+  // set frequency scaling to 20% (S1 = LOW, not connected)
+  digitalWrite(S0, HIGH);
+  // setup color array (S2 not defined)
+  pinMode(S3, OUTPUT);
   
-  //SERIAL COMMUNICATION
-  Serial.begin(9600); 
-  delay(5000);
-  Serial.println("Camouflage: task 3!");  
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that tunrs on the LED of the same color as the object in front of the color sensor - code executed repeatedly
- void loop()
-{ 
-  // Read Current_Frequency
-  int Current_Frequency=pulseIn(PIN_COLOR, HIGH);
-  Serial.println(Current_Frequency);
+void loop()
+{
+  // set sensor to read RED color only (S2 = LOW because it's not connected)
+  digitalWrite(S3, LOW);
+  // write the pulse width of the sensor signal into the red_frequency variable
+  red_frequency = pulseIn(sensorOut, HIGH);
 
-  //Red color
-  if ((Current_Frequency==Red_Frequency)
-    {
-		digitalWrite(PIN_LED_R, HIGH);
-		digitalWrite(PIN_LED_B, LOW);  
-		digitalWrite(PIN_LED_G, LOW);
-	}
-	//Blue color         
-	else if ((Current_Frequency==Blue_Frequency)
-    {
-		digitalWrite(PIN_LED_B, HIGH);
-		digitalWrite(PIN_LED_R, LOW);  
-		digitalWrite(PIN_LED_G, LOW);
-	}
-	//Green color      
-	else if (Current_Frequency==Green_Frequency)
-    {
-		digitalWrite(PIN_LED_G, HIGH);
-		digitalWrite(PIN_LED_R, LOW);  
-		digitalWrite(PIN_LED_B, LOW);
-	}
-	//Other color
-	else 
-	{ 
-		digitalWrite(PIN_LED_G, LOW);
-		digitalWrite(PIN_LED_R, LOW);  
-		digitalWrite(PIN_LED_B, LOW);
-	}  
+  // set sensor to read BLUE color only (S2 = LOW because it's not connected)
+  digitalWrite(S3, HIGH);
+  // write the pulse width of the sensor signal into the blue_frequency variable
+  blue_frequency = pulseIn(sensorOut, HIGH);
+
+  // print RGB values in the serial monitor
+  sprintf(serialprint_buffer, "Red: %d Blue: %d", red_frequency, blue_frequency);
+  Serial.println(serialprint_buffer);
+
+  // write the detected color in the serial monitor
+  if (red_frequency > colorsensorTresholdLower && red_frequency < colorsensorTresholdUpper && red_frequency < blue_frequency) {
+    Serial.println("red");
+    // flash the red LED (LED2)
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED_RGB, LOW);
+  }
+  else if (blue_frequency > colorsensorTresholdLower && blue_frequency < colorsensorTresholdUpper && blue_frequency < red_frequency) {
+    Serial.println("blue");
+    // flash the blue LED (RGB_LED)
+    digitalWrite(LED_RGB, HIGH);
+    digitalWrite(LED2, LOW);
+  }
+  else {
+    digitalWrite(LED_RGB, LOW);
+    digitalWrite(LED2, LOW);
+  }
+  delay(1000);
 }

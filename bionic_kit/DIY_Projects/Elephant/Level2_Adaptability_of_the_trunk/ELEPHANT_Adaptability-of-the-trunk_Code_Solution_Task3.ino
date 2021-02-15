@@ -1,101 +1,79 @@
-//Adaptability OF THE TRUNK
+// LED
+// GPIO
+#define LED2 13
 
-//TASK 3
+// touch sensor
+// GPIO
+#define touchsensor 16
 
-//LIBRARY
-#include <ESP32Servo.h>
-Servo servo;
+// lightsensor
+// GPIO
+#define lightsensor 26
+// set treshold for light sensor
+#define lightsensor_treshold 3500
 
-//GLOBALES VARIABLES
-//PWM properties Servo
-int Frequence0=50;
-int LED_Channel0=0;
-int Resolution0=16; 
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
 
-//PWM properties LED
-int Frequence12=5000;
-int LED_Channel12=12;
-int Resolution12=8;
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+//convert 0-180 degrees to 0-65536
 
-//GPIO
-int PIN_Built_in=13;
-int PIN_BUZZER=17;
-int PIN_TOUCH=16;
+// global variables
+char serialprint_buffer[100];
 
-//FUNCTION
-//Command_servo: function that give the order of the angle to the servomotor
-void Command_servo(float angle)
-{   
-    //convert 0-180 degrees to 0-65536
-    uint32_t conv = (((angle/180.0)*2000)/20000.0*65536.0)+1634;
-    ledcWrite(Channel_Servo,conv);
-}
-
-//movement_trunk: function that creates a movement of the trunk to convert a moment of activity of the elephant
-void movement_trunk()
-{
-  /*...*/
-}
-
-//SETUP: function that initialize the components and display a start message to the serial monitor
+// setup the components.
 void setup()
 {
-  //INITIALIZATION
-  //ESP32 sends information to the LED
-  pinMode(PIN_Built_in, OUTPUT);
-  
-  //ESP32 sends information to the buzzer
-  pinMode(PIN_BUZZER,OUTPUT);
-  
-  //ESP32 receives infomation from the touch sensor
-  pinMode(PIN_TOUCH, INPUT);
-  ledcAttachPin(PIN_Built_in,LED_Channel12);
-  ledcSetup(LED_Channel12, Frequence12, Resolution12);
-  ledcAttachPin(PIN_SERVOS,LED_Channel0);
-  ledcSetup(LED_Channel0,Frequence0,Resolution0);
-  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600); 
-  delay(5000);
-  Serial.println("Adapatability of the trunk: task 3!"); 
+  // setup the LED as OUTPUT
+  pinMode(LED2, OUTPUT);
+
+  // setup the touch sensor as INPUT
+  pinMode(touchsensor, INPUT);
+
+  // setup the light sensor as INPUT
+  pinMode(lightsensor, INPUT);
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that flash the red LED and create a snoring. Then, the function read the touch value and if it is a high level a noise is created. - code executed repeatedly
 void loop()
-{ 
-   //Flash LED 
-   ledcWrite(LED_Channel12,256);
-   delay(500);
-   ledcWrite(LED_Channel12,0);
-   delay(500);
-   
-   //Snoring
-   for (int i=0; i<=256;i=i+10) 
-   { 
-   ledcWrite(LED_Channel12,i); 
-   delay(50);
-   }
-   
-   for (int y=256;y>=0;y=y-10) 
-   {  
-   ledcWrite(LED_Channel12,y);
-   delay(50); 
-   }
-   
-   //Reading and display the touch value
-   int State_Touch = digitalRead(PIN_TOUCH);
-   Serial.printn("State touch");
-   Serial.println(State_Touch);
-   
-   if(State_Touch==HIGH)
-   {
-     //Create a noise
-     for (inti =0;i <20;i++) 
-     {
-      digitalWrite (PIN_BUZZER, HIGH) ;
-      delay (2);
-      digitalWrite (PIN_BUZZER, LOW) ;
-      delay (2);
-     }
-   }
+{
+  // read and print the current touch sensor value to the serial monitor
+  int touchsensor_value = digitalRead(touchsensor);
+  sprintf(serialprint_buffer, "touch: %d", touchsensor_value);
+  Serial.println(serialprint_buffer);
+
+  // read the current light sensor value
+  int lightsensor_value = analogRead(lightsensor);
+  sprintf(serialprint_buffer, "light sensor: %d", lightsensor_value);
+  Serial.println(serialprint_buffer);
+
+  // day mode: If it's bright enough, print "day" into the serial monitor.
+  if (lightsensor_value >= lightsensor_treshold) {
+    Serial.println("day");
+    // If no touch is detected, move the trunk.
+    if (touchsensor_value == LOW) {
+      // create a movement of the servomotor to angle max and min
+
+    }
+    //  If a touch is detected, flash the LED.
+    else {
+      digitalWrite(LED2, HIGH);
+      delay(100);
+    }
+  }
+  // night mode: If it's dark engough, print "night" into the serial monitor.
+  else {
+    Serial.println("night");
+  }
+  digitalWrite(LED2, LOW);
+  delay(100);
 }

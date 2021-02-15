@@ -1,48 +1,53 @@
-//TEMPERATURE
+// RGB LED Blue
+// GPIO
 
-//LIBRARY
-#include <ESP32Servo.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
+// RGB LED Red
+// GPIO
 
-//Temperature sensor
-int PIN_TEMPERATURE=26;
-OneWire oneWire(PIN_TEMPERATURE);
-DallasTemperature sensors(&oneWire);
+// temperature sensor
+// GPIO
+// library
+// define temperaturesensor
+// set treshold for the temperature sensor. The variable determines the treshold between warm and cold (°C).
 
-//servomotor
-Servo servo; 
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
 
-//GLOBALES VARIABLES
-//GPIO 
-//LED
-int PIN_LED=/*complete with the GPIO's number*/; 
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+// convert 0-180 degrees to 0-65536
 
-//SETUP: function that initialize the components and display a start message to the serial monitor
- void setup()
- {
-  //INITIALIZATION
-  //ESP32 sends information to the LED
-  pinMode(PIN_LED,/*complete with the LED's mode*/);
+// global variables
+
+// setup the components
+void setup()
+{
+  // setup LED_RGB_Blue as OUTPUT
  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600);
-  delay(5000);
-  Serial.println("Temperature!");  
+  // setup LED_RGB_Red as OUTPUT
 
-  //Start the temperature sensor
-  sensors.begin();
+  // setup the temperature sensor as INPUT
+  // start the temperaturesensor
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that flash the simple LED - the code will be executed repeatedly
 void loop()
-{ 
-  //FLASHING LED 
-  //turn on LED 
-  digitalWrite(PIN_LED,/*complete with the LED's level*/); 
-  delay(500);
-  
-  //turn off LED 
-  digitalWrite(PIN_LED, /*complete with the LED's level*/);
-  delay(500);
+{
+  // read and display the temperature (°C)
+
+  // If the temperature sensor value is equal of higher then the temperature treshold print "warm" in the serial monitor.
+  // flash the red LED with digitalWrite()
+ 
+  // If the temperature sensor value is lower then the temperature treshold print "cold" in the serial monitor.
+  // flash the blue LED with digitalWrite()
+
+  // create a movement of the servomotor to angle max and min
 }

@@ -1,74 +1,52 @@
-//Adaptability OF THE TRUNK
+// LED
+// GPIO
 
-//LIBRARY
-#include <ESP32Servo.h>
-Servo servo;
+// touch sensor
+// GPIO
 
-//GLOBALES VARIABLES
-//PWM properties Servo
-int Frequence0=50;
-int LED_Channel0=0;
-int Resolution0=16; 
+// lightsensor
+// GPIO
+// set treshold for light sensor
 
-//PWM properties LED
-int Frequence12=5000;
-int LED_Channel12=12;
-int Resolution12=8;
+// servomotor
+// library
+// GPIO
+// PWM properties servomotor
+// define servomotor angles
 
-//GPIO
-int PIN_Built_in=/*complete with the GPIO's nuber*/;
+// command_servomotor(): give the angle to the function command_servomotor() and move to the servomotor to the servomotor_Angle
+// convert 0-180 degrees to 0-65536
 
-//FUNCTION
-//Command_servo: function that give the order of the angle to the servomotor
-void Command_servo(float angle)
-{   
-    //convert 0-180 degrees to 0-65536
-    uint32_t conv = (((angle/180.0)*2000)/20000.0*65536.0)+1634;
-    ledcWrite(Channel_Servo,conv);
-}
+// global variables
 
-//movement_trunk: function that creates a movement of the trunk to convert a moment of activity of the elephant
-void movement_trunk()
-{
-  /*...*/
-}
-  
-//SETUP: function that initialize the components and display a start message to the serial monitor
+//Setup the components.
 void setup()
 {
-  //INITIALIZATION
-  pinMode(PIN_Built_in,/*complete with the LED's mode*/);
-  ledcAttachPin(PIN_Built_in,LED_Channel12);
-  ledcSetup(LED_Channel12, Frequence12, Resolution12);
-  ledcAttachPin(PIN_SERVOS,LED_Channel0);
-  ledcSetup(LED_Channel0,Frequence0,Resolution0);
-  
-  //SERIAL COMMUNICATION
-  Serial.begin(9600); 
-  delay(5000);
-  Serial.println("Adapatability of the trunk !"); 
+  // setup the LED as OUTPUT
+
+  // setup the touch sensor as INPUT
+
+  // setup the light sensor as INPUT
+
+  // setup servomotor as OUTPUT
+  // attach the channel to the GPIO to be controlled
+  // define the PWM functionalities of the channel
+
+  // setup the serial communication
+  Serial.begin(9600);
 }
 
-//LOOP: function that flash the red LED,then create a snoring - code executed repeatedly
 void loop()
-{ 
-   //turn on the LED
-   ledcWrite(LED_Channel12,/*complete with number (low level)*/);
-   delay(500);
-   
-   //turn off the LED
-   ledcWrite(LED_Channel12,/*complete with number (highlevel)*/);
-   delay(500);
+{
+  // read and print the current touch sensor value to the serial monitor
 
-   //Snoring
-   for (int i=0;i<=256;i=i+10) 
-   { 
-    ledcWrite(LED_Channel12,i); 
-    delay(50);
-   }
-   for (int y=256;y>=0;y=y-10) 
-   { 
-    ledcWrite(LED_Channel12,y);
-    delay(50); 
-   }
+  // read the current light sensor value
+
+  // day mode: If it's bright enough, print "day" into the serial monitor.
+  // If no touch is detected, move the trunk.
+  // create a movement of the servomotor to angle max and min
+
+  //  If a touch is detected, flash the LED.
+
+  // night mode: If it's dark engough, print "night" into the serial monitor.
 }

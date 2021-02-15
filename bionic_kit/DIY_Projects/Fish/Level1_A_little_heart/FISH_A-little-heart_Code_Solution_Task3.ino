@@ -1,67 +1,39 @@
-//A LITTLE HEART
+// LED
+// GPIO
+#define LED_RGB_Red 16
 
-//TASK 3
+// global variable
+int bpm = 60;
 
-//GLOBALES VARIABLES
-//GPIO
-int PIN_LED=16;
-int PIN_SENSOR=26;
+char serialprint_buffer[100];
 
-//Variable
-int Average;
+// setup the components
+void setup()
+{
+  // setup LED as OUTPUT
+  pinMode (LED_RGB_Red, OUTPUT);
 
-//FUNCTION
-//avarge_function: function that calculates the measures average (on 3 secondes)
-void average_function ()
-{ 
-  //variable that stockes the sum of all values given by the pulse sensor  
-  int sum=0;
-
-  //loop during 3 secondes (75*40 ms=3000ms=3s) to read 75 measures
-  for (int i=0;i<75;i=i+1) 
-  {
-    //addition 
-    sum = sum + analogRead(PIN_SENSOR);
-    //sampling every 40 ms 
-    delay(40);
-  }
-  
-  //division
-  Average = sum/75; 
-}
-
-//SETUP: function that initialize the components and display a start message to the serial monitor - code only runs once 
-void setup() 
-{ 
-  //INITIALIZATION
-  //ESP32 sends information to the LED 
-  pinMode(PIN_LED, OUTPUT);
-  
-  //ESP32 receives information from the sensor 
-  pinMode(PIN_SENSOR,INPUT); 
-  
-  //SERIAL COMMUNICATION
-  //9600 bauds 
   Serial.begin(9600);
-  delay(5000); 
-  Serial.println("A little heart: task 3!"); 
-
+  // setup the serial communication
 }
 
-//LOOP: function that display the pulse of heart during 20s, then calculate the average during 3s - code executed repeatedly
-void loop() 
-{ 
-  //ON SERIAL PLOTTER 
-  //display the pulse of heart during 20 s (see the average (approximately))
-  for (int i=0; i<500; i=i+1)
-  {
-    //Reading and and display the pulse of the heart
-    int Value=analogRead(PIN_SENSOR);
-    Serial.println(Value);
-  }
+void loop()
+{
+  // look for an input in the serial monitor
+  // read incoming byte
+  // clear the buffer
 
-  //ON SERIAL MONITOR
-  //Calculate and display the average value to check the average function 
-  average_function();
-  Serial.println(Average);
+  // If the read in variable is between the permitted min and max bpm value set the variable bpm to the read in variable.
+  // If the read in variable is not between the permitted min and max bpm values print a notification into the serial monitor.
+
+  // print the bpm value to the serial monitor
+  sprintf(serialprint_buffer, "pulse %d bpm", bpm);
+  Serial.println(serialprint_buffer);
+
+  // calculate the interval time between LED HIGH and LED LOW: convert bpm into msceond and subtract the time of "power on" of the LED
+  digitalWrite (LED_RGB_Red, HIGH);
+  delay(100);
+  digitalWrite(LED_RGB_Red, LOW);
+  delay(100);
+  // print the time between LED LOW and LED HIGH
 }
