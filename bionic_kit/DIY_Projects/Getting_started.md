@@ -50,7 +50,7 @@ Total amount about 40€.
 <br>The ESP 32 is a microcontroller that brings together 4 essential elements: a processor, memory and peripheral units and input-
 output interfaces. You can control the inputs and outputs with your computer via *Arduino IDE*. In Arduino IDE you can write code and flash it on the ESP 32. Therefore select the right port: tools -> port -> COM XX.
 Five GPIO's of the ESP32 modul are carried out to which you can connect sensors and actuators:
-![](../../Image/ESP32 Bionics Kit.png) 
+![](/bionic_kit/DIY_Projects/Image/ESP32_Bionics_Kit.png)
 
 * **Breadboard:**
 <br>A breaboard is a board that allows you to connect all of your elements without soldering.
