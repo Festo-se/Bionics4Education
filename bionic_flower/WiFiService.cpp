@@ -54,7 +54,7 @@ void WiFiService::onEvent(WiFiEvent_t event) {
       Serial.println(PRINT_PREFIX + "Event: Wifi ready!");
 
       Serial.println(PRINT_PREFIX + "Starting softAP.");
-      if (!WiFi.softAP(ssid.c_str(), WIFI_PASSWORD, 6, false, 1)) {
+      if (!WiFi.softAP(ssid.c_str(), WIFI_PASSWORD, 6, false, MAX_CONNECTIONS)) {
         Serial.println(PRINT_PREFIX + "AP setup failed.");
         startCompleted(false);
         return;
@@ -73,6 +73,7 @@ void WiFiService::onEvent(WiFiEvent_t event) {
       break;
     case SYSTEM_EVENT_STA_START:
       Serial.println(PRINT_PREFIX + "Event: Station started");
+      WiFi.mode(WIFI_AP);
       break;
     case SYSTEM_EVENT_STA_STOP:
       Serial.println(PRINT_PREFIX + "Event: Station stopped!");
