@@ -2,8 +2,8 @@
 
 This document explains how to install a portable version of the Arduino Software (IDE). This portable version contains all the files and directories necessary to work with the Bionic Flower. Thus, it allows you to start right away with programming the Bionic Flower without any extra library downloads/installations or delays.
 ## Download 
-Go to the [Bionics4Education](https://www.bionics4education.com/web/lang/de/1_education.html) website and download the compressed (.zip) file ***file's name***.
-<br>***file's image on the website***
+Go to the [Bionics4Education](https://www.bionics4education.com/startseite/support) website and download the compressed (.zip) file.
+<br>![Download in website](../img/Dowload_website.png)
 
 ## Unzip 
 Once the download is completed, you will find the file in zip format in the download folder of your computer.
