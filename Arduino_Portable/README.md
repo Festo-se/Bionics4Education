@@ -55,7 +55,7 @@ Some code have been created specifically for you to learn about the Bionic Flowe
    <br> -> *Light_value.ino* : This example will teach you how to use the light sensor and display the luminosity value on the serial monitor.
    <br> -> *Day_Night_Color.ino* : This example will teach you how to use light sensor to change the flower's color. If it is the day, the flower lights yellow. If it is the night, the flower lights blue. 
  * **All components** 
- <br> -> *Light_Touch_LED_Motor.ino*: This example will teach you how to use 2 sensors with the I2C communication. If a right touch is detected the flower is opening. If a left touch is detected the flower is closing. In addition, if the luminosity is enough the flower is yellow, otherwise the flower is yellow.
+ <br> -> *Light_Touch_LED_Motor.ino*: This example will teach you how to use 2 sensors with the I2C communication. If a right touch is detected the flower is opening. If a left touch is detected the flower is closing. In addition, if the luminosity is enough the flower is yellow, otherwise the flower is blue.
 
 
 
