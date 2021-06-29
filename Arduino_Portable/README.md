@@ -1,9 +1,9 @@
-# Introduction Arduino Portable
+# Introduction in how to use the Arduino portable version
 
 This document explains how to install a portable version of the Arduino Software (IDE). This portable version contains all the files and directories necessary to work with the Bionic Flower. Thus, it allows you to start right away with programming the Bionic Flower without any extra library downloads/installations or delays.
 ## Download 
-Go to the [Bionics4Education](https://www.bionics4education.com/web/lang/de/1_education.html) website and download the compressed (.zip) file ***file's name***.
-<br>***file's image on the website***
+Go to the [Bionics4Education](https://www.bionics4education.com/startseite/support) website and download the compressed (.zip) file.
+<br>![Download in website](../img/Dowload_website.png)
 
 ## Unzip 
 Once the download is completed, you will find the file in zip format in the download folder of your computer.
@@ -55,7 +55,7 @@ Some code have been created specifically for you to learn about the Bionic Flowe
    <br> -> *Light_value.ino* : This example will teach you how to use the light sensor and display the luminosity value on the serial monitor.
    <br> -> *Day_Night_Color.ino* : This example will teach you how to use light sensor to change the flower's color. If it is the day, the flower lights yellow. If it is the night, the flower lights blue. 
  * **All components** 
- <br> -> *Light_Touch_LED_Motor.ino*: This example will teach you how to use 2 sensors with the I2C communication. If a right touch is detected the flower is opening. If a left touch is detected the flower is closing. In addition, if the luminosity is enough the flower is yellow, otherwise the flower is yellow.
+ <br> -> *Light_Touch_LED_Motor.ino*: This example will teach you how to use 2 sensors with the I2C communication. If a right touch is detected the flower is opening. If a left touch is detected the flower is closing. In addition, if the luminosity is enough the flower is yellow, otherwise the flower is blue.
 
 
 
