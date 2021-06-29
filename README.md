@@ -14,7 +14,7 @@ You are looking for further activities with the Bionics4Education Kit? Check out
 The Bionic Flower is a robot flower inspired by the world of plants. The Bionic Flower opens and closes its petals as a reaction to external influences such as touch, approximity or light. Students can explore these mechanisms in a playful way using sensors and control technology. You can find the firmware of the Bionic Fower [here](https://github.com/Festo-se/Bionics4Education/tree/master/bionic_flower)
 Want to start program it yourself? No problem. Just look into our [Bionic Flower Basic example](https://github.com/Festo-se/Bionics4Education/tree/master/bionic_flower/Start_Coding_yourself). If you downloaded the [Arduino Portable Version](https://github.com/Festo-se/Bionics4Education/tree/master/Arduino_Portable) from our [Website](https://www.bionics4education.com/home/support?lang=de=) you will find the examples within the Sketchbook folder within the Arduino IDE or otherwise just here on GitHub. 
 
-![Bionic-Flower-1](/img/Bionic-Flower-1.JPG)
+![Bionic-Flower-1.jpg](/img/Bionic-Flower-1.jpg)
 
 # Installguide
 
