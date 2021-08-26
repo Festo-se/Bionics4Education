@@ -14,15 +14,15 @@
 #define MOTOR_SPEED_FAST 0.001f
 
 #define LED_COUNT 5
-#define LED_PIN 16
+#define LED_PIN 13  //16
 
 #define I2C_SDA 4
 #define I2C_SCL 5
 
 #define PIN_IR_LED 4
 
-#define DEBUG_AUTONOMOUS_MODE true
-#define DEBUG_MANUAL_MODE true
+#define DEBUG_AUTONOMOUS_MODE false
+#define DEBUG_MANUAL_MODE false
 
 #define MOTOR_POSITION_OPEN 1.0f
 #define MOTOR_POSITION_CLOSED 0.0f
