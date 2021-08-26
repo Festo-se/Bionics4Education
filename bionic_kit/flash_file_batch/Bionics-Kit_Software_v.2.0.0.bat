@@ -11,7 +11,7 @@ echo.
 pause
 echo.
 
-SET device_name=Silicon Labs
+SET device_name=USB Serial Port
 
 :loop
 echo searching for COM port. . .
