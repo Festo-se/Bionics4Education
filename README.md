@@ -7,7 +7,8 @@ The bionics kit from Festo consists of components with which three different nat
 
 You are looking for further activities with the Bionics4Education Kit? Check out our [DIY-Projects](https://github.com/Festo-se/Bionics4Education/tree/master/bionic_kit/DIY_Projects). After you get some additional material like some sensors, cables, resistors or a LED you can programm the animals individually and explore the world of Bionics.  [Here](https://www.bionics4education.com/startseite/stem/diy-projects) on our website you can watch the Videos how it will look like when you succeeded  the different tasks.
 
-**Update** We have a new update of the Bionics4Education Kit software where we improved the connectivity with smartphones to the microcontroller. Just download the new release *Bionics-Kit Software v2.0.0*  [here](https://github.com/Festo-se/Bionics4Education/releases). Unzip the downloaded zip file and navigate to *bionics kit* folder. You now either can upload the source code via the Arduino IDE (see our portable version on our [Website](https://www.bionics4education.com/home/support?lang=de=)) or you flash your microcontroller via the executable batch file. Therefore, navigate into to folder *flash_file_batch* and execute the *Bionics-Kit_Software_v.2.0.0.bat* as admin.
+***Update*** ***Update*** ***Update*** 
+We have a new update of the Bionics4Education Kit software where we improved the connectivity with smartphones to the microcontroller. Just download the new release *Bionics-Kit Software v2.0.0*  [here](https://github.com/Festo-se/Bionics4Education/releases). Unzip the downloaded zip file and navigate to *bionics kit* folder. You now either can upload the source code via the Arduino IDE (see our portable version on our [Website](https://www.bionics4education.com/home/support?lang=de=)) or you flash your microcontroller via the executable batch file. Therefore, navigate into to folder *flash_file_batch* and execute the *Bionics-Kit_Software_v.2.0.0.bat* as admin.
 
 ![b4e_kit](/img/b4e_composing.JPG)
 
@@ -23,7 +24,8 @@ Want to start program it yourself? No problem. Just look into our [Bionic Flower
 
 A detailed description on how to flash the microcontroller of the Bionics4Education Kit and how to install the needed software can be found [here](https://github.com/Festo-se/Bionics4EducationKit/blob/master/installguide/mainfile/install_guide.md).
 
-***Update*** If you don't want to download and install die Arduino IDE manually, you can download an Arduino Portable Version from our [Website](https://www.bionics4education.com/home/support?lang=de=).  This version has all necessary and pre-installed settings so it gives you an easierer and faster way to jump into coding yourself. Just download the .zip file and follow our [instructions](https://github.com/Festo-se/Bionics4Education/tree/master/Arduino_Portable). 
+***Update*** ***Update*** ***Update***
+If you don't want to download and install die Arduino IDE manually, you can download an Arduino Portable Version from our [Website](https://www.bionics4education.com/home/support?lang=de=).  This version has all necessary and pre-installed settings so it gives you an easierer and faster way to jump into coding yourself. Just download the .zip file and follow our [instructions](https://github.com/Festo-se/Bionics4Education/tree/master/Arduino_Portable). 
 
 
 # License and credits
