@@ -14,7 +14,7 @@
 #define MOTOR_SPEED_FAST 0.001f
 
 #define LED_COUNT 5
-#define LED_PIN 13  //16
+#define LED_PIN 16
 
 #define I2C_SDA 4
 #define I2C_SCL 5
