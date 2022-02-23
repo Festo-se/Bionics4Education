@@ -177,6 +177,9 @@ void loop()
   //NIGHT
    
    color_night();
+  
+   //Turn off the vibrating motor
+    digitalWrite(MOTOR_PIN, LOW);
 
    // the motor is closing
    if(current_position>0)
