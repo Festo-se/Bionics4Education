@@ -22,7 +22,7 @@ Now that everything is installed, you need to run the Arduino software. Go to th
 ## Setup the Arduino IDE environement for the Bionic Flower
 <br>To access all the functionality of the Arduino portable version with your Bionic Flower, you need to setup your ESP32 board. For this go to *File*-> *Preferences*.
 <br>![Preferences](../img/SC_Preferences_Menu_LVNZ.png)
-<br>Once opened the preferences window you will check if the URL for the ESP32 board is here. If not, please add in the additional board manager URLs the following link :  https://dl.espressif.com/dl/package_esp32_index.json . 
+<br>Once opened the preferences window you will check if the URL for the ESP32 board is here. If not, please add in the additional board manager URLs the following link :  https://dl.espressif.com/dl/package_esp32_index.json 
 <br>![Preferences_windows](../img/SC_Preferences_Windows_LVNZ.png)
 <br>Then, you need to add the library for the ESP32 board. Go to *Tools* -> *Board* -> *Board Manager*. 
 <br>![Board_Manager](../img/Board_Manager.png)
