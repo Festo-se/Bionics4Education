@@ -1,3 +1,6 @@
+
+<br><img src="../img/Logo_Festo.png" alt="Unzip" width="200" align="right"/> <br>
+<br>
 # Introduction in how to use the Arduino portable version with the Bionic Flower
 
 This document explains how to install a portable version of the Arduino Software (IDE). This portable version contains all the files and directories necessary to work with the Bionic Flower. Thus, it allows you to start right away with programming the Bionic Flower without any extra library downloads/installations or delays.
