@@ -36,9 +36,9 @@ Um Zugang zu allen Funktionen der mobilen Version mit der Bionic Flower zu erhal
 
 ## ESP32 Modulverbindung
 Das ESP32 Modul müssen Sie per USB Anschluss an Ihren Computer anschließen. Falls Ihr Computer das ESP32 Modul nicht erkennt, müssen Sie den Driver manuell installieren. Dafür gehen Sie auf  [SiliconLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers),*Downloads* und laden den *CP210x Universal Windows Driver* herunter.
-<br> Zu erst müssen Sie das richtige Board auswählen,  gehen Sie hierfür zu *Werkzeuge (Tools)* -> *Board* -> *ESP32 Arduino* -> ESP32 Dev Module*. 
+<br> Zu erst müssen Sie das richtige Board auswählen,  gehen Sie hierfür zu *Werkzeuge (Tools)* -> *Board* -> *ESP32 Arduino* -> *ESP32 Dev Module*. 
 <br>![ESP32](../img/SC_Select_Board-LVNZ.png)
-<br> Anschließend müssen Sie sicherstellen, dass das richtige Port/Anschluss ausgewählt ist. Dafür klicken sie auf *Werkzeuge (Tools)* -> *Port*
+<br> Anschließend müssen Sie sicherstellen, dass das richtige Port/Anschluss ausgewählt ist. Dafür klicken sie auf *Werkzeuge (Tools)* -> *Port*.
 <br>![Port](../img/Port.PNG)
 <br>Jetzt sind sie bereit die Bionic Flower zu Programmieren! 
 
