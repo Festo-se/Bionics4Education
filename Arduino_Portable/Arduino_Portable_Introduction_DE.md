@@ -1,73 +1,74 @@
 
 <br><img src="../img/Logo_Festo.png" alt="Unzip" width="200" align="right"/> <br>
 <br>
-# Introduction in how to use the Arduino portable version with the Bionic Flower
+# Einführung in die Verwendung der Arduino Portable Version mit der Bionic Flower
 
-This document explains how to install a portable version of the Arduino Software (IDE). This portable version contains all the files and directories necessary to work with the Bionic Flower. Thus, it allows you to start right away with programming the Bionic Flower without any extra library downloads/installations or delays.
+Dieses Dokument erklärt die Installation der Portable Version der Arduino Software (IDE). Diese portable Version beinhaltet alle nötigen Dateien und Verzeichnisse, um mit der Bionic Flower arbeiten zu können. Damit wird ein direkter Start mit dem Programmieren der Bionic Flower ermöglicht, ohne,  dass hierfür zusätzliche Downloads oder Installationen aus der Bibliothek notwendig sind.
 ## Download 
-Go to the [Bionics4Education](https://www.bionics4education.com/startseite/support) website and download the compressed (.zip) file.
+Gehen Sie auf die [Bionics4Education](https://www.bionics4education.com/startseite/support) Website und laden Sie die komprimierte (.zip) Datei herunter.
 <br>![Download in website](../img/SC_Download_B4E_WebSite_LVNZ.png)
 
-## Unzip 
-Once the download is completed, you will find the file in zip format in the download folder of your computer.
+## Öffnen
+Sobald der Download abgeschlossen ist, finden sie die Datei im zip-Format im Downloadordner ihres Computers.
 <br>![Download folder](../img/SC_Download_Folder_LVNZ.png)
-<br>You need to unzip it to access the file, for that right click on the mouse on the computer and select "*Extract All...*".
+<br>Sie müssen die Datei öffnen, um auf sie zugreifen zu können. Öffnen lässt sich die Datei mit einem rechten Mausklick und anschließend *Extract all...* (Alle entnehmen) auswählen.
 <br><img src="../img/SC_Extrac_LVNZ.png" alt="Unzip" width="800"/> <br>
-<br>Now a window opens, you can now select the location of the file in your documents and extract. 
+<br>Es öffnet sich ein Fenster, in dem Sie den Ablageort des Dokuments in ihren Dokumenten auswählen und entnehmen können.
 <br>![Chosing folder](../img/SC_Docuements_LVNZ.png)
 
-## Start with Arduino IDE 
-Now that everything is installed, you need to run the Arduino software. Go to the previous folder and execute the arduino.exe file. 
+## Arduino IDE starten
+Nachdem Alles installiert wurde, müssen sie die Arduinosoftware starten. Gehen Sie dafür auf den vorherigen Ordner und führen sie die arduino.exe Datei aus.
 <br>![Arduino execution ](../img/SC_Arduino_execution-LVNZ.png)
-<br>A window opens, this is the user interface of the Arduino IDE. 
+<br> Es öffnet sich die Benutzeroberfläche der Arduino IDE. 
 <br>![Arduino layout ](../img/Arduino_Layout.PNG)
 
-## Setup the Arduino IDE environement for the Bionic Flower
-<br>To access all the functionality of the Arduino portable version with your Bionic Flower, you need to setup your ESP32 board. For this go to *File*-> *Preferences*.
+## Einstellen der Arduine IDE Umgebung für die Bionic Flower.
+Um Zugang zu allen Funktionen der mobilen Version mit der Bionic Flower zu erhalten, müssen Sie das ESP32 Board einrichten/aufbauen. Gehen sie dafür auf *Datei*-> *Voreinstellungen* .
 <br>![Preferences](../img/SC_Preferences_Menu_LVNZ.png)
-<br>Once opened the preferences window you will check if the URL for the ESP32 board is here. If not, please add in the additional board manager URLs the following link :  https://dl.espressif.com/dl/package_esp32_index.json 
+<br>Sobald sich das Voreinstellungsfenster geöffnet hat, müssen Sie überprüfen, ob die URL für das ESP32 Board vorhanden ist. Ist die URL nicht vorhanden, fügen sie bitte die zusätzlichen Board manager URL’s über folgenden Link hinzu:  https://dl.espressif.com/dl/package_esp32_index.json 
 <br>![Preferences_windows](../img/SC_Preferences_Windows_LVNZ.png)
-<br>Then, you need to add the library for the ESP32 board. Go to *Tools* -> *Board* -> *Board Manager*. 
+<br>Danach müssen Sie die Bibliothek für das ESP322 Board hinzufügen. Gehen sie hierfür zu *Werkzeuge (Tools)* -> *Board* -> *Board Manager*.
 <br>![Board_Manager](../img/Board_Manager.png)
-<br>Write *esp32* on the top of the windows wich is opened and click on *Install*.  
+<br>Geben Sie oben in dem geöffneten Fenster *esp32* ein und klicken Sie auf *installieren*.  
 <br>![Board_Manager](../img/SC_ESP32_installation_LVNZ.png)
-<br>Wait somes minutes. The installation is done when the *Installed* indication is displayed.You can close the window. 
+<br>Warten sie ein paar Minuten. Die Installation ist beendet, sobald die *installiert* Anzeige eingeblendet wird. Danach können sie das Fenster schließen. 
 <br>![Board_Manager](../img/SC_esp32_installed_LVNZ.png)
 
-## ESP32 module connection 
-You have to connect the ESP32 module to your computer via a USB port. If your computer doesn't find the ESp32 module you have to install the driver manually. Therefore go to [SiliconLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers), navigate to *Downloads* and download *CP210x Universal Windows Driver*.
-<br> First, select the right board, go to *Tools* -> *Board* -> *ESP32 Arduino* -> *ESP32 Dev Module*. 
+## ESP32 Modulverbindung
+Das ESP32 Modul müssen Sie per USB Anschluss an Ihren Computer anschließen. Falls Ihr Computer das ESP32 Modul nicht erkennt, müssen Sie den Driver manuell installieren. Dafür gehen Sie auf  [SiliconLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers),*Downloads* und laden den *CP210x Universal Windows Driver* herunter.
+<br> Zu erst müssen Sie das richtige Board auswählen,  gehen Sie hierfür zu *Werkzeuge (Tools)* -> *Board* -> *ESP32 Arduino* -> ESP32 Dev Module*. 
 <br>![ESP32](../img/SC_Select_Board-LVNZ.png)
-<br> After that, you have to make sure that the right port is selected. For that select *Tools* -> *Port*.
+<br> Anschließend müssen Sie sicherstellen, dass das richtige Port/Anschluss ausgewählt ist. Dafür klicken sie auf *Werkzeuge (Tools)* -> *Port*
 <br>![Port](../img/Port.PNG)
-<br>Now, you are ready to start your first code with the Bionic Flower ! 
+<br>Jetzt sind sie bereit die Bionic Flower zu Programmieren! 
 
-## First test with the Bionic Flower
-Some code have been created specifically for you to learn about the Bionic Flower. You can find them by selecting *File* -> *Sketchbook* -> *12.Bionic_Flower*.
-<br>Let's start with the code to work with led LED : *color_sequence.ino*. 
+## Erster Test mit der Bionic Flower
+Ein paar Codes wurden speziell vorab für die Bionic Flower geschrieben, damit Sie zu Beginn etwas über die Bionic Flower lernen können. Diese finden Sie unter *Datei* -> *Notizbuch* -> *12.Bionic_Flower*.
+<br>Starten Sie mit dem Code der für die Ansteuerung für die LED der Bionic Flower zuständig ist: *color_sequence.ino*.
 <br>![Example LED](../img/color_sequence_exemple.PNG)
-<br> A new window opens with the code for the LED. 
+<br>Ein neues Fenster öffnet sich mit dem Code für die LED. 
 <br>![Example LED_code](../img/Color_sequence_code.PNG)
-<br> After reading the code, you can implement the code, i.e. downloaded the code on the ESP32 module. For this you click on right arrow button. 
+<br> Nachdem Sie den Code gelesen haben, können sie ihn ausführen, sofern der Code auf das ESP32 Modul geladen wurde.
+Klicken Sie dafür auf den rechten Pfeil Knopf.
 <br>![Upload button](../img/SC_Upload_Code-LVNZ.png)
-<br>Make sure the download is finished with this message. 
+<br>Stellen Sie sicher, dass der Download mit der Nachricht abgeschlossen wurde.
 <br>![Upload done](../img/upload_done.PNG)
-<br> If everything went well the Bionic Flower changes color ! 
+<br> Wenn alles geklappt hat, sollte die Bionic Flower nun ihre Farbe ändern! 
 <br>
-<br> You can use the same procedure to work with the other sample code of the Bionic Flower. 
+<br> Sie können den gleichen Vorgang für andere Beispielcodes verwenden. 
 * **LEDs**
-    <br>-> *Color_sequence.ino* : This example teach you how to change the color of the LEDs and create a color sequence (red,blue,green).
+    <br>-> *Color_sequence.ino* :*: Dieses Beispiel zeigt Ihnen, wie man die Farbe der LEDs ändern und eine Farbreihenfolge erstellt. (Rot, Blau, Grün).
  * **Motor**
-    <br>-> *Motor_Open_Close.ino* : This example will teach you how to use the Bionic Flower motor. The motor allows to open and close the flower. 
+    <br>-> *Motor_Open_Close.ino* : Dieses Beispiel zeigt Ihnen, wie Sie den Motor der Bionic Flower benutzen können. Der Motor ermöglicht das Öffnen und Schließen der Blume.
  * **Touch sensor**
-   <br> -> *Right_Left.ino* : This example will teach you how to use the touche sensor and display a message if a touch is detected.
-   <br> -> *Open_close_flower.ino* : This example will teach you how to use the touch sensor to open or close the flower. For this you need to know how use the motor and the touch sensor. 
-   <br> -> *Change_color.ino* : This example will teach you how to use the touch sennsor to change the color of the flower. For this you need to know how use the LEDs and the touch sensor.  
+   <br> -> *Right_Left.ino* : Dieses Beispiel zeigt Ihnen, wie man den Touchsensor benutzt und eine Nachricht angezeigt wird, sobald eine Berührung registriert wird.
+   <br> -> *Open_close_flower.ino* : Dieses Beispiel zeigt Ihnen, wie man den Touchsensor benutzt, um die Blume zu öffnen oder schließen. Hierfür ist es notwendig, dass sie wissen, wie man den Touchsensor und Motor bedient.
+   <br> -> *Change_color.ino* : Dieses Beispiel zeigt Ihnen, wie man mit Hilfe des Touchsensors die Farbe des Lichts der Bionic Flower ändert. Dafür sollten sie wissen, wie man die LED und den Touchsensor bedient.  
  * **Light sensor**
-   <br> -> *Light_value.ino* : This example will teach you how to use the light sensor and display the luminosity value on the serial monitor.
-   <br> -> *Day_Night_Color.ino* : This example will teach you how to use light sensor to change the flower's color. If it is the day, the flower lights yellow. If it is the night, the flower lights blue. 
+   <br> -> *Light_value.ino* : Dieses Beispiel zeigt Ihnen, wie man den Lichtsensor bedient und den Betrag der Lichtstärke auf dem Display angezeigt wird. 
+   <br> -> *Day_Night_Color.ino* : Dieses Beispiel zeigt Ihnen, wie man mit Hilfe des Lichtsensors die Farbe der Bionic Flower verändern kann. Tagsüber soll die Blume gelb leuchten, Nachts blau.
  * **All components** 
- <br> -> *Light_Touch_LED_Motor.ino*: This example will teach you how to use 2 sensors with the I2C communication. If a right touch is detected the flower is opening. If a left touch is detected the flower is closing. In addition, if the luminosity is enough the flower is yellow, otherwise the flower is blue.
+ <br> -> *Light_Touch_LED_Motor.ino*: Dieses Beispiel zeigt Ihnen, wie man die beiden Sensoren mit der I2C zusammen benutzt.  Wird der rechte Touchsensor betätigt, öffnet sich die Blume. Wird der linke Touchsensor betätigt, schließt sich die Blume wieder. Zusätzlich soll die Blume ab einem bestimmten Lichtstärkewert gelb leuchten, ansonsten leuchtet sie blau.
 
 
 
