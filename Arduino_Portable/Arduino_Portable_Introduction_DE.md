@@ -6,46 +6,39 @@
 Dieses Dokument erklärt die Installation der Portable Version der Arduino Software (IDE). Diese portable Version beinhaltet alle nötigen Dateien und Verzeichnisse, um mit der Bionic Flower arbeiten zu können. Damit wird ein direkter Start mit dem Programmieren der Bionic Flower ermöglicht, ohne,  dass hierfür zusätzliche Downloads oder Installationen aus der Bibliothek notwendig sind.
 ## Download 
 Gehen Sie auf die [Bionics4Education](https://www.bionics4education.com/startseite/support) Website und laden Sie die komprimierte (.zip) Datei herunter.
-<br>![Download in website](../img/SC_Download_B4E_WebSite_LVNZ.png)
-
-## Öffnen
-Sobald der Download abgeschlossen ist, finden Sie die Datei im zip-Format im Downloadordner ihres Computers.
-<br>![Download folder](../img/SC_Download_Folder_LVNZ.png)
-<br>Sie müssen die Datei öffnen, um auf Sie zugreifen zu können. Öffnen lässt sich die Datei mit einem rechten Mausklick und anschließend *Extract all...* (Alle entnehmen) auswählen.
-<br><img src="../img/SC_Extrac_LVNZ.png" alt="Unzip" width="800"/> <br>
-<br>Es öffnet sich ein Fenster, in dem Sie den Ablageort des Dokuments in ihren Dokumenten auswählen und entnehmen können.
-<br>![Chosing folder](../img/SC_Docuements_LVNZ.png)
+<br>![Download in website](../img/DE_ArduinoIDE_lvnz.png)
+<br>Dann können Sie Ihre Dokumente extrahieren.
 
 ## Arduino IDE starten
 Nachdem Alles installiert wurde, müssen Sie die Arduinosoftware starten. Gehen Sie dafür auf den vorherigen Ordner und führen Sie die arduino.exe Datei aus.
-<br>![Arduino execution ](../img/SC_Arduino_execution-LVNZ.png)
+<br>![Arduino execution ](../img/DE_Arduino_Execute_lvnz.png)
 <br> Es öffnet sich die Benutzeroberfläche der Arduino IDE. 
-<br>![Arduino layout ](../img/Arduino_Layout.PNG)
+<br>![Arduino layout ](../img/DE_ArduinoIDE_lvnz.png)
 
 ## Einstellen der Arduine IDE Umgebung für die Bionic Flower.
 Um Zugang zu allen Funktionen der mobilen Version mit der Bionic Flower zu erhalten, müssen Sie das ESP32 Board einrichten/aufbauen. Gehen Sie dafür auf *Datei*-> *Voreinstellungen* .
-<br>![Preferences](../img/SC_Preferences_Menu_LVNZ.png)
-<br>Sobald sich das Voreinstellungsfenster geöffnet hat, müssen Sie überprüfen, ob die URL für das ESP32 Board vorhanden ist. Ist die URL nicht vorhanden, fügen Sie bitte die zusätzlichen Board manager URL’s über folgenden Link hinzu:  https://dl.espressif.com/dl/package_esp32_index.json 
-<br>![Preferences_windows](../img/SC_Preferences_Windows_LVNZ.png)
-<br>Danach müssen Sie die Bibliothek für das ESP322 Board hinzufügen. Gehen Sie hierfür zu *Werkzeuge (Tools)* -> *Board* -> *Board Manager*.
-<br>![Board_Manager](../img/Board_Manager.png)
-<br>Geben Sie oben in dem geöffneten Fenster *esp32* ein und klicken Sie auf *installieren*.  
-<br>![Board_Manager](../img/SC_ESP32_installation_LVNZ.png)
-<br>Warten Sie ein paar Minuten. Die Installation ist beendet, sobald die *installiert* Anzeige eingeblendet wird. Danach können Sie das Fenster schließen. 
-<br>![Board_Manager](../img/SC_esp32_installed_LVNZ.png)
+<br>![Preferences](../img/DE_Preferences_lvnz.png)
+<br>Sobald sich das Voreinstellungsfenster geöffnet hat, müssen Sie überprüfen, ob die URL für das ESP32 Board vorhanden ist. Ist die URL nicht vorhanden, fügen Sie bitte die zusätzliche Boardverwalter URLs über folgenden Link hinzu:  https://dl.espressif.com/dl/package_esp32_index.json 
+<br>![Preferences_windows](../img/DE_JSON_lvnz.png)
+<br>Danach müssen Sie die Bibliothek für das ESP322 Board hinzufügen. Gehen Sie hierfür zu *Werkzeuge* -> *Board* -> *Boardverwalter*.
+<br>![Board_Manager](../img/DE_BoardManager_lvnz.png)
+<br>Geben Sie oben in dem geöffneten Fenster *esp32* ein und klicken Sie auf *Installieren*.  
+<br>![Board_Manager](../img/DE_InstallESP32_lvnz.png)
+<br>Warten Sie ein paar Minuten. Die Installation ist beendet, sobald die *IINSTALLED* Anzeige eingeblendet wird. Danach können Sie das Fenster schließen. 
+<br>![Board_Manager](../img/DE_ESP32Installed_lvnz.png)
 
 ## ESP32 Modulverbindung
 Das ESP32 Modul müssen Sie per USB Anschluss an Ihren Computer anschließen. Falls Ihr Computer das ESP32 Modul nicht erkennt, müssen Sie den Driver manuell installieren. Dafür gehen Sie auf  [SiliconLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers),*Downloads* und laden den *CP210x Universal Windows Driver* herunter.
-<br> Zu erst müssen Sie das richtige Board auswählen,  gehen Sie hierfür zu *Werkzeuge (Tools)* -> *Board* -> *ESP32 Arduino* -> *ESP32 Dev Module*. 
-<br>![ESP32](../img/SC_Select_Board-LVNZ.png)
-<br> Anschließend müssen Sie sicherstellen, dass das richtige Port/Anschluss ausgewählt ist. Dafür klicken Sie auf *Werkzeuge (Tools)* -> *Port*.
-<br>![Port](../img/Port.PNG)
+<br> Zu erst müssen Sie das richtige Board auswählen,  gehen Sie hierfür zu *Werkzeuge* -> *Board* -> *ESP32 Arduino* -> *ESP32 Dev Module*. 
+<br>![ESP32](../img/DE_SelectBoard_lvnz.png)
+<br> Anschließend müssen Sie sicherstellen, dass das richtige Port/Anschluss ausgewählt ist. Dafür klicken Sie auf *Werkzeuge* -> *Port*.
+<br>![Port](../img/DE_SelectPort_lvnz.png)
 <br>Jetzt sind Sie bereit die Bionic Flower zu Programmieren! 
 
 ## Erster Test mit der Bionic Flower
 Ein paar Codes wurden speziell vorab für die Bionic Flower geschrieben, damit Sie zu Beginn etwas über die Bionic Flower lernen können. Diese finden Sie unter *Datei* -> *Notizbuch* -> *12.Bionic_Flower*.
 <br>Starten Sie mit dem Code der für die Ansteuerung für die LED der Bionic Flower zuständig ist: *color_sequence.ino*.
-<br>![Example LED](../img/color_sequence_exemple.PNG)
+<br>![Example LED](../img/DE_BeispieleLED_lvnz.png)
 <br>Ein neues Fenster öffnet sich mit dem Code für die LED. 
 <br>![Example LED_code](../img/Color_sequence_code.PNG)
 <br> Nachdem Sie den Code gelesen haben, können Sie ihn ausführen, sofern der Code auf das ESP32 Modul geladen wurde.
