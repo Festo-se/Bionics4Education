@@ -40,17 +40,17 @@ Ein paar Codes wurden speziell vorab für die Bionic Flower geschrieben, damit S
 <br>Starten Sie mit dem Code der für die Ansteuerung für die LED der Bionic Flower zuständig ist: *color_sequence.ino*.
 <br>![Example LED](../img/DE_BeispieleLED_lvnz.png)
 <br>Ein neues Fenster öffnet sich mit dem Code für die LED. 
-<br>![Example LED_code](../img/Color_sequence_code.PNG)
+<br>![Example LED_code](../img/DE_Colorsequences.png)
 <br> Nachdem Sie den Code gelesen haben, können Sie ihn ausführen, sofern der Code auf das ESP32 Modul geladen wurde.
 Klicken Sie dafür auf den rechten Pfeil Knopf.
-<br>![Upload button](../img/SC_Upload_Code-LVNZ.png)
+<br>![Upload button](../img/DE_Upload.png)
 <br>Stellen Sie sicher, dass der Download mit der Nachricht abgeschlossen wurde.
-<br>![Upload done](../img/upload_done.PNG)
+<br>![Upload done](../img/DE_Downloaddone.png)
 <br> Wenn alles geklappt hat, sollte die Bionic Flower nun ihre Farbe ändern! 
 <br>
 <br> Sie können den gleichen Vorgang für andere Beispielcodes verwenden. 
 * **LEDs**
-    <br>-> *Color_sequence.ino* :*: Dieses Beispiel zeigt Ihnen, wie man die Farbe der LEDs ändern und eine Farbreihenfolge erstellt. (Rot, Blau, Grün).
+    <br>-> *Color_sequence.ino*: Dieses Beispiel zeigt Ihnen, wie man die Farbe der LEDs ändern und eine Farbreihenfolge erstellt. (Rot, Blau, Grün).
  * **Motor**
     <br>-> *Motor_Open_Close.ino* : Dieses Beispiel zeigt Ihnen, wie Sie den Motor der Bionic Flower benutzen können. Der Motor ermöglicht das Öffnen und Schließen der Blume.
  * **Touch sensor**
