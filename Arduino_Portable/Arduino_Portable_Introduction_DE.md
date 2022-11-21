@@ -6,7 +6,7 @@
 Dieses Dokument erklärt die Installation der Portable Version der Arduino Software (IDE). Diese portable Version beinhaltet alle nötigen Dateien und Verzeichnisse, um mit der Bionic Flower arbeiten zu können. Damit wird ein direkter Start mit dem Programmieren der Bionic Flower ermöglicht, ohne,  dass hierfür zusätzliche Downloads oder Installationen aus der Bibliothek notwendig sind.
 ## Download 
 Gehen Sie auf die [Bionics4Education](https://www.bionics4education.com/startseite/support) Website und laden Sie die komprimierte (.zip) Datei herunter.
-<br>![Download in website](../img/DE_ArduinoIDE_lvnz.png)
+<br>![Download in website](../img/DE_DownloadWebsite_lvnz.png)
 <br>Dann können Sie Ihre Dokumente extrahieren.
 
 ## Arduino IDE starten
