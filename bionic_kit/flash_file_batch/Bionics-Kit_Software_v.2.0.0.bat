@@ -1,10 +1,10 @@
 @ECHO OFF
 SETLOCAL EnableDelayedExpansion
 
-REM Flower Flash-Tool
+REM BionicsKit Flash-Tool
 
 
-echo Flower Flash-Tool Bionics-Kit_Software_v.2.0.0
+echo Bionics Kit Flash-Tool Bionics-Kit_Software_v.2.0.0
 echo PLEASE DISCONNECT ALL OTHER USB-TO-SERIAL DEVICES
 echo.
 
@@ -44,7 +44,7 @@ FOR /F "tokens=*" %%A IN ('WMIC path win32_pnpentity get ClassGuid^,Caption^| fi
 )
 
 if %res% == -1 (
-    echo No Flower found
+    echo No Bionics Kit found
     echo.
 )
 
