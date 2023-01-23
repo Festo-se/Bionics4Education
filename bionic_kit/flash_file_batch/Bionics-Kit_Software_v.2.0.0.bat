@@ -1,7 +1,7 @@
 @ECHO OFF
 SETLOCAL EnableDelayedExpansion
 
-REM BionicsKit Flash-Tool
+REM Bionics Kit Flash-Tool
 
 
 echo Bionics Kit Flash-Tool Bionics-Kit_Software_v.2.0.0
