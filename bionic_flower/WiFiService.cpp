@@ -12,6 +12,41 @@ const int CHANNEL = 6;
 const boolean IS_HIDDEN = false;
 const int MAX_CONNECTIONS = 4;
 
+namespace{
+	uint8_t findGoodChannel() {
+	  WiFi.mode(WIFI_STA);
+	  WiFi.disconnect();
+	  uint32_t n = WiFi.scanNetworks();
+	  if (n > 0) {
+		uint32_t bandCounts[3] = {0};
+		for (uint32_t i = 0; i < n; ++i) {
+		  uint8_t channel = WiFi.channel(i);
+		  if (channel < 4) {
+			bandCounts[0]++;
+		  } else if (channel < 9) {
+			bandCounts[1]++;
+		  } else if (channel < 14) {
+			bandCounts[2]++;
+		  }
+		}
+		uint32_t minBandCount = UINT32_MAX;
+		uint8_t minBandIndex = UINT32_MAX;
+		for (uint8_t i = 0; i < 3; ++i) {
+		  if (bandCounts[i] < minBandCount) {
+			minBandCount = bandCounts[i];
+			minBandIndex = i;
+		  }
+		}
+		switch (minBandIndex) {
+		  case 0: return 1;
+		  case 1: return 6;
+		  case 2: return 11;
+		}
+	  }
+	  return 6;
+	}
+}
+
 // MARK: Initialization
 
 WiFiService::WiFiService() {
@@ -26,11 +61,17 @@ void WiFiService::start(IPAddress ip, std::function<void(bool)> completion) {
   this->ip_address = ip;
   this->start_completion = completion;
 
-  WiFi.disconnect();
-  WiFi.softAPdisconnect(false);
-  WiFi.persistent(false);
   WiFi.onEvent(std::bind(&WiFiService::onEvent, this, std::placeholders::_1));
-  WiFi.begin();
+
+  String ssid = "b4e_" + getMacAddress();
+  uint8_t channel = findGoodChannel();
+  
+  Serial.println(PRINT_PREFIX + "Starting softAP.");
+  if (!WiFi.softAP(ssid.c_str(), WIFI_PASSWORD, channel, false, MAX_CONNECTIONS)) {
+    Serial.println(PRINT_PREFIX + "AP setup failed.");
+    startCompleted(false);
+    return;
+  }
 }
 
 int WiFiService::getActiveConnectionCount() {
@@ -47,26 +88,9 @@ void WiFiService::startCompleted(boolean success) {
 }
 
 void WiFiService::onEvent(WiFiEvent_t event) {
-  String ssid = "b4e_" + getMacAddress();
-
   switch (event) {
     case SYSTEM_EVENT_WIFI_READY:
       Serial.println(PRINT_PREFIX + "Event: Wifi ready!");
-
-      Serial.println(PRINT_PREFIX + "Starting softAP.");
-      if (!WiFi.softAP(ssid.c_str(), WIFI_PASSWORD, 6, false, MAX_CONNECTIONS)) {
-        Serial.println(PRINT_PREFIX + "AP setup failed.");
-        startCompleted(false);
-        return;
-      }
-
-      Serial.println(PRINT_PREFIX + "Starting softAP config.");
-      if (!WiFi.softAPConfig(ip_address, ip_address, SUBNETMASK)) {
-        Serial.println(PRINT_PREFIX + "AP configuration failed.");
-        startCompleted(false);
-        return;
-      }
-
       break;
     case SYSTEM_EVENT_SCAN_DONE:
       Serial.println(PRINT_PREFIX + "Event: Scan done!");
@@ -108,7 +132,6 @@ void WiFiService::onEvent(WiFiEvent_t event) {
       Serial.println(PRINT_PREFIX + "Event: AP started!");
       Serial.println(PRINT_PREFIX + "MAC-Address: " + getMacAddress());
       Serial.println(PRINT_PREFIX + "HotSpot IP: " + ip_address.toString());
-      Serial.println(PRINT_PREFIX + "SSID: " + ssid);
       startCompleted(true);
       break;
     case SYSTEM_EVENT_AP_STOP:

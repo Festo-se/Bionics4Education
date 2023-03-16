@@ -171,10 +171,14 @@ void HardwareService::writeLED(Color color) {
 
 void HardwareService::loop(const boolean has_active_connection, uint32_t loop_counter) {
   if ((loop_counter % 6) == 0) {
+#if DEBUG_MANUAL_MODE || DEBUG_AUTONOMOUS_MODE
     Serial.println(PRINT_PREFIX + "Updating Motor Position.");
+#endif
     updateMotor();
   } else {
+#if DEBUG_MANUAL_MODE || DEBUG_AUTONOMOUS_MODE
     Serial.println(PRINT_PREFIX + "Reading Sensor Data.");
+#endif
     readSensors();
   }
 }
