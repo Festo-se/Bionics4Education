@@ -47,7 +47,6 @@ Total amount about 40€.
 ## Background information on the material
 
 * **ESP32:**
-
 <br>The ESP 32 is a microcontroller that brings together 4 essential elements: a processor, memory and peripheral units and input-
 output interfaces. You can control the inputs and outputs with your computer via *Arduino IDE*. In Arduino IDE you can write code and flash it on the ESP 32. Therefore select the right port: tools -> port -> COM XX.
 <br><br><img src="/bionic_kit/DIY_Projects/Image/status-warning.svg" alt="warning_icon" width="20"/>  There is two versions of the Bionics Kit.  If you have the version 2, you will find information related to your controller to the following file :  [Bionics Kit Version 2](bionic_kit/DIY_Projects/getting_started_bionics_Kit_V2.md).
