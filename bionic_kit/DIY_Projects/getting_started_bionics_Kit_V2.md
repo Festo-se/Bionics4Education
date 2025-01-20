@@ -1,11 +1,12 @@
+<br><img src="/bionic_kit/DIY_Projects/Image/Logo_Festo.png" align="right"  alt="festo logo" width="200"/><br>
 
-# *Bionics Kit Version 2*
+# Bionics Kit Version 2
 ### Hardware
-
 The actuators of Bionics Kit version 2 are 5 LEDs and 4 servo motors. 
 
+<br><img src="/bionic_kit/data/images/Controller_V2.PNG" alt="controller Bionics kit V2" width="350"/>
 
-The pin of the LEDs is GPIO 13. 
+<br>The pin of the LEDs is GPIO 13. 
 <br>The pin of servo motors are the following : S1 (GPIO 14), S2 (GPIO 27), S3 (GPIO 26), S4 (GPIO 25).
 
 ### Coding Bionics Kit V2 with Arduino IDE 
