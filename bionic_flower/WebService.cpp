@@ -66,9 +66,9 @@ void WebService::start(IPAddress ip, const uint16_t port, std::function<void(boo
 
 void WebService::loop(uint32_t count) {
   boolean has_active_connection = wifi_service->getActiveConnectionCount() > 0;
-  if (has_active_connection) {
+  /*if (has_active_connection) {
     dns_service->processRequest();
-  }
+  }*/
   hardware_service->loop(has_active_connection, count);
 }
 

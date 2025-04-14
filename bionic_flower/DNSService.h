@@ -4,7 +4,7 @@
 
 // MARK: Includes
 
-#include <DNSServer.h>
+//#include <DNSServer.h>
 #include "Models.h"
 
 class DNSService {
@@ -18,7 +18,7 @@ class DNSService {
     // MARK: Methods
 
     boolean start(IPAddress ip);
-    void processRequest();
+    //void processRequest();
 
   protected:
 
@@ -26,7 +26,7 @@ class DNSService {
 
     // MARK: Private Properties
 
-    DNSServer* server;
+    //DNSServer* server;
 
 };
 
