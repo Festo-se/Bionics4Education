@@ -8,6 +8,9 @@ The actuators of Bionics Kit version 2 are 5 LEDs and 4 servo motors.
 
 <br>The pin of the LEDs is GPIO 13. 
 <br>The pin of servo motors are the following : S1 (GPIO 14), S2 (GPIO 27), S3 (GPIO 26), S4 (GPIO 25).
+<br>The pin of the buzzer is GPIO 2.
+<br>There are also open GPIOs : GPIO 5, GPIO 12, GPIO 15, GPIO 18, GPIO 23, GPIO 32, GPIO 34, GPIO 35,
+GPIO 36, GPIO 39.
 
 ### Coding Bionics Kit V2 with Arduino IDE 
 
@@ -126,5 +129,17 @@ void loop() {
   delay(1000); // wait 1 seconde
 }
 ``` 
+
+
+
+  
+  S1.write(45); // move servo S1 to the 45° position
+  S2.write(90); // move servo S2 to the 90° position
+  S3.write(135); // move servo S3 to the 135° position
+  S4.write(180); // move servo S4 to the 180° position 
+  delay(1000); // wait 1 seconde
+}
+``` 
+
 
 
