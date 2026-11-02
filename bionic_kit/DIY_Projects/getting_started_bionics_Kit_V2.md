@@ -126,19 +126,47 @@ void loop() {
   S2.write(90); // move servo S2 to the 90° position
   S3.write(135); // move servo S3 to the 135° position
   S4.write(180); // move servo S4 to the 180° position 
-  delay(1000); // wait 1 seconde
+  delay(1000); // wait 1 second
 }
 ``` 
 
 
-
+ * **Control buzzer**
   
-  S1.write(45); // move servo S1 to the 45° position
-  S2.write(90); // move servo S2 to the 90° position
-  S3.write(135); // move servo S3 to the 135° position
-  S4.write(180); // move servo S4 to the 180° position 
-  delay(1000); // wait 1 seconde
+```
+
+const int buzzer_PIN = 2;
+
+/**
+ * Use the buzzer to play a note definied by a frequency (Hz).
+ * @param frequency : value of the frequency (Hz), between 20 et 20 000.
+ */
+void PlayNote(int frequency) {
+  if (frequency >= 20 && frequency <= 20000) {
+    tone(buzzer_PIN, frequency);
+  }
 }
+
+/**
+ * Stop the sound from the buzzer.
+ */
+void StopNote() {
+  noTone(buzzer_PIN);
+}
+
+void setup() {
+  // Initialisation of buzzer
+  pinMode(buzzer_PIN, OUTPUT);
+}
+
+void loop() {
+  PlayNote(440); // play the note with 440Hz
+  delay(1000);   // wait 1 second
+  
+  StopNote();    // stop the sound 
+  delay(1000);   // wait 1 second
+}
+
 ``` 
 
 
